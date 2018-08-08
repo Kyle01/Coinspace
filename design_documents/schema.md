@@ -11,31 +11,6 @@ session_token   | string      | not null, indexed, unique
 created_at      | datetime    | not null
 updated_at      | datetime    | not null
 
-* index on `username, unique: true`
-* index on `session_token, unique: true`
-
-## `Portfolio` ##
-column name     | data type   | details
--------------   |-------------| ---------------------
-id              | Integer     | primary ID, index, unique
-userId          | String      | foreign Id
-created_at      | datetime    | not null
-updated_at      | datetime    | not null
-
-* `userId` references `users`
-* index on `id, unique: true`
-
-## `Positions` ##
-column name     | data type   | details
--------------   |-------------| ----------------
-id              | Integer     | primary ID, indexed, unique
-portfolioId     | Integer     | foreign Id
-name            | String      | no null
-size            | float       | no null
-created_at      | datetime    | not null
-updated_at      | datetime    | not null
-
-
 * index on `id, unique: true`
 * `portfolioId` references `portfolios`
 
@@ -43,27 +18,44 @@ updated_at      | datetime    | not null
 column name     | data type   | details
 -------------   |-------------| ---------------------
 id              | Integer     | primary ID, indexed, unique
-portfolioId     | Integer     | foreign Id
-coinId          | String      | foreign Id
+userId          | Integer     | foreign Id
+coin            | String      | not null, verified string 
 price           | float       | not null
 size            | String      | not null
 buy?            | boolean     | not null
-timeStamps      | date        | not null
 created_at      | datetime    | not null
 updated_at      | datetime    | not null
 
 * index on `id, unique: true`
-* `portfolioId` references `portfolios`
-* `coinId` references `Coins`
 
-## `Coins` ##
+## `Bitcoin` ##
 column name     | data type         | details
 -------------   |-------------      | ---------------------
-id              | Integer           | primary ID
-name            | String            | not null, indexed
-Price           | Price             | custom data type(float, date)
-historicalPrice | array(of prices)  | no null
+Price           | Price             | float
+date            | datetime          | not null
 created_at      | datetime          | not null
 updated_at      | datetime          | not null
 
-* index on `name, unique: true`
+## `Litecoin` ##
+column name     | data type         | details
+-------------   |-------------      | ---------------------
+Price           | Price             | float
+date            | datetime          | not null
+created_at      | datetime          | not null
+updated_at      | datetime          | not null
+
+## `Ethereum` ##
+column name     | data type         | details
+-------------   |-------------      | ---------------------
+Price           | Price             | float
+date            | datetime          | not null
+created_at      | datetime          | not null
+updated_at      | datetime          | not null
+
+## `Bitcoin_Cash` ##
+column name     | data type         | details
+-------------   |-------------      | ---------------------
+Price           | Price             | float
+date            | datetime          | not null
+created_at      | datetime          | not null
+updated_at      | datetime          | not null

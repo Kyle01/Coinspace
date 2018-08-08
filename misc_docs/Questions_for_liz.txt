@@ -1,5 +1,7 @@
 Liz (or other TA)
 ------
-* Are the dates COB for the MVP list?
-* which is the CRUD item for bluebird?
-* I dont wanna make watch list (there are only four coins). Do we have alternatives?
+* which is the CRUD item for bluebird? - itll be transaction (C & R, make sure I write both C R and in my MVP, italizes)
+* how do I get my rails server in color
+* I need to fix github, how do I do that
+* what is protect_from_forgery on the application controller again? (you need it)
+* my linter is still trash.
