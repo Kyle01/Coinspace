@@ -18,6 +18,5 @@ class Api::SessionsController < ApplicationController
     else
       render json: {errors: 'no current user - 404'}, status: 404
     end
-    #redirect to index
   end
 end

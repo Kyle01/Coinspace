@@ -2,19 +2,21 @@ EVERYTHING
 XXXXXXXXXXXXXXXXXXXXXX
 
 
-6) big 3 pages :
+big 3 pages :
   dashboard
   buy/sell page
   individual chart page
   bonus page
     account page
-7) get coin price for back end (thats it)
-9) state will fetch prices and an array of w/e we're pricing
-10) get coin we'll have an extra ajax field giving date range
-Bonus MVPs
----
-5. Bank account information
-  1. Users can link their bank accounts
-  2. Users can wire money in and out of their account
-  3. Adequate styling
-  4. Smooth, bug-free navigation
+    splash page
+get coin price for back end (thats it)
+
+
+Chart js for visualizations
+
+to do today (still)
+------
+basic styling
+host on heroku
+fix that 500 error when you log into dashboard 
+show errors

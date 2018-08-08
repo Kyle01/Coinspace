@@ -19,9 +19,9 @@ class LoginForm extends React.Component {
     });
   }
 
-  handleSubmit(){
+  handleSubmit(e){
     e.preventDefault();
-    this.props.login(this.state);
+    this.props.login(this.state).then(() => this.props.history.push("/dashboard"));
   }
 
   render(){

@@ -4,7 +4,9 @@ Liz (or other TA)
 * I need to fix github, how do I do that
 * what is protect_from_forgery on the application controller again? (you need it)
 * my linter is still trash.
-* where does LoginFormContainer come from? 
+* Need to add refersh page user stays in
+* Do I need to make this profile thing for my MVP 1
 
 ----
 8/8
+I cant get the preloadedstate stuff to work :(
