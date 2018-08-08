@@ -1,4 +1,4 @@
-### MVP Features ###
+# MVP Features
 
 Coinspace, a Coinbase clone, is a cryptocurrecy exchange application that allows users to buy and sell bitcoin, ethereum, litecoin, and bitcoin cash.
 
@@ -21,8 +21,9 @@ Coinspace, a Coinbase clone, is a cryptocurrecy exchange application that allows
   * Adequate and appropriate seeds to demonstrate the feature
 4. Transaction management  (8/12/2018, 1 day)
   * Users can add funds to purchase coin at the current value
-  * Users can sell currently owned coins for cash at the current value
+  * Users can create a transaction to purchase or sell coins
   * Portfolio is updated based on the current value
+  * Transactions can be read and viewed as a modal for the history
   * Adequate styling
   * Smooth, bug-free navigation
   * Adequate and appropriate seeds to demonstrate the feature

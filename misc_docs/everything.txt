@@ -1,12 +1,7 @@
 EVERYTHING
 XXXXXXXXXXXXXXXXXXXXXX
 
-2) chart for each coin
-3) update frontend routes, including /btc
-5) front end routes
-  portfolio
-  transaction - make transaction
-  historical transaction will just be a modal
+
 6) big 3 pages :
   dashboard
   buy/sell page
