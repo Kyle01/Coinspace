@@ -1,0 +1,5 @@
+Liz (or other TA)
+------
+* Are the dates COB for the MVP list?
+* which is the CRUD item for bluebird?
+* I dont wanna make watch list (there are only four coins). Do we have alternatives?

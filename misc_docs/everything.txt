@@ -1,0 +1,12 @@
+EVERYTHING
+XXXXXXXXXXXXXXXXXXXXXX
+
+
+
+Bonus MVPs
+---
+5. Bank account information
+  1. Users can link their bank accounts
+  2. Users can wire money in and out of their account
+  3. Adequate styling
+  4. Smooth, bug-free navigation
