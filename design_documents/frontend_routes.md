@@ -2,18 +2,33 @@
 
 Our components are organized as follows:
 
-* Root
-  * App
-    * Navbar
+* `Root`
+  * `App`
+    * `Navbar`
     * (Main component goes here)
-    * Footer
+    * `Footer`
 
 The following routes, defined in App, will render components between Navbar and Footer
 
-* /Portfolio
-* /login
-* /signup
-* /transactions
-  * historical transactions
-* /transaction
-  * make new transaction form
+* `/`
+  * `SessionForm`
+* `/dashboard`
+  * `SessionForm`
+* `/login`
+  * `SessionForm`
+* `/signup`
+  * `SessionForm`
+* `/buy`
+  * `TransactionForm`
+* `/sell`
+  * `TransactionForm`
+* `/assets/bitcoin`
+  * `CoinComponent`
+* `/assets/ethereum`
+  * `CoinComponent`
+* `/assets/litecoin`
+  * `CoinComponent`
+* `/assets/bitcoincash`
+  * `CoinComponent`
+* `/accounts/:userId`
+  * `SessionComponent`

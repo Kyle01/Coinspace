@@ -1,10 +1,8 @@
 EVERYTHING
 XXXXXXXXXXXXXXXXXXXXXX
 
-1) Get rid of positions
 2) chart for each coin
 3) update frontend routes, including /btc
-4) wipe portfolio
 5) front end routes
   portfolio
   transaction - make transaction
@@ -15,11 +13,9 @@ XXXXXXXXXXXXXXXXXXXXXX
   individual chart page
   bonus page
     account page
-7) get coin price for back end (thats it )
-8) just 1 user on the state
-  transation only for users
+7) get coin price for back end (thats it)
 9) state will fetch prices and an array of w/e we're pricing
-10) get coin we'll have an extra ajax field giving date range 
+10) get coin we'll have an extra ajax field giving date range
 Bonus MVPs
 ---
 5. Bank account information

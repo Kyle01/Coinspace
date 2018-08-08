@@ -19,7 +19,7 @@ column name     | data type   | details
 -------------   |-------------| ---------------------
 id              | Integer     | primary ID, indexed, unique
 userId          | Integer     | foreign Id
-coin            | String      | not null, verified string 
+coin            | String      | not null, verified string
 price           | float       | not null
 size            | String      | not null
 buy?            | boolean     | not null
@@ -31,7 +31,7 @@ updated_at      | datetime    | not null
 ## `Bitcoin` ##
 column name     | data type         | details
 -------------   |-------------      | ---------------------
-Price           | Price             | float
+price           | Price             | float
 date            | datetime          | not null
 created_at      | datetime          | not null
 updated_at      | datetime          | not null
@@ -39,7 +39,7 @@ updated_at      | datetime          | not null
 ## `Litecoin` ##
 column name     | data type         | details
 -------------   |-------------      | ---------------------
-Price           | Price             | float
+price           | Price             | float
 date            | datetime          | not null
 created_at      | datetime          | not null
 updated_at      | datetime          | not null
@@ -47,7 +47,7 @@ updated_at      | datetime          | not null
 ## `Ethereum` ##
 column name     | data type         | details
 -------------   |-------------      | ---------------------
-Price           | Price             | float
+price           | Price             | float
 date            | datetime          | not null
 created_at      | datetime          | not null
 updated_at      | datetime          | not null
@@ -55,7 +55,7 @@ updated_at      | datetime          | not null
 ## `Bitcoin_Cash` ##
 column name     | data type         | details
 -------------   |-------------      | ---------------------
-Price           | Price             | float
+price           | Price             | float
 date            | datetime          | not null
 created_at      | datetime          | not null
 updated_at      | datetime          | not null
