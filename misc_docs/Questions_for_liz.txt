@@ -4,6 +4,7 @@ Liz (or other TA)
 * I need to fix github, how do I do that
 * what is protect_from_forgery on the application controller again? (you need it)
 * my linter is still trash.
+* where does LoginFormContainer come from? 
 
 ----
 8/8
