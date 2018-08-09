@@ -10,13 +10,16 @@ big 3 pages :
     account page
     splash page
 get coin price for back end (thats it)
+Ideally errors on login/signup would be a modal
+Signup bar still jumps
+put a demo button the create page 
+
 
 
 Chart js for visualizations
 
 to do today (still)
 ------
-basic styling
 host on heroku
 fix that 500 error when you log into dashboard
-make the nav bar collapse upon it getting smaller 
+make the nav bar collapse upon it getting smaller

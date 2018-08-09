@@ -5,10 +5,10 @@ import { Link, withRouter, Redirect } from 'react-router-dom';
 const NavbarFeatures = props => {
   return props.currentUser ? (
     <div className="nav-bar">
-      <p className="nav-logo">coinspace</p>
+      <a className="nav-logo">coinspace</a>
       <div className="nav-rt-el">
         <button className="nav-signout-button" onClick={props.logout}>Sign out</button>
-        <p className="nav-username">{props.currentUser.username}</p>
+        <a className="nav-username">{props.currentUser.username}</a>
       </div>
     </div>
   ) : (

@@ -25,30 +25,34 @@ class UserForm extends React.Component {
   }
 
   render(){
-    const err = this.props.errors.map((err, idx) => <li key={idx}>{err}</li>)
+    const err = this.props.errors.map((err, idx) => <li className="signup-error-el" key={idx}>{err}</li>)
     return (
-      <div>
-        <h2>Create your account</h2>
-        <form>
+      <div className="signup-main">
+        <h2 className="signup-above-text">Create your account</h2>
+        <form className="signup-submitform">
           <label>
             Username
             <input
+              className="signup-field"
               type="text"
               value={this.state.username}
+              placeholder="username"
               onChange={this.handleInput('username')}>
             </input>
           </label>
           <label>
             Password
             <input
+              className="signup-field"
               type="password"
+              placeholder="password"
               value={this.state.password}
               onChange={this.handleInput('password')}>
             </input>
           </label>
-          <button onClick={this.handleSubmit}>CREATE ACCOUNT</button>
+          <button className="signup-button" onClick={this.handleSubmit}>CREATE ACCOUNT</button>
         </form>
-        <ul>
+        <ul className="signup-error-container">
             {err}
         </ul>
       </div>

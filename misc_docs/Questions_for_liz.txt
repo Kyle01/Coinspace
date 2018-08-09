@@ -2,11 +2,11 @@ Liz (or other TA)
 ------
 * how do I get my rails server in color
 * my linter is still trash.
-* how to do demo account
 * does their button have a transition? If how do I do that.
 * I having some problems with my nav bar...
+* get it on heroku ASAP
 
 
 8/9
 -----
-How to get errors to be a window 
+How to get errors to be a window

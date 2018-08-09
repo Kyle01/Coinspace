@@ -346,7 +346,7 @@ var NavbarFeatures = function NavbarFeatures(props) {
     'div',
     { className: 'nav-bar' },
     _react2.default.createElement(
-      'p',
+      'a',
       { className: 'nav-logo' },
       'coinspace'
     ),
@@ -359,7 +359,7 @@ var NavbarFeatures = function NavbarFeatures(props) {
         'Sign out'
       ),
       _react2.default.createElement(
-        'p',
+        'a',
         { className: 'nav-username' },
         props.currentUser.username
       )
@@ -577,7 +577,7 @@ var LoginForm = function (_React$Component) {
       var err = this.props.errors.map(function (err, idx) {
         return _react2.default.createElement(
           'li',
-          { key: idx },
+          { className: 'signin-error-el', key: idx },
           err
         );
       });
@@ -627,7 +627,7 @@ var LoginForm = function (_React$Component) {
         ),
         _react2.default.createElement(
           'ul',
-          null,
+          { className: 'signin-error-container' },
           err
         )
       );
@@ -758,28 +758,30 @@ var UserForm = function (_React$Component) {
       var err = this.props.errors.map(function (err, idx) {
         return _react2.default.createElement(
           'li',
-          { key: idx },
+          { className: 'signup-error-el', key: idx },
           err
         );
       });
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'signup-main' },
         _react2.default.createElement(
           'h2',
-          null,
+          { className: 'signup-above-text' },
           'Create your account'
         ),
         _react2.default.createElement(
           'form',
-          null,
+          { className: 'signup-submitform' },
           _react2.default.createElement(
             'label',
             null,
             'Username',
             _react2.default.createElement('input', {
+              className: 'signup-field',
               type: 'text',
               value: this.state.username,
+              placeholder: 'username',
               onChange: this.handleInput('username') })
           ),
           _react2.default.createElement(
@@ -787,19 +789,21 @@ var UserForm = function (_React$Component) {
             null,
             'Password',
             _react2.default.createElement('input', {
+              className: 'signup-field',
               type: 'password',
+              placeholder: 'password',
               value: this.state.password,
               onChange: this.handleInput('password') })
           ),
           _react2.default.createElement(
             'button',
-            { onClick: this.handleSubmit },
+            { className: 'signup-button', onClick: this.handleSubmit },
             'CREATE ACCOUNT'
           )
         ),
         _react2.default.createElement(
           'ul',
-          null,
+          { className: 'signup-error-container' },
           err
         )
       );
@@ -848,6 +852,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     signup: function signup(user) {
       return dispatch((0, _session_actions.signup)(user));
+    },
+    login: function login(user) {
+      return dispatch((0, _session_actions.login)(user));
     }
   };
 };

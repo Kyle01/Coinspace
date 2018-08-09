@@ -1,14 +1,14 @@
-.signin-main {
+.signup-main {
   color: white;
   font-family: Montserrat;
   font-weight: 100;
 }
 
-.signin-above-text {
+.signup-above-text {
   text-align: center;
 }
 
-.signin-submitform{
+.signup-submitform{
   margin: 0 auto;
   display: block;
   max-width: 375px;
@@ -17,7 +17,7 @@
   background-color: #f8f8f8;
 }
 
-.signin-field {
+.signup-field {
   margin: 0 auto;
   display: flex;
   width: 300px;
@@ -26,11 +26,11 @@
   font-size: 15px;
 }
 
-.signin-field::placeholder {
+.signup-field::placeholder {
   color: #a3abb7;
 }
 
-.signin-button {
+.signup-button {
   background-color: #0667d0;
   display: inline-block;
   align-items: center;
@@ -42,22 +42,11 @@
   margin: 20px;
 }
 
-.signin-demo {
-  background-color: #0667d0;
-  display: inline-block;
-  color: #f8f8f8;
-  font-size: 12px;
-  float:left;
-  width: 90px;
-  height: 40px;
-  margin: 20px;
-}
-
-.signin-error-container {
+.signup-error-container {
 
 }
 
-.signin-error-el {
+.signup-error-el {
   list-style-type: none;
   color: pink;
   font-size: 14px;

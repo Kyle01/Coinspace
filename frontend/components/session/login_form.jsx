@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
   }
 
   render(){
-    const err = this.props.errors.map((err, idx) => <li key={idx}>{err}</li>)
+    const err = this.props.errors.map((err, idx) => <li className="signin-error-el" key={idx}>{err}</li>)
     return (
       <div className="signin-main">
         <h2 className="signin-above-text">Sign in to Coinspace</h2>
@@ -59,7 +59,7 @@ class LoginForm extends React.Component {
           <button className="signin-demo" onClick={this.handleDemoUser}>Demo</button>
           <button className="signin-button" onClick={this.handleSubmit}>SIGN IN</button>
         </form>
-        <ul>
+        <ul className="signin-error-container">
           {err}
         </ul>
       </div>
