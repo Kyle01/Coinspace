@@ -7,19 +7,20 @@ big 3 pages :
   buy/sell page
   individual chart page
   bonus page
-    account page
     splash page
+    account page
 get coin price for back end (thats it)
-Ideally errors on login/signup would be a modal
-Signup bar still jumps
-put a demo button the create page 
-
-
-
+make text look better inside login field
+make create user have more info, like a state drop down
+fix that 500 error when you log into dashboard
+make the nav bar collapse upon it getting smaller
+make coin model class that extends applicationrecord and bitcoin will extend coin
 Chart js for visualizations
+Will get all a users transaction through the user show route
 
 to do today (still)
 ------
-host on heroku
-fix that 500 error when you log into dashboard
-make the nav bar collapse upon it getting smaller
+plan the next two days
+  - make all databased
+      -transactions
+      -Seed coins
