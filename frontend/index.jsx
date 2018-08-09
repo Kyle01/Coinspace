@@ -5,7 +5,6 @@ import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-  console.log(window.currentUser);
   if (window.currentUser) {
     const preloadedState = {
       entities: {
@@ -18,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-  debugger;
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store}/>, root);
 });

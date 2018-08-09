@@ -25,6 +25,7 @@ class LoginForm extends React.Component {
   }
 
   render(){
+    const err = this.props.errors.map((err, idx) => <li key={idx}>{err}</li>)
     return (
       <div>
         <h2>Sign in to Coinbase</h2>
@@ -47,6 +48,9 @@ class LoginForm extends React.Component {
           </label>
           <button onClick={this.handleSubmit}>SIGN IN</button>
         </form>
+        <ul>
+          {err}
+        </ul>
       </div>
     );
   }

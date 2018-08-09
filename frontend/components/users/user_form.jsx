@@ -25,6 +25,7 @@ class UserForm extends React.Component {
   }
 
   render(){
+    const err = this.props.errors.map((err, idx) => <li key={idx}>{err}</li>)
     return (
       <div>
         <h2>Create your account</h2>
@@ -47,6 +48,9 @@ class UserForm extends React.Component {
           </label>
           <button onClick={this.handleSubmit}>CREATE ACCOUNT</button>
         </form>
+        <ul>
+            {err}
+        </ul>
       </div>
     );
   }

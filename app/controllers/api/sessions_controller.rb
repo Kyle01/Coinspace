@@ -6,7 +6,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render json: @user
     else
-      render json: {errors: 'invalid credentails'}, status: 422
+      render json: ['invalid credentails'], status: 422
     end
   end
 
@@ -16,7 +16,7 @@ class Api::SessionsController < ApplicationController
       logout
       render json: { }
     else
-      render json: {errors: 'no current user - 404'}, status: 404
+      render json: ['no current user - 404'], status: 404
     end
   end
 end

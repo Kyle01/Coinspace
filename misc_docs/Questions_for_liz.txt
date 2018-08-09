@@ -1,12 +1,7 @@
 Liz (or other TA)
 ------
 * how do I get my rails server in color
-* I need to fix github, how do I do that
-* what is protect_from_forgery on the application controller again? (you need it)
 * my linter is still trash.
-* Need to add refersh page user stays in
-* Do I need to make this profile thing for my MVP 1
-
-----
-8/8
-I cant get the preloadedstate stuff to work :(
+* how to do demo account
+* does their button have a transition? If how do I do that.
+* I having some problems with my nav bar...

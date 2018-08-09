@@ -116,7 +116,7 @@ var login = exports.login = function login(user) {
     return ApiUtil.login(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (errors) {
-      return dispatch(receiveErrors(errors));
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -126,7 +126,7 @@ var logout = exports.logout = function logout() {
     return ApiUtil.logout().then(function () {
       return dispatch(logoutCurrentUser());
     }, function (errors) {
-      return dispatch(receiveErrors(errors));
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -136,7 +136,7 @@ var signup = exports.signup = function signup(user) {
     return ApiUtil.signup(user).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     }, function (errors) {
-      return dispatch(receiveErrors(errors));
+      return dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -344,49 +344,61 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var NavbarFeatures = function NavbarFeatures(props) {
   return props.currentUser ? _react2.default.createElement(
     'div',
-    null,
+    { className: 'nav-bar' },
     _react2.default.createElement(
       'p',
-      null,
+      { className: 'nav-logo' },
       'coinspace'
     ),
     _react2.default.createElement(
-      'button',
-      { onClick: props.logout },
-      'Sign out'
-    ),
-    _react2.default.createElement(
-      'p',
-      null,
-      props.currentUser.username
+      'div',
+      { className: 'nav-rt-el' },
+      _react2.default.createElement(
+        'button',
+        { className: 'nav-signout-button', onClick: props.logout },
+        'Sign out'
+      ),
+      _react2.default.createElement(
+        'p',
+        { className: 'nav-username' },
+        props.currentUser.username
+      )
     )
   ) : _react2.default.createElement(
     'div',
-    null,
+    { className: 'nav-bar' },
     _react2.default.createElement(
       'a',
-      null,
-      'Coinspace'
+      { className: 'nav-logo' },
+      'coinspace'
     ),
     _react2.default.createElement(
-      'a',
-      null,
-      'Charts'
+      'div',
+      { className: 'nav-middle-el' },
+      _react2.default.createElement(
+        'a',
+        { className: 'nav-middle-text' },
+        'Charts'
+      ),
+      _react2.default.createElement(
+        'a',
+        { className: 'nav-middle-text' },
+        'About'
+      )
     ),
     _react2.default.createElement(
-      'a',
-      null,
-      'About'
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/login' },
-      'Log in'
-    ),
-    _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: '/signup' },
-      'Sign up'
+      'div',
+      { className: 'nav-rt-el' },
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { className: 'nav-login', to: '/login' },
+        'Log in'
+      ),
+      _react2.default.createElement(
+        _reactRouterDom.Link,
+        { className: 'nav-signup', to: '/signup' },
+        'Sign up'
+      )
     )
   );
 };
@@ -420,7 +432,6 @@ var _navbar2 = _interopRequireDefault(_navbar);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return { currentUser: state.entities.users[state.session.currentUser] };
 };
 
@@ -552,6 +563,13 @@ var LoginForm = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var err = this.props.errors.map(function (err, idx) {
+        return _react2.default.createElement(
+          'li',
+          { key: idx },
+          err
+        );
+      });
       return _react2.default.createElement(
         'div',
         null,
@@ -586,6 +604,11 @@ var LoginForm = function (_React$Component) {
             { onClick: this.handleSubmit },
             'SIGN IN'
           )
+        ),
+        _react2.default.createElement(
+          'ul',
+          null,
+          err
         )
       );
     }
@@ -624,7 +647,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    errors: state.errors.session,
+    errors: state.errors.sessionErrorsReducer,
     currentUser: state.session.currentUser
   };
 };
@@ -712,6 +735,13 @@ var UserForm = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var err = this.props.errors.map(function (err, idx) {
+        return _react2.default.createElement(
+          'li',
+          { key: idx },
+          err
+        );
+      });
       return _react2.default.createElement(
         'div',
         null,
@@ -746,6 +776,11 @@ var UserForm = function (_React$Component) {
             { onClick: this.handleSubmit },
             'CREATE ACCOUNT'
           )
+        ),
+        _react2.default.createElement(
+          'ul',
+          null,
+          err
         )
       );
     }
@@ -784,7 +819,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    errors: state.errors.session,
+    errors: state.errors.sessionErrorsReducer,
     currentUser: state.session.currentUser
   };
 };
@@ -833,7 +868,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 document.addEventListener('DOMContentLoaded', function () {
   var store = void 0;
-  console.log(window.currentUser);
   if (window.currentUser) {
     var preloadedState = {
       entities: {
@@ -846,7 +880,6 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     store = (0, _store2.default)();
   }
-  debugger;
   var root = document.getElementById('root');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
@@ -906,7 +939,7 @@ var _session_errors_reducer2 = _interopRequireDefault(_session_errors_reducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var errorsReducer = (0, _redux.combineReducers)({
-  session: _session_errors_reducer2.default
+  sessionErrorsReducer: _session_errors_reducer2.default
 });
 
 exports.default = errorsReducer;
@@ -983,7 +1016,7 @@ var sessionErrorsReducer = function sessionErrorsReducer() {
 
   switch (action.type) {
     case _session_actions.RECEIVE_CURRENT_USER:
-      return state;
+      return [];
     case _session_actions.RECEIVE_SESSION_ERRORS:
       return action.errors;
     default:
