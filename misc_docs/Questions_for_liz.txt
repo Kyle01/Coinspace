@@ -5,3 +5,8 @@ Liz (or other TA)
 * how to do demo account
 * does their button have a transition? If how do I do that.
 * I having some problems with my nav bar...
+
+
+8/9
+-----
+How to get errors to be a window 

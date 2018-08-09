@@ -18,4 +18,5 @@ to do today (still)
 ------
 basic styling
 host on heroku
-fix that 500 error when you log into dashboard 
+fix that 500 error when you log into dashboard
+make the nav bar collapse upon it getting smaller 

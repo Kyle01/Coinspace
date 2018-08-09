@@ -538,26 +538,37 @@ var LoginForm = function (_React$Component) {
     };
 
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.handleDemoUser = _this.handleDemoUser.bind(_this);
     return _this;
   }
 
   _createClass(LoginForm, [{
-    key: 'handleInput',
-    value: function handleInput(type) {
+    key: 'handleDemoUser',
+    value: function handleDemoUser(e) {
       var _this2 = this;
 
+      e.preventDefault();
+      this.props.login({ username: "Demo_User", password: "Password1" }).then(function () {
+        return _this2.props.history.push("/dashboard");
+      });
+    }
+  }, {
+    key: 'handleInput',
+    value: function handleInput(type) {
+      var _this3 = this;
+
       return function (e) {
-        _this2.setState(_defineProperty({}, type, e.target.value));
+        _this3.setState(_defineProperty({}, type, e.target.value));
       };
     }
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       e.preventDefault();
       this.props.login(this.state).then(function () {
-        return _this3.props.history.push("/dashboard");
+        return _this4.props.history.push("/dashboard");
       });
     }
   }, {
@@ -572,21 +583,23 @@ var LoginForm = function (_React$Component) {
       });
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'signin-main' },
         _react2.default.createElement(
           'h2',
-          null,
-          'Sign in to Coinbase'
+          { className: 'signin-above-text' },
+          'Sign in to Coinspace'
         ),
         _react2.default.createElement(
           'form',
-          null,
+          { className: 'signin-submitform' },
           _react2.default.createElement(
             'label',
             null,
             'Username',
             _react2.default.createElement('input', {
+              className: 'signin-field',
               type: 'text',
+              placeholder: 'username',
               value: this.state.username,
               onChange: this.handleInput('username') })
           ),
@@ -595,13 +608,20 @@ var LoginForm = function (_React$Component) {
             null,
             'Password',
             _react2.default.createElement('input', {
+              className: 'signin-field',
               type: 'password',
+              placeholder: 'password',
               value: this.state.password,
               onChange: this.handleInput('password') })
           ),
           _react2.default.createElement(
             'button',
-            { onClick: this.handleSubmit },
+            { className: 'signin-demo', onClick: this.handleDemoUser },
+            'Demo'
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'signin-button', onClick: this.handleSubmit },
             'SIGN IN'
           )
         ),

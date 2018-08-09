@@ -11,6 +11,12 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemoUser = this.handleDemoUser.bind(this);
+  }
+
+  handleDemoUser(e) {
+    e.preventDefault();
+    this.props.login({username:"Demo_User", password:"Password1"}).then(() => this.props.history.push("/dashboard"));
   }
 
   handleInput(type){
@@ -27,13 +33,15 @@ class LoginForm extends React.Component {
   render(){
     const err = this.props.errors.map((err, idx) => <li key={idx}>{err}</li>)
     return (
-      <div>
-        <h2>Sign in to Coinbase</h2>
-        <form>
+      <div className="signin-main">
+        <h2 className="signin-above-text">Sign in to Coinspace</h2>
+        <form className="signin-submitform">
           <label>
             Username
             <input
+              className="signin-field"
               type="text"
+              placeholder="username"
               value={this.state.username}
               onChange={this.handleInput('username')}>
             </input>
@@ -41,12 +49,15 @@ class LoginForm extends React.Component {
           <label>
             Password
             <input
+              className="signin-field"
               type="password"
+              placeholder="password"
               value={this.state.password}
               onChange={this.handleInput('password')}>
             </input>
           </label>
-          <button onClick={this.handleSubmit}>SIGN IN</button>
+          <button className="signin-demo" onClick={this.handleDemoUser}>Demo</button>
+          <button className="signin-button" onClick={this.handleSubmit}>SIGN IN</button>
         </form>
         <ul>
           {err}
