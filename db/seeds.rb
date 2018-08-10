@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'csv'
+
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'price_data.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+  b = Price.new
+  b.date = row['Date']
+  b.btc_price = row['Bitcoin']
+  b.e_price = row['Ethereum']
+  b.ltc_price = row['Litecoin']
+  b.btcc_price = row['Bitcoin Cash']
+  b.save
+end

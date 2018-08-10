@@ -261,7 +261,13 @@ var _navbar_container2 = _interopRequireDefault(_navbar_container);
 
 var _route_util = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 
+var _not_found = __webpack_require__(/*! ./not_found/not_found */ "./frontend/components/not_found/not_found.js");
+
+var _not_found2 = _interopRequireDefault(_not_found);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//<Route path="*" component={NotFound}></Route>
 
 var App = function App() {
   return _react2.default.createElement(
@@ -507,6 +513,44 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
+/***/ "./frontend/components/not_found/not_found.js":
+/*!****************************************************!*\
+  !*** ./frontend/components/not_found/not_found.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NotFound = function NotFound() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      '404. Sorry the page you were looking for was not found.'
+    )
+  );
+};
+
+exports.default = NotFound;
+
+/***/ }),
+
 /***/ "./frontend/components/root.jsx":
 /*!**************************************!*\
   !*** ./frontend/components/root.jsx ***!
@@ -727,7 +771,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    errors: state.errors.sessionErrorsReducer,
+    errors: state.errors.session,
     currentUser: state.session.currentUser
   };
 };

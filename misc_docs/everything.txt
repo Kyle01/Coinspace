@@ -1,28 +1,27 @@
 EVERYTHING
 XXXXXXXXXXXXXXXXXXXXXX
-
-
-big 3 pages :
-  dashboard
-  buy/sell page
-  individual chart page
-  bonus page
-    splash page
-    account page
 get coin price for back end (thats it)
 make text look better inside login field
 make create user have more info, like a state drop down
 fix that 500 error when you log into dashboard
 make the nav bar collapse upon it getting smaller
 make coin model class that extends applicationrecord and bitcoin will extend coin
-Chart js for visualizations
+Chart js for visualizations or rechart
 Will get all a users transaction through the user show route
 
-to do today (still)
+big 3 pages :
+-----
+  dashboard
+  buy/sell page
+  individual chart page
+  bonus page
+    splash page
+    account page
+
+to do today
 ------
 plan the next two days
   - make all databases
-      -transactions
       -bitcoin
       -ethereum
       -litecoin
@@ -34,3 +33,4 @@ plan the next two days
   -make link to chart pages
   -make logic for portfolio
   -list transaction on website
+  - get all reducers in order
