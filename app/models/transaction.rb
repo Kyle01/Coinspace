@@ -1,12 +1,13 @@
 class Transaction < ApplicationRecord
-  validates :userId, :price, :buy, presence:true
+  validates :user_id, :price, :size, :buy, presence:true
   validate :coinValid?
 
   def coinValid?
-    errors[:coin] << "Invalid asset" unless
+    return false unless
     (:coin == "Bitcoin" ||
     :coin == "Litecoin" ||
     :coin == "Bitcoin Cash" ||
     :coin == "Ethereum")
+    return true
   end
 end

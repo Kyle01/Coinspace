@@ -7,3 +7,4 @@ Liz (or other TA)
 
 8/9
 -----
+My get api call isnt working for transaction. something is wrong with jbuilder
