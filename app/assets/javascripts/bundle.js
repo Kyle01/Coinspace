@@ -163,6 +163,66 @@ var receiveErrors = function receiveErrors(errors) {
 
 /***/ }),
 
+/***/ "./frontend/actions/transaction_actions.js":
+/*!*************************************************!*\
+  !*** ./frontend/actions/transaction_actions.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.viewTrade = exports.trade = exports.RECEIVE_TRADE_ERRORS = exports.RECEIVE_TRADE = undefined;
+
+var _transaction_api_util = __webpack_require__(/*! ../util/transaction_api_util */ "./frontend/util/transaction_api_util.js");
+
+var ApiUtil = _interopRequireWildcard(_transaction_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_TRADE = exports.RECEIVE_TRADE = 'RECEIVE_TRADE';
+var RECEIVE_TRADE_ERRORS = exports.RECEIVE_TRADE_ERRORS = 'RECEIVE_TRADE_ERRORS';
+
+var trade = exports.trade = function trade(transaction) {
+  return function (dispatch) {
+    return ApiUtil.trade(transaction).then(function (transition) {
+      return dispatch(receiveTrade(transaction.id));
+    }, function (errors) {
+      return dispatch(receiveTradeErrors(errors.responseJSON));
+    });
+  };
+};
+
+var viewTrade = exports.viewTrade = function viewTrade(id) {
+  return function (dispatch) {
+    return ApiUtil.viewTrade(id).then(function (transition) {
+      return dispatch(receiveTrade(transaction.id));
+    }, function (errors) {
+      return dispatch(receiveTradeErrors(errors.responseJSON));
+    });
+  };
+};
+
+var receiveTrade = function receiveTrade(id) {
+  return {
+    type: RECEIVE_TRADE,
+    id: id
+  };
+};
+
+var receiveTradeErrors = function receiveTradeErrors(errors) {
+  return {
+    type: RECEIVE_TRADE_ERRORS,
+    errors: errors
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/App.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/App.jsx ***!
@@ -933,10 +993,15 @@ var _users_reducer = __webpack_require__(/*! ./users_reducer */ "./frontend/redu
 
 var _users_reducer2 = _interopRequireDefault(_users_reducer);
 
+var _transactions_reducer = __webpack_require__(/*! ./transactions_reducer */ "./frontend/reducers/transactions_reducer.js");
+
+var _transactions_reducer2 = _interopRequireDefault(_transactions_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var entitiesReducer = (0, _redux.combineReducers)({
-  users: _users_reducer2.default
+  users: _users_reducer2.default,
+  transactions: _transactions_reducer2.default
 });
 
 exports.default = entitiesReducer;
@@ -963,10 +1028,15 @@ var _session_errors_reducer = __webpack_require__(/*! ./session_errors_reducer *
 
 var _session_errors_reducer2 = _interopRequireDefault(_session_errors_reducer);
 
+var _transaction_errors_reducer = __webpack_require__(/*! ./transaction_errors_reducer */ "./frontend/reducers/transaction_errors_reducer.js");
+
+var _transaction_errors_reducer2 = _interopRequireDefault(_transaction_errors_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var errorsReducer = (0, _redux.combineReducers)({
-  sessionErrorsReducer: _session_errors_reducer2.default
+  session: _session_errors_reducer2.default,
+  transaction: _transaction_errors_reducer2.default
 });
 
 exports.default = errorsReducer;
@@ -1097,6 +1167,90 @@ var sessionReducer = function sessionReducer() {
 };
 
 exports.default = sessionReducer;
+
+/***/ }),
+
+/***/ "./frontend/reducers/transaction_errors_reducer.js":
+/*!*********************************************************!*\
+  !*** ./frontend/reducers/transaction_errors_reducer.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _transaction_actions = __webpack_require__(/*! ../actions/transaction_actions */ "./frontend/actions/transaction_actions.js");
+
+var _merge = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var transactionErrorsReducer = function transactionErrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _transaction_actions.RECEIVE_TRADE:
+      return [];
+    case _transaction_actions.RECEIVE_TRADE_ERRORS:
+      return action.errors;
+    default:
+      return state;
+  }
+};
+
+exports.default = transactionErrorsReducer;
+
+/***/ }),
+
+/***/ "./frontend/reducers/transactions_reducer.js":
+/*!***************************************************!*\
+  !*** ./frontend/reducers/transactions_reducer.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _transaction_actions = __webpack_require__(/*! ../actions/transaction_actions */ "./frontend/actions/transaction_actions.js");
+
+var _merge2 = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+
+var _merge3 = _interopRequireDefault(_merge2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var transactionReducer = function transactionReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _transaction_actions.RECEIVE_TRADE:
+      return (0, _merge3.default)({}, state, _defineProperty({}, action.transaction.id, action.transaction));
+    default:
+      return state;
+  }
+};
+
+exports.default = transactionReducer;
 
 /***/ }),
 
@@ -1269,6 +1423,36 @@ var logout = exports.logout = function logout() {
   return $.ajax({
     method: 'DELETE',
     url: 'api/session'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/transaction_api_util.js":
+/*!***********************************************!*\
+  !*** ./frontend/util/transaction_api_util.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var trade = exports.trade = function trade(transaction) {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/transactions',
+    data: { transaction: transaction }
+  });
+};
+
+var viewTrade = exports.viewTrade = function viewTrade(id) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/transactions/' + id
   });
 };
 

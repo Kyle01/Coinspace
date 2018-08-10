@@ -17,7 +17,7 @@ make the nav bar collapse upon it getting smaller
 make coin model class that extends applicationrecord and bitcoin will extend coin
 Chart js for visualizations
 Will get all a users transaction through the user show route
-new transaction migration. decamelcase userid user_id and add size 
+
 to do today (still)
 ------
 plan the next two days

@@ -6,19 +6,22 @@ export const RECEIVE_TRADE_ERRORS = 'RECEIVE_TRADE_ERRORS';
 export const trade = transaction => dispatch => {
   return ApiUtil.trade(transaction)
   .then(
-    transition => dispatch(receiveTrade(transaction.id))
+    transition => dispatch(receiveTrade(transaction.id)),
+    errors => dispatch(receiveTradeErrors(errors.responseJSON))
   );
 };
 
 export const viewTrade = id => dispatch => {
   return ApiUtil.viewTrade(id)
   .then(
-    transition => dispatch(receiveTrade(transaction.id))
+    transition => dispatch(receiveTrade(transaction.id)),
+    errors => dispatch(receiveTradeErrors(errors.responseJSON))
   );
 };
 
 const receiveTrade = id => ({
-
+  type: RECEIVE_TRADE,
+  id
 })
 
 const receiveTradeErrors = errors => ({

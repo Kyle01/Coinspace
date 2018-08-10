@@ -1,7 +1,7 @@
 export const trade = transaction => (
   $.ajax ({
     method: 'POST',
-    url: 'api/transactions'
+    url: 'api/transactions',
     data: { transaction }
   })
 );
