@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_10_205053) do
+ActiveRecord::Schema.define(version: 2018_08_10_213521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2018_08_10_205053) do
     t.float "e_price", null: false
     t.float "ltc_price", null: false
     t.float "btcc_price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["date"], name: "index_prices_on_date", unique: true
   end
 

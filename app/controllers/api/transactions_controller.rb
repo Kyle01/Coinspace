@@ -14,6 +14,9 @@ class Api::TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
   end
 
+  def index
+  end
+
   def transactions_params
     params.require(:transaction).permit(:user_id, :coin, :price, :buy, :size)
   end
