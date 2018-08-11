@@ -3,16 +3,16 @@ import { Link, withRouter, Redirect } from 'react-router-dom';
 
 import LocalBarFeatures from '../local_bar/local_bar'
 
-class Dashboard extends React.Component {
+class Account extends React.Component {
 
   render(){
     return (
       <div>
-        <LocalBarFeatures location="dashboard"/>
-        <h3>`Hello from dashboard!`</h3>
+        <LocalBarFeatures location="account"/>
+        <h3>`Hello from account!`</h3>
       </div>
     );
   }
 }
 
-export default withRouter(Dashboard);
+export default withRouter(Account);

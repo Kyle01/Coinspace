@@ -1,0 +1,35 @@
+.local-bar-main {
+  background-color: white;
+  height: 55px;
+}
+
+.local-bar-img {
+  height: 30px;
+  width: 30px;
+  padding: 8px;
+}
+
+.local-bar-link {
+  margin: 0 auto;
+  display: inline-block;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.local-bar-words-not-selected {
+  color: #6699CC;
+  display: inline-block;
+  font-family: Nunito;
+}
+
+.local-bar-words-selected {
+  color: #0667d0;
+  display: inline-block;
+  font-family: Nunito;
+}
+
+.local-bar-items {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

@@ -323,6 +323,14 @@ var _dashboard_container = __webpack_require__(/*! ./dashboard/dashboard_contain
 
 var _dashboard_container2 = _interopRequireDefault(_dashboard_container);
 
+var _trade_container = __webpack_require__(/*! ./trade/trade_container */ "./frontend/components/trade/trade_container.js");
+
+var _trade_container2 = _interopRequireDefault(_trade_container);
+
+var _account_container = __webpack_require__(/*! ./account/account_container */ "./frontend/components/account/account_container.jsx");
+
+var _account_container2 = _interopRequireDefault(_account_container);
+
 var _navbar_container = __webpack_require__(/*! ./navigation_bar/navbar_container */ "./frontend/components/navigation_bar/navbar_container.js");
 
 var _navbar_container2 = _interopRequireDefault(_navbar_container);
@@ -351,12 +359,116 @@ var App = function App() {
       null,
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/login', component: _login_form_container2.default }),
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/signup', component: _user_form_container2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/dashboard', component: _dashboard_container2.default })
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/dashboard', component: _dashboard_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/trade', component: _trade_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default })
     )
   );
 };
 
 exports.default = App;
+
+/***/ }),
+
+/***/ "./frontend/components/account/account.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/account/account.jsx ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _local_bar = __webpack_require__(/*! ../local_bar/local_bar */ "./frontend/components/local_bar/local_bar.jsx");
+
+var _local_bar2 = _interopRequireDefault(_local_bar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Account = function (_React$Component) {
+  _inherits(Account, _React$Component);
+
+  function Account() {
+    _classCallCheck(this, Account);
+
+    return _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).apply(this, arguments));
+  }
+
+  _createClass(Account, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_local_bar2.default, { location: 'account' }),
+        _react2.default.createElement(
+          'h3',
+          null,
+          '`Hello from account!`'
+        )
+      );
+    }
+  }]);
+
+  return Account;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(Account);
+
+/***/ }),
+
+/***/ "./frontend/components/account/account_container.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/account/account_container.jsx ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _session_actions = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+
+var _account = __webpack_require__(/*! ./account */ "./frontend/components/account/account.jsx");
+
+var _account2 = _interopRequireDefault(_account);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_account2.default);
 
 /***/ }),
 
@@ -382,6 +494,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
+var _local_bar = __webpack_require__(/*! ../local_bar/local_bar */ "./frontend/components/local_bar/local_bar.jsx");
+
+var _local_bar2 = _interopRequireDefault(_local_bar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -403,9 +519,14 @@ var Dashboard = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'h3',
+        'div',
         null,
-        '`Hello from dashboard!`'
+        _react2.default.createElement(_local_bar2.default, { location: 'dashboard' }),
+        _react2.default.createElement(
+          'h3',
+          null,
+          '`Hello from dashboard!`'
+        )
       );
     }
   }]);
@@ -450,6 +571,158 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_dashboard2.default);
+
+/***/ }),
+
+/***/ "./frontend/components/local_bar/local_bar.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/local_bar/local_bar.jsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LocalBarFeatures = function (_React$Component) {
+  _inherits(LocalBarFeatures, _React$Component);
+
+  function LocalBarFeatures(props) {
+    _classCallCheck(this, LocalBarFeatures);
+
+    return _possibleConstructorReturn(this, (LocalBarFeatures.__proto__ || Object.getPrototypeOf(LocalBarFeatures)).call(this, props));
+  }
+
+  _createClass(LocalBarFeatures, [{
+    key: 'imageOne',
+    value: function imageOne() {
+      if (this.props.location === "dashboard") {
+        return "assets/local_bar/selected_dash.png";
+      } else {
+        return "assets/local_bar/unselected_dash.png";
+      }
+    }
+  }, {
+    key: 'imageTwo',
+    value: function imageTwo() {
+      if (this.props.location === "trade") {
+        return "assets/local_bar/selected_trade.png";
+      } else {
+        return "assets/local_bar/unselected_trade.png";
+      }
+    }
+  }, {
+    key: 'imageThree',
+    value: function imageThree() {
+      if (this.props.location === "account") {
+        return "assets/local_bar/selected_accounts.png";
+      } else {
+        return "assets/local_bar/unselected_accounts.png";
+      }
+    }
+  }, {
+    key: 'wordClassOne',
+    value: function wordClassOne() {
+      if (this.props.location === "dashboard") {
+        return "local-bar-words-selected";
+      } else {
+        return "local-bar-words-not-selected";
+      }
+    }
+  }, {
+    key: 'wordClassTwo',
+    value: function wordClassTwo() {
+      if (this.props.location === "trade") {
+        return "local-bar-words-selected";
+      } else {
+        return "local-bar-words-not-selected";
+      }
+    }
+  }, {
+    key: 'wordClassThree',
+    value: function wordClassThree() {
+      if (this.props.location === "account") {
+        return "local-bar-words-selected";
+      } else {
+        return "local-bar-words-not-selected";
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'local-bar-main' },
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/dashboard', className: 'local-bar-link' },
+          _react2.default.createElement(
+            'div',
+            { className: 'local-bar-items' },
+            _react2.default.createElement('img', { src: this.imageOne(), className: 'local-bar-img' }),
+            _react2.default.createElement(
+              'p',
+              { className: this.wordClassOne() },
+              'Dashboard'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/trade', className: 'local-bar-link' },
+          _react2.default.createElement(
+            'div',
+            { className: 'local-bar-items' },
+            _react2.default.createElement('img', { src: this.imageTwo(), className: 'local-bar-img' }),
+            _react2.default.createElement(
+              'p',
+              { className: this.wordClassTwo() },
+              'Buy/Sell'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: '/account', className: 'local-bar-link' },
+          _react2.default.createElement(
+            'div',
+            { className: 'local-bar-items' },
+            _react2.default.createElement('img', { src: this.imageThree(), className: 'local-bar-img' }),
+            _react2.default.createElement(
+              'p',
+              { className: this.wordClassThree() },
+              'Accounts'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return LocalBarFeatures;
+}(_react2.default.Component);
+
+exports.default = LocalBarFeatures;
 
 /***/ }),
 
@@ -853,6 +1126,106 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_login_form2.default);
+
+/***/ }),
+
+/***/ "./frontend/components/trade/trade.jsx":
+/*!*********************************************!*\
+  !*** ./frontend/components/trade/trade.jsx ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _local_bar = __webpack_require__(/*! ../local_bar/local_bar */ "./frontend/components/local_bar/local_bar.jsx");
+
+var _local_bar2 = _interopRequireDefault(_local_bar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Trade = function (_React$Component) {
+  _inherits(Trade, _React$Component);
+
+  function Trade() {
+    _classCallCheck(this, Trade);
+
+    return _possibleConstructorReturn(this, (Trade.__proto__ || Object.getPrototypeOf(Trade)).apply(this, arguments));
+  }
+
+  _createClass(Trade, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_local_bar2.default, { location: 'trade' }),
+        _react2.default.createElement(
+          'h3',
+          null,
+          '`Hello from trade!`'
+        )
+      );
+    }
+  }]);
+
+  return Trade;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(Trade);
+
+/***/ }),
+
+/***/ "./frontend/components/trade/trade_container.js":
+/*!******************************************************!*\
+  !*** ./frontend/components/trade/trade_container.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _trade = __webpack_require__(/*! ./trade */ "./frontend/components/trade/trade.jsx");
+
+var _trade2 = _interopRequireDefault(_trade);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_trade2.default);
 
 /***/ }),
 
