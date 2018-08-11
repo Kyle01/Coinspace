@@ -12,7 +12,6 @@ Change demo user to friend
 redo schema and wiki and all those docs
 clean up mvp1
 what are the sql commands? create, update, show, index, delete
-if we get stuck. we do baby steps. 
 
 big 3 pages :
 -----
@@ -37,3 +36,7 @@ plan the next two days
 
 make an index for prices and transactions
   use jbuilder to return an array when getting multiple prices or
+
+to do saturday
+----
+I just completed the price ajax calls so I need to do the actions and the reducers for price

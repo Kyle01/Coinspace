@@ -22,7 +22,7 @@ export const viewTrade = id => dispatch => {
 const receiveTrade = id => ({
   type: RECEIVE_TRADE,
   id
-})
+});
 
 const receiveTradeErrors = errors => ({
   type: RECEIVE_TRADE_ERRORS,

@@ -1,6 +1,6 @@
 export const getLastPrice = () => (
   $.ajax({
-    method: 'GET'
+    method: 'GET',
     url: `api/prices/1`
   })
 );
@@ -8,8 +8,8 @@ export const getLastPrice = () => (
 
 export const getPrices = (duration) => (
   $.ajax({
-    method: 'GET'
-    url: `api/prices/`
+    method: 'GET',
+    url: `api/prices/`,
     duration
   })
 );

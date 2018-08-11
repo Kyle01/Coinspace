@@ -86,6 +86,74 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/price_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/price_actions.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getPrices = exports.getCurrentPrice = exports.RECEIVE_PRICE_ERRORS = exports.RECEIVE_PRICES = exports.RECEIVE_PRICE = undefined;
+
+var _price_api_util = __webpack_require__(/*! ../util/price_api_util */ "./frontend/util/price_api_util.js");
+
+var ApiUtil = _interopRequireWildcard(_price_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_PRICE = exports.RECEIVE_PRICE = 'RECEIVE_PRICE';
+var RECEIVE_PRICES = exports.RECEIVE_PRICES = 'RECEIVE_PRICES';
+var RECEIVE_PRICE_ERRORS = exports.RECEIVE_PRICE_ERRORS = 'RECEIVE_PRICE_ERRORS';
+
+var getCurrentPrice = exports.getCurrentPrice = function getCurrentPrice() {
+  return function (dispatch) {
+    return ApiUtil.getLastPrice().then(function (price) {
+      return dispatch(receiveCurrentPrice(price.id));
+    }, function (errors) {
+      return dispatch(receivePriceErrors(errors.responseJSON));
+    });
+  };
+};
+
+var getPrices = exports.getPrices = function getPrices(duration) {
+  return function (dispatch) {
+    return ApiUtil.getPrices(duration).then(function (prices) {
+      return dispatch(receivePrices(prices.id));
+    }, function (errors) {
+      return dispatch(receivePriceErrors(errors.responseJSON));
+    });
+  };
+};
+
+var receiveCurrentPrice = function receiveCurrentPrice(price) {
+  return {
+    type: RECEIVE_PRICE,
+    price: price
+  };
+};
+
+var receivePrices = function receivePrices(prices) {
+  return {
+    type: RECEIVE_PRICES,
+    prices: prices
+  };
+};
+
+var receivePriceErrors = function receivePriceErrors(error) {
+  return {
+    type: RECEIVE_PRICE_ERRORS,
+    error: error
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -1041,11 +1109,16 @@ var _transactions_reducer = __webpack_require__(/*! ./transactions_reducer */ ".
 
 var _transactions_reducer2 = _interopRequireDefault(_transactions_reducer);
 
+var _prices_reducer = __webpack_require__(/*! ./prices_reducer */ "./frontend/reducers/prices_reducer.js");
+
+var _prices_reducer2 = _interopRequireDefault(_prices_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var entitiesReducer = (0, _redux.combineReducers)({
   users: _users_reducer2.default,
-  transactions: _transactions_reducer2.default
+  transactions: _transactions_reducer2.default,
+  prices: _prices_reducer2.default
 });
 
 exports.default = entitiesReducer;
@@ -1076,14 +1149,106 @@ var _transaction_errors_reducer = __webpack_require__(/*! ./transaction_errors_r
 
 var _transaction_errors_reducer2 = _interopRequireDefault(_transaction_errors_reducer);
 
+var _prices_errors_reducer = __webpack_require__(/*! ./prices_errors_reducer */ "./frontend/reducers/prices_errors_reducer.js");
+
+var _prices_errors_reducer2 = _interopRequireDefault(_prices_errors_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var errorsReducer = (0, _redux.combineReducers)({
   session: _session_errors_reducer2.default,
-  transaction: _transaction_errors_reducer2.default
+  transaction: _transaction_errors_reducer2.default,
+  prices: _prices_errors_reducer2.default
 });
 
 exports.default = errorsReducer;
+
+/***/ }),
+
+/***/ "./frontend/reducers/prices_errors_reducer.js":
+/*!****************************************************!*\
+  !*** ./frontend/reducers/prices_errors_reducer.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _price_actions = __webpack_require__(/*! ../actions/price_actions */ "./frontend/actions/price_actions.js");
+
+var _merge = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var pricesErrorsReducer = function pricesErrorsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _price_actions.RECEIVE_PRICE:
+      return [];
+    case _price_actions.RECEIVE_PRICE_ERRORS:
+      return [];
+    case _price_actions.RECEIVE_PRICE_ERRORS:
+      return action.errors;
+    default:
+      return state;
+  }
+};
+
+exports.default = pricesErrorsReducer;
+
+/***/ }),
+
+/***/ "./frontend/reducers/prices_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/prices_reducer.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _transaction_actions = __webpack_require__(/*! ../actions/transaction_actions */ "./frontend/actions/transaction_actions.js");
+
+var _merge = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var pricesReducer = function pricesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _transaction_actions.RECEIVE_PRICE:
+      return (0, _merge2.default)({}, price);
+    case _transaction_actions.RECEIVE_PRICES:
+      return (0, _merge2.default)({}, prices);
+      break;
+    default:
+      return state;
+  }
+};
+
+exports.default = pricesReducer;
 
 /***/ }),
 
@@ -1376,6 +1541,36 @@ var configureStore = function configureStore() {
 };
 
 exports.default = configureStore;
+
+/***/ }),
+
+/***/ "./frontend/util/price_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/price_api_util.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var getLastPrice = exports.getLastPrice = function getLastPrice() {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/prices/1'
+  });
+};
+
+var getPrices = exports.getPrices = function getPrices(duration) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/prices/',
+    duration: duration
+  });
+};
 
 /***/ }),
 

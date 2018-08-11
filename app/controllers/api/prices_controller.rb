@@ -1,11 +1,11 @@
 class Api::PricesController < ApplicationController
 
   def show
-    @price = Price.last
+    @price = Price.first
   end
 
   def index
-    prices = Price.last(30)
+    prices = Price.first(30)
     @bitcoin_price_array = []
     @ethereum_price_array = []
     @litecoin_price_array = []
