@@ -12,6 +12,7 @@ Change demo user to friend
 redo schema and wiki and all those docs
 clean up mvp1
 what are the sql commands? create, update, show, index, delete
+if we get stuck. we do baby steps. 
 
 big 3 pages :
 -----

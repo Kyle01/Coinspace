@@ -1,0 +1,4 @@
+json.bitcoin_prices @bitcoin_price_array
+json.ethereum_prices @ethereum_price_array
+json.litecoin_prices @litecoin_price_array
+json.bitcoin_cash_prices @bitcoin_cash_prices
