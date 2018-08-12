@@ -498,6 +498,10 @@ var _local_bar = __webpack_require__(/*! ../local_bar/local_bar */ "./frontend/c
 
 var _local_bar2 = _interopRequireDefault(_local_bar);
 
+var _small_graph_container = __webpack_require__(/*! ../graphing/small_graph_container */ "./frontend/components/graphing/small_graph_container.js");
+
+var _small_graph_container2 = _interopRequireDefault(_small_graph_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -526,7 +530,11 @@ var Dashboard = function (_React$Component) {
           'h3',
           null,
           '`Hello from dashboard!`'
-        )
+        ),
+        _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin' }),
+        _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum' }),
+        _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin' }),
+        _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin_cash' })
       );
     }
   }]);
@@ -571,6 +579,103 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_dashboard2.default);
+
+/***/ }),
+
+/***/ "./frontend/components/graphing/small_graph.jsx":
+/*!******************************************************!*\
+  !*** ./frontend/components/graphing/small_graph.jsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SmallGraph = function (_React$Component) {
+  _inherits(SmallGraph, _React$Component);
+
+  function SmallGraph(props) {
+    _classCallCheck(this, SmallGraph);
+
+    return _possibleConstructorReturn(this, (SmallGraph.__proto__ || Object.getPrototypeOf(SmallGraph)).call(this, props));
+  }
+
+  _createClass(SmallGraph, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { to: this.props.asset },
+          'Hello!'
+        )
+      );
+    }
+  }]);
+
+  return SmallGraph;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(SmallGraph);
+
+/***/ }),
+
+/***/ "./frontend/components/graphing/small_graph_container.js":
+/*!***************************************************************!*\
+  !*** ./frontend/components/graphing/small_graph_container.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _price_actions = __webpack_require__(/*! ../../actions/price_actions */ "./frontend/actions/price_actions.js");
+
+var _small_graph = __webpack_require__(/*! ./small_graph */ "./frontend/components/graphing/small_graph.jsx");
+
+var _small_graph2 = _interopRequireDefault(_small_graph);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_small_graph2.default);
 
 /***/ }),
 
