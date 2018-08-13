@@ -242,7 +242,7 @@ var receiveErrors = function receiveErrors(errors) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.viewTrade = exports.trade = exports.RECEIVE_TRADE_ERRORS = exports.RECEIVE_TRADE = undefined;
+exports.getUserTransactions = exports.viewTrade = exports.trade = exports.RECEIVE_TRADES = exports.RECEIVE_TRADE_ERRORS = exports.RECEIVE_TRADE = undefined;
 
 var _transaction_api_util = __webpack_require__(/*! ../util/transaction_api_util */ "./frontend/util/transaction_api_util.js");
 
@@ -252,10 +252,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var RECEIVE_TRADE = exports.RECEIVE_TRADE = 'RECEIVE_TRADE';
 var RECEIVE_TRADE_ERRORS = exports.RECEIVE_TRADE_ERRORS = 'RECEIVE_TRADE_ERRORS';
+var RECEIVE_TRADES = exports.RECEIVE_TRADES = 'RECEIVE_TRADES';
 
 var trade = exports.trade = function trade(transaction) {
   return function (dispatch) {
-    return ApiUtil.trade(transaction).then(function (transition) {
+    return ApiUtil.trade(transaction).then(function (trade) {
       return dispatch(receiveTrade(transaction.id));
     }, function (errors) {
       return dispatch(receiveTradeErrors(errors.responseJSON));
@@ -265,10 +266,18 @@ var trade = exports.trade = function trade(transaction) {
 
 var viewTrade = exports.viewTrade = function viewTrade(id) {
   return function (dispatch) {
-    return ApiUtil.viewTrade(id).then(function (transition) {
+    return ApiUtil.viewTrade(id).then(function (trade) {
       return dispatch(receiveTrade(transaction.id));
     }, function (errors) {
       return dispatch(receiveTradeErrors(errors.responseJSON));
+    });
+  };
+};
+
+var getUserTransactions = exports.getUserTransactions = function getUserTransactions() {
+  return function (dispatch) {
+    return ApiUtil.getUserTransactions().then(function (transactions) {
+      return dispatch(receiveTrades(transactions));
     });
   };
 };
@@ -284,6 +293,13 @@ var receiveTradeErrors = function receiveTradeErrors(errors) {
   return {
     type: RECEIVE_TRADE_ERRORS,
     errors: errors
+  };
+};
+
+var receiveTrades = function receiveTrades(transactions) {
+  return {
+    type: RECEIVE_TRADES,
+    transactions: transactions
   };
 };
 
@@ -500,6 +516,10 @@ var _small_graph_container = __webpack_require__(/*! ../graphing/small_graph_con
 
 var _small_graph_container2 = _interopRequireDefault(_small_graph_container);
 
+var _recent_activity_container = __webpack_require__(/*! ../recent_activity/recent_activity_container */ "./frontend/components/recent_activity/recent_activity_container.js");
+
+var _recent_activity_container2 = _interopRequireDefault(_recent_activity_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -527,7 +547,8 @@ var Dashboard = function (_React$Component) {
         _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin' }),
         _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash' }),
         _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum' }),
-        _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin' })
+        _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin' }),
+        _react2.default.createElement(_recent_activity_container2.default, null)
       );
     }
   }]);
@@ -613,11 +634,7 @@ var SmallGraph = function (_React$Component) {
   function SmallGraph(props) {
     _classCallCheck(this, SmallGraph);
 
-    var _this = _possibleConstructorReturn(this, (SmallGraph.__proto__ || Object.getPrototypeOf(SmallGraph)).call(this, props));
-
-    _this.props.fetchRange();
-    _this.props.fetchPrice();
-    return _this;
+    return _possibleConstructorReturn(this, (SmallGraph.__proto__ || Object.getPrototypeOf(SmallGraph)).call(this, props));
   }
 
   _createClass(SmallGraph, [{
@@ -753,14 +770,14 @@ var SmallGraph = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'sc-main-container' },
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: this.props.asset },
+          { to: this.props.asset, className: 'sc-link' },
           _react2.default.createElement(
             'div',
-            null,
-            _react2.default.createElement('img', { src: this.getPic() }),
+            { className: 'sc-top-line' },
+            _react2.default.createElement('img', { src: this.getPic(), className: 'sc-coin-logo' }),
             _react2.default.createElement(
               'p',
               null,
@@ -1161,6 +1178,130 @@ var NotFound = function NotFound() {
 };
 
 exports.default = NotFound;
+
+/***/ }),
+
+/***/ "./frontend/components/recent_activity/recent_activity.jsx":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/recent_activity/recent_activity.jsx ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var RecentActivity = function (_React$Component) {
+  _inherits(RecentActivity, _React$Component);
+
+  function RecentActivity(props) {
+    _classCallCheck(this, RecentActivity);
+
+    return _possibleConstructorReturn(this, (RecentActivity.__proto__ || Object.getPrototypeOf(RecentActivity)).call(this, props));
+  }
+
+  _createClass(RecentActivity, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.getTrades();
+    }
+  }, {
+    key: 'buildTradeItem',
+    value: function buildTradeItem(transaction) {
+      return _react2.default.createElement('div', null);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      console.log(this.props.transactions);
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          'Recent Activity'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.buildTradeItem(this.props)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          'View your Accounts'
+        )
+      );
+    }
+  }]);
+
+  return RecentActivity;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(RecentActivity);
+
+/***/ }),
+
+/***/ "./frontend/components/recent_activity/recent_activity_container.js":
+/*!**************************************************************************!*\
+  !*** ./frontend/components/recent_activity/recent_activity_container.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _transaction_actions = __webpack_require__(/*! ../../actions/transaction_actions */ "./frontend/actions/transaction_actions.js");
+
+var _recent_activity = __webpack_require__(/*! ./recent_activity */ "./frontend/components/recent_activity/recent_activity.jsx");
+
+var _recent_activity2 = _interopRequireDefault(_recent_activity);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    transactions: state.entities.transactions
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    getTrades: function getTrades() {
+      return dispatch((0, _transaction_actions.getUserTransactions)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_recent_activity2.default);
 
 /***/ }),
 
@@ -2098,6 +2239,8 @@ var transactionReducer = function transactionReducer() {
   switch (action.type) {
     case _transaction_actions.RECEIVE_TRADE:
       return (0, _merge3.default)({}, state, _defineProperty({}, action.transaction.id, action.transaction));
+    case _transaction_actions.RECEIVE_TRADES:
+      return (0, _merge3.default)({}, state, action.transactions);
     default:
       return state;
   }
@@ -2181,7 +2324,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default, _reduxLogger2.default));
+  return (0, _redux.createStore)(_root_reducer2.default, preloadedState, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 };
 
 exports.default = configureStore;
@@ -2336,6 +2479,13 @@ var viewTrade = exports.viewTrade = function viewTrade(id) {
   return $.ajax({
     method: 'GET',
     url: 'api/transactions/' + id
+  });
+};
+
+var getUserTransactions = exports.getUserTransactions = function getUserTransactions() {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/transactions/'
   });
 };
 

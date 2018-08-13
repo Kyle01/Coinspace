@@ -3,6 +3,7 @@ import { Link, withRouter, Redirect } from 'react-router-dom';
 
 import LocalBarFeatures from '../local_bar/local_bar'
 import SmallGraphContainer from '../graphing/small_graph_container'
+import RecentActivityContainer from '../recent_activity/recent_activity_container';
 
 class Dashboard extends React.Component {
 
@@ -14,6 +15,7 @@ class Dashboard extends React.Component {
         <SmallGraphContainer asset="Bitcoin Cash"/>
         <SmallGraphContainer asset="Ethereum"/>
         <SmallGraphContainer asset="Litecoin"/>
+        <RecentActivityContainer />
       </div>
     );
   }

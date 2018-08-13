@@ -12,3 +12,10 @@ export const viewTrade = id => (
     url: `api/transactions/${id}`
   })
 );
+
+export const getUserTransactions = () => (
+  $.ajax ({
+    method: 'GET',
+    url: `api/transactions/`
+  })
+);

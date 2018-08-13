@@ -15,6 +15,8 @@ class Api::TransactionsController < ApplicationController
   end
 
   def index
+    puts current_user
+    @transactions = current_user.transactions
   end
 
   def transactions_params

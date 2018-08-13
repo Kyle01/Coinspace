@@ -5,9 +5,6 @@ import { LineChart, Line } from 'recharts';
 class SmallGraph extends React.Component {
   constructor(props){
     super(props)
-
-    this.props.fetchRange();
-    this.props.fetchPrice();
   }
 
   componentDidMount(){
@@ -133,10 +130,10 @@ class SmallGraph extends React.Component {
 
   render(){
     return (
-      <div>
-        <Link to={this.props.asset}>
-          <div>
-            <img src={this.getPic()}/>
+      <div className="sc-main-container">
+        <Link to={this.props.asset} className="sc-link">
+          <div className="sc-top-line">
+            <img src={this.getPic()} className="sc-coin-logo"/>
             <p>{this.props.asset}</p>
             <p>30D</p>
           </div>
