@@ -1,6 +1,6 @@
 import { RECEIVE_PRICE,
          RECEIVE_PRICES,
-         RECEIVE_PRICE_ERRORS} from '../actions/transaction_actions';
+         RECEIVE_PRICE_ERRORS} from '../actions/price_actions';
 import merge from 'lodash/merge';
 
 const pricesReducer = (state = {}, action) => {
@@ -8,13 +8,12 @@ const pricesReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_PRICE:
-      return merge({}, price: action.price)
+      return merge({}, state, {price: action.price});
     case RECEIVE_PRICES:
-      return merge({}, prices: action.prices)
-      break;
+      return merge({}, state, {prices: action.prices});
     default:
       return state;
   }
 }
 
-export default pricesReducer
+export default pricesReducer;

@@ -10,11 +10,10 @@ class Dashboard extends React.Component {
     return (
       <div>
         <LocalBarFeatures location="dashboard"/>
-        <h3>`Hello from dashboard!`</h3>
         <SmallGraphContainer asset="Bitcoin"/>
+        <SmallGraphContainer asset="Bitcoin Cash"/>
         <SmallGraphContainer asset="Ethereum"/>
         <SmallGraphContainer asset="Litecoin"/>
-        <SmallGraphContainer asset="Bitcoin_cash"/>
       </div>
     );
   }

@@ -6,14 +6,12 @@ export const RECEIVE_PRICE_ERRORS = 'RECEIVE_PRICE_ERRORS';
 
 export const getCurrentPrice = () => dispatch => {
   return ApiUtil.getLastPrice().then(
-    price => dispatch(receiveCurrentPrice(price.id)),
-    errors => dispatch(receivePriceErrors(errors.responseJSON))
-  )
+    price => dispatch(receiveCurrentPrice(price)))
 };
 
 export const getPrices = duration => dispatch => {
   return ApiUtil.getPrices(duration).then(
-    prices => dispatch(receivePrices(prices.id)),
+    prices => dispatch(receivePrices(prices)),
     errors => dispatch(receivePriceErrors(errors.responseJSON))
  )
 };
