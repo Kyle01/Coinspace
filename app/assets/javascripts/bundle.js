@@ -520,6 +520,10 @@ var _recent_activity_container = __webpack_require__(/*! ../recent_activity/rece
 
 var _recent_activity_container2 = _interopRequireDefault(_recent_activity_container);
 
+var _portfolio_sum_container = __webpack_require__(/*! ../portfolio_sum/portfolio_sum_container */ "./frontend/components/portfolio_sum/portfolio_sum_container.js");
+
+var _portfolio_sum_container2 = _interopRequireDefault(_portfolio_sum_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -548,7 +552,8 @@ var Dashboard = function (_React$Component) {
         _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash' }),
         _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum' }),
         _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin' }),
-        _react2.default.createElement(_recent_activity_container2.default, null)
+        _react2.default.createElement(_recent_activity_container2.default, null),
+        _react2.default.createElement(_portfolio_sum_container2.default, null)
       );
     }
   }]);
@@ -1178,6 +1183,100 @@ var NotFound = function NotFound() {
 };
 
 exports.default = NotFound;
+
+/***/ }),
+
+/***/ "./frontend/components/portfolio_sum/portfolio_sum.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/portfolio_sum/portfolio_sum.jsx ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PortfolioSum = function (_React$Component) {
+  _inherits(PortfolioSum, _React$Component);
+
+  function PortfolioSum(props) {
+    _classCallCheck(this, PortfolioSum);
+
+    return _possibleConstructorReturn(this, (PortfolioSum.__proto__ || Object.getPrototypeOf(PortfolioSum)).call(this, props));
+  }
+
+  _createClass(PortfolioSum, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'Your Portfolio'
+      );
+    }
+  }]);
+
+  return PortfolioSum;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(PortfolioSum);
+
+/***/ }),
+
+/***/ "./frontend/components/portfolio_sum/portfolio_sum_container.js":
+/*!**********************************************************************!*\
+  !*** ./frontend/components/portfolio_sum/portfolio_sum_container.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _portfolio_sum = __webpack_require__(/*! ./portfolio_sum */ "./frontend/components/portfolio_sum/portfolio_sum.jsx");
+
+var _portfolio_sum2 = _interopRequireDefault(_portfolio_sum);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_portfolio_sum2.default);
 
 /***/ }),
 

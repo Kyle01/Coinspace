@@ -1,17 +1,12 @@
 EVERYTHING
 XXXXXXXXXXXXXXXXXXXXXX
-get coin price for back end (thats it)
 make text look better inside login field
 make create user have more info, like a state drop down
 fix that 500 error when you log into dashboard
 make the nav bar collapse upon it getting smaller
-make coin model class that extends applicationrecord and bitcoin will extend coin
-Chart js for visualizations or rechart
-Will get all a users transaction through the user show route
 Change demo user to friend
 redo schema and wiki and all those docs
 clean up mvp1
-what are the sql commands? create, update, show, index, delete
 
 big 3 pages :
 -----
@@ -22,21 +17,8 @@ big 3 pages :
     splash page
     account page
 
-to do today
-------
-plan the next two days
-  -get state looking good
-  -make link to trade page
-  -figure out coin logic with date
-  -make link to chart pages
-  -make logic for portfolio
-  -list transaction on website
-  - get all reducers in order
-
-
-make an index for prices and transactions
-  use jbuilder to return an array when getting multiple prices or
-
-to do saturday
-----
-I just completed the price ajax calls so I need to do the actions and the reducers for price
+To do today
+-----
+  - plan through making backend for my portfolio
+  - set up trade container
+  -Clean up MVP 1 
