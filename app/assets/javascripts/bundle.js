@@ -1226,17 +1226,131 @@ var RecentActivity = function (_React$Component) {
       this.props.getTrades();
     }
   }, {
+    key: 'getImage',
+    value: function getImage(transaction) {
+      if (transaction.coin === "Bitcoin") {
+        return "assets/transactions/bitcoin-tran.png";
+      } else if (transaction.coin === "Bitcoin Cash") {
+        return "assets/transactions/bitcoincash-tran.png";
+      } else if (transaction.coin === "Ethereum") {
+        return "assets/transactions/ethereum-tran.png";
+      } else if (transaction.coin === "Litecoin") {
+        return "assets/transactions/litecoin-tran.png";
+      }
+    }
+  }, {
+    key: 'getWords',
+    value: function getWords(transaction) {
+      var answer = "";
+
+      if (transaction.buy) answer += "Bought ";else answer += "Sold ";
+
+      answer += transaction.coin;
+
+      return answer;
+    }
+  }, {
+    key: 'getAmount',
+    value: function getAmount(transaction) {
+      var answer = "";
+      if (transaction.buy) answer += "+";else answer += "=";
+      answer += transaction.size;
+      switch (transaction.coin) {
+        case "Bitcoin":
+          answer += " BTC";
+          break;
+        case "Ethereum":
+          answer += " ETH";
+          break;
+        case "Bitcoin Cash":
+          answer += " BCH";
+          break;
+        case "Litecoin":
+          answer += " LTC";
+          break;
+      }
+      return answer;
+    }
+  }, {
+    key: 'getMoney',
+    value: function getMoney(transaction) {
+      var answer = "";
+      if (transaction.buy) answer += "+$";else answer += "-$";
+      answer += transaction.price;
+      return answer;
+    }
+  }, {
     key: 'buildTradeItem',
     value: function buildTradeItem(transaction) {
-      return _react2.default.createElement('div', null);
+      if (transaction === undefined) {
+        return _react2.default.createElement('div', null);
+      } else {
+        var date = new Date(transaction.created_at);
+        var monthHelper = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return _react2.default.createElement(
+          'div',
+          { className: 'tran-sum-tran-container' },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/dashboard', className: 'tran-sum-link' },
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'div',
+                null,
+                monthHelper[date.getMonth()]
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                date.getDate()
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement('img', { src: this.getImage(transaction), className: 'tran-sum-img' })
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'p',
+                null,
+                this.getWords(transaction)
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'div',
+                null,
+                this.getAmount(transaction)
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                this.getMoney(transaction)
+              )
+            )
+          )
+        );
+      }
     }
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.props.transactions);
+      var keys = Object.keys(this.props.transactions);
+      var firstTransaction = this.props.transactions[keys[keys.length - 1]];
+      var secondTransaction = this.props.transactions[keys[keys.length - 2]];
+      var thirdTransaction = this.props.transactions[keys[keys.length - 3]];
+      var fourthTransaction = this.props.transactions[keys[keys.length - 4]];
+      console.log(firstTransaction);
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'tran-sum-main-container' },
         _react2.default.createElement(
           'div',
           null,
@@ -1245,7 +1359,22 @@ var RecentActivity = function (_React$Component) {
         _react2.default.createElement(
           'div',
           null,
-          this.buildTradeItem(this.props)
+          this.buildTradeItem(firstTransaction)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.buildTradeItem(secondTransaction)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.buildTradeItem(thirdTransaction)
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.buildTradeItem(fourthTransaction)
         ),
         _react2.default.createElement(
           'div',
