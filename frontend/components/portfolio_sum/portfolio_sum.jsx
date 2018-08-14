@@ -66,7 +66,7 @@ class PortfolioSum extends React.Component {
     let amount = holding[coin];
     coin = coin[0];
     return (
-      <div>
+      <div className="port-sum-component-main">
         <img src={this.getPicture(coin)}/>
         <p>{coin}</p>
         <p>{this.getPercentageInfo(amount)}%</p>
@@ -111,7 +111,7 @@ class PortfolioSum extends React.Component {
       let k = this.orderHoldings();
       this.portfolioItem(k[0]);
       return (
-        <div>
+        <div className="port-sum-main-container">
           <div>
             Your Portfolio
           </div>

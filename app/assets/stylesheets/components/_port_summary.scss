@@ -1,0 +1,16 @@
+.port-sum-main-container {
+  display: inline-block;
+  background-color: white;
+  border: 2px solid #dae1e9;
+  border-radius: 10px;
+  font-family: Nunito;
+}
+
+.port-sum-component-main {
+  display: flex;
+  border: 1px solid #dae1e9;
+  img {
+    width: 45px;
+    height: 45px;
+  }
+}

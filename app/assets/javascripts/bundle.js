@@ -1300,7 +1300,7 @@ var PortfolioSum = function (_React$Component) {
       coin = coin[0];
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'port-sum-component-main' },
         _react2.default.createElement('img', { src: this.getPicture(coin) }),
         _react2.default.createElement(
           'p',
@@ -1368,7 +1368,7 @@ var PortfolioSum = function (_React$Component) {
         this.portfolioItem(k[0]);
         return _react2.default.createElement(
           'div',
-          null,
+          { className: 'port-sum-main-container' },
           _react2.default.createElement(
             'div',
             null,
