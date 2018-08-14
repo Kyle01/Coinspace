@@ -1227,14 +1227,85 @@ var PortfolioSum = function (_React$Component) {
 
   _createClass(PortfolioSum, [{
     key: 'componentDidMount',
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      this.props.fetchPrice();
+    }
   }, {
-    key: 'render',
-    value: function render() {
+    key: 'getPicture',
+    value: function getPicture(coin) {
+      switch (coin) {
+        case "Bitcoin":
+          return "assets/btc_logo.png";
+        case "Litecoin":
+          return "assets/ltc_logo.png";
+        case "Bitcoin Cash":
+          return "assets/btcc_logo.png";
+        case "Ethereum":
+          return "assets/e_logo.png";
+      }
+    }
+  }, {
+    key: 'getColor',
+    value: function getColor(coin) {
+      switch (coin) {
+        case "Bitcoin":
+          return "#f7931a";
+        case "Litecoin":
+          return "#d3d3d3";
+        case "Bitcoin Cash":
+          return "#478559";
+        case "Ethereum":
+          return "#627EB2";
+      }
+    }
+
+    //returns portfolio in USD. Used to display order and rank position size
+
+  }, {
+    key: 'total_holdings',
+    value: function total_holdings() {}
+
+    //last line item of container. Returns a div.
+
+  }, {
+    key: 'total_holding_item',
+    value: function total_holding_item() {
       return _react2.default.createElement(
         'div',
         null,
-        'Your Portfolio'
+        'Total Balance \u2248 $',
+        this.total_holdings()
+      );
+    }
+  }, {
+    key: 'portfolioItem',
+    value: function portfolioItem(holding) {
+      return _react2.default.createElement('div', null);
+    }
+
+    //Returns a Key Value object with the following informat
+    // {1: {'Ethereum': 0.62340}, 2: {'Bitcoin': 0.09}, 3: }
+
+  }, {
+    key: 'orderHoldings',
+    value: function orderHoldings() {}
+  }, {
+    key: 'render',
+    value: function render() {
+      var orderHoldings = this.orderHoldings();
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          null,
+          'Your Portfolio'
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          this.total_holding_item()
+        )
       );
     }
   }]);
@@ -1266,14 +1337,24 @@ var _portfolio_sum = __webpack_require__(/*! ./portfolio_sum */ "./frontend/comp
 
 var _portfolio_sum2 = _interopRequireDefault(_portfolio_sum);
 
+var _price_actions = __webpack_require__(/*! ../../actions/price_actions */ "./frontend/actions/price_actions.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {};
+  debugger;
+  return {
+    user: state.entities.users[state.session.currentUser],
+    price: state.entities.prices
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
-  return {};
+  return {
+    fetchPrice: function fetchPrice() {
+      return dispatch((0, _price_actions.getCurrentPrice)());
+    }
+  };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_portfolio_sum2.default);
@@ -1446,7 +1527,6 @@ var RecentActivity = function (_React$Component) {
       var secondTransaction = this.props.transactions[keys[keys.length - 2]];
       var thirdTransaction = this.props.transactions[keys[keys.length - 3]];
       var fourthTransaction = this.props.transactions[keys[keys.length - 4]];
-      console.log(firstTransaction);
       return _react2.default.createElement(
         'div',
         { className: 'tran-sum-main-container' },
@@ -1941,13 +2021,6 @@ var UserForm = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var err = this.props.errors.map(function (err, idx) {
-        return _react2.default.createElement(
-          'li',
-          { className: 'signup-error-el', key: idx },
-          err
-        );
-      });
       return _react2.default.createElement(
         'div',
         { className: 'signup-main' },
@@ -1986,11 +2059,6 @@ var UserForm = function (_React$Component) {
             { className: 'signup-button', onClick: this.handleSubmit },
             'CREATE ACCOUNT'
           )
-        ),
-        _react2.default.createElement(
-          'ul',
-          { className: 'signup-error-container' },
-          err
         )
       );
     }
@@ -1998,6 +2066,12 @@ var UserForm = function (_React$Component) {
 
   return UserForm;
 }(_react2.default.Component);
+
+//const err = this.props.errors.map((err, idx) => <li className="signup-error-el" key={idx}>{err}</li>)
+// <ul className="signup-error-container">
+//     {err}
+// </ul>
+
 
 exports.default = (0, _reactRouterDom.withRouter)(UserForm);
 

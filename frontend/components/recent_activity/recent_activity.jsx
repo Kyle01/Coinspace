@@ -98,7 +98,6 @@ class RecentActivity extends React.Component {
     let secondTransaction = this.props.transactions[keys[keys.length-2]];
     let thirdTransaction = this.props.transactions[keys[keys.length-3]];
     let fourthTransaction = this.props.transactions[keys[keys.length-4]];
-    console.log(firstTransaction);
     return (
       <div className="tran-sum-main-container">
         <div>

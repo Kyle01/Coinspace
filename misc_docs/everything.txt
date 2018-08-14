@@ -5,20 +5,57 @@ make create user have more info, like a state drop down
 fix that 500 error when you log into dashboard
 make the nav bar collapse upon it getting smaller
 Change demo user to friend
-redo schema and wiki and all those docs
-clean up mvp1
+Get the live pricings and add automatically closing price to database
+Media querey
 
-big 3 pages :
------
+big 4 pages :
+---------------------
   dashboard
   buy/sell page
   individual chart page
-  bonus page
-    splash page
-    account page
+  splash page
 
 To do today
------
-  - plan through making backend for my portfolio
-  - set up trade container
-  -Clean up MVP 1 
+--------------------
+- Turn in MVP 2
+  - Get Dashboard looking good
+    - Get all Dashboard elements
+      - Get Portfolio section good
+- Start transactions page
+  - Make form
+  - Make logic work
+- Clean up MVP 1
+  - Clean up wiki
+  - Clean up route
+  - Add logic with auth routes
+  - Fill out issue
+  - do sample state stuffs
+  - Update schema
+  - rewrite MVPS
+    -3
+    -4
+    -5-7
+- Get Splash page started
+  - Do the 4 charts on the grid
+  - Make words and sign up button
+  - Put personal information below
+    - Make an about page
+- Rehost on Heroku
+  - Reseed data
+  - ensure the photos look good
+- Make bitcoin page
+  - Have chart
+  - have words
+  - have links to other coins
+  - have link to trade
+-Text Sarah
+-Make playlist
+-Do reader and book one more time
+-Make a list of people to invite to the party
+-Move bitcoin and btcc to coinspace
+
+
+
+
+
+x

@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :transactions
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :create_portfolio
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
@@ -31,6 +31,14 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64
+  end
+
+  def create_portfolio
+    self.btc_holdings = 0.0
+    self.e_holdings = 0.0
+    self.ltc_holdings = 0.0
+    self.bch_holdings = 0.0
+    self.save!
   end
 
 end

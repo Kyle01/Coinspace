@@ -10,6 +10,10 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+  end
+
   def user_params
     params.require(:user).permit(:username, :password)
   end

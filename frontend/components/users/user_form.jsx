@@ -25,7 +25,6 @@ class UserForm extends React.Component {
   }
 
   render(){
-    const err = this.props.errors.map((err, idx) => <li className="signup-error-el" key={idx}>{err}</li>)
     return (
       <div className="signup-main">
         <h2 className="signup-above-text">Create your account</h2>
@@ -52,12 +51,14 @@ class UserForm extends React.Component {
           </label>
           <button className="signup-button" onClick={this.handleSubmit}>CREATE ACCOUNT</button>
         </form>
-        <ul className="signup-error-container">
-            {err}
-        </ul>
+
       </div>
     );
   }
 }
 
+//const err = this.props.errors.map((err, idx) => <li className="signup-error-el" key={idx}>{err}</li>)
+// <ul className="signup-error-container">
+//     {err}
+// </ul>
 export default withRouter(UserForm);
