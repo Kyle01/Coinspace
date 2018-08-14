@@ -2,8 +2,6 @@ class Transaction < ApplicationRecord
   validates :user_id, :price, :size, :buy, presence:true
   validate :coinValid?
 
-  after_initialize :adjust_user_portfolio
-
   def coinValid?
     return false unless
     (:coin == "Bitcoin" ||

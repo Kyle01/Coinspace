@@ -34,10 +34,10 @@ class User < ApplicationRecord
   end
 
   def create_portfolio
-    self.btc_holdings = 0.0
-    self.e_holdings = 0.0
-    self.ltc_holdings = 0.0
-    self.bch_holdings = 0.0
+    self.btc_holdings ||= 0.0
+    self.e_holdings ||= 0.0
+    self.ltc_holdings ||= 0.0
+    self.bch_holdings ||= 0.0
     self.save!
   end
 

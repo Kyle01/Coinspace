@@ -1222,7 +1222,10 @@ var PortfolioSum = function (_React$Component) {
   function PortfolioSum(props) {
     _classCallCheck(this, PortfolioSum);
 
-    return _possibleConstructorReturn(this, (PortfolioSum.__proto__ || Object.getPrototypeOf(PortfolioSum)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (PortfolioSum.__proto__ || Object.getPrototypeOf(PortfolioSum)).call(this, props));
+
+    _this.portfolioItem = _this.portfolioItem.bind(_this);
+    return _this;
   }
 
   _createClass(PortfolioSum, [{
@@ -1263,7 +1266,14 @@ var PortfolioSum = function (_React$Component) {
 
   }, {
     key: 'total_holdings',
-    value: function total_holdings() {}
+    value: function total_holdings() {
+      var sum = 0;
+      sum += this.props.price.price.btc_price * this.props.user.btc_holdings;
+      sum += this.props.price.price.e_price * this.props.user.e_holdings;
+      sum += this.props.price.price.ltc_price * this.props.user.ltc_holdings;
+      sum += this.props.price.price.btcc_price * this.props.user.bch_holdings;
+      return sum;
+    }
 
     //last line item of container. Returns a div.
 
@@ -1278,9 +1288,57 @@ var PortfolioSum = function (_React$Component) {
       );
     }
   }, {
+    key: 'getPercentageInfo',
+    value: function getPercentageInfo(amount) {
+      return amount / this.total_holdings() * 100;
+    }
+  }, {
     key: 'portfolioItem',
     value: function portfolioItem(holding) {
-      return _react2.default.createElement('div', null);
+      var coin = Object.keys(holding);
+      var amount = holding[coin];
+      coin = coin[0];
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('img', { src: this.getPicture(coin) }),
+        _react2.default.createElement(
+          'p',
+          null,
+          coin
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          this.getPercentageInfo(amount),
+          '%'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          this.getCoinClean(coin)
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          '$',
+          amount
+        )
+      );
+    }
+  }, {
+    key: 'getCoinClean',
+    value: function getCoinClean(coin) {
+      switch (coin) {
+        case "Bitcoin":
+          return this.props.user.btc_holdings + ' BTC';
+        case "Litecoin":
+          return this.props.user.ltc_holdings + ' LTC';
+        case "Bitcoin Cash":
+          return this.props.user.bch_holdings + ' BCH';
+        case "Ethereum":
+          return this.props.user.e_holdings + ' ETH';
+      }
     }
 
     //Returns a Key Value object with the following informat
@@ -1288,25 +1346,43 @@ var PortfolioSum = function (_React$Component) {
 
   }, {
     key: 'orderHoldings',
-    value: function orderHoldings() {}
+    value: function orderHoldings() {
+      var answer = { 1: null, 2: null, 3: null, 4: null };
+      var b = { "Bitcoin": this.props.price.price.btc_price * this.props.user.btc_holdings };
+      var e = { "Ethereum": this.props.price.price.e_price * this.props.user.e_holdings };
+      var bc = { "Bitcoin Cash": this.props.price.price.btcc_price * this.props.user.bch_holdings };
+      var l = { "Litecoin": this.props.price.price.ltc_price * this.props.user.ltc_holdings };
+      var sortable = [];
+      sortable.push(b, e, bc, l);
+      sortable.sort(function (a, b) {
+        return a[1] - b[1];
+      });
+
+      return sortable;
+    }
   }, {
     key: 'render',
     value: function render() {
-      var orderHoldings = this.orderHoldings();
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
+      if (this.props.price.price) {
+        var k = this.orderHoldings();
+        this.portfolioItem(k[0]);
+        return _react2.default.createElement(
           'div',
           null,
-          'Your Portfolio'
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
+          _react2.default.createElement(
+            'div',
+            null,
+            'Your Portfolio'
+          ),
+          this.portfolioItem(k[0]),
+          this.portfolioItem(k[1]),
+          this.portfolioItem(k[2]),
+          this.portfolioItem(k[3]),
           this.total_holding_item()
-        )
-      );
+        );
+      } else {
+        return "loading";
+      }
     }
   }]);
 
@@ -1342,7 +1418,6 @@ var _price_actions = __webpack_require__(/*! ../../actions/price_actions */ "./f
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     user: state.entities.users[state.session.currentUser],
     price: state.entities.prices

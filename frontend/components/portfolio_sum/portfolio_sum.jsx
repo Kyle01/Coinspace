@@ -4,6 +4,8 @@ import { Link, withRouter, Redirect } from 'react-router-dom';
 class PortfolioSum extends React.Component {
   constructor(props){
     super(props);
+
+    this.portfolioItem = this.portfolioItem.bind(this);
   }
 
   componentDidMount(){
@@ -38,7 +40,12 @@ class PortfolioSum extends React.Component {
 
   //returns portfolio in USD. Used to display order and rank position size
   total_holdings(){
-
+    let sum = 0;
+    sum += this.props.price.price.btc_price * this.props.user.btc_holdings;
+    sum += this.props.price.price.e_price * this.props.user.e_holdings;
+    sum += this.props.price.price.ltc_price * this.props.user.ltc_holdings;
+    sum += this.props.price.price.btcc_price * this.props.user.bch_holdings;
+    return sum;
   }
 
   //last line item of container. Returns a div.
@@ -50,32 +57,76 @@ class PortfolioSum extends React.Component {
     )
   }
 
+  getPercentageInfo(amount){
+    return amount / this.total_holdings() * 100;
+  }
+
   portfolioItem(holding){
+    let coin = Object.keys(holding);
+    let amount = holding[coin];
+    coin = coin[0];
     return (
       <div>
+        <img src={this.getPicture(coin)}/>
+        <p>{coin}</p>
+        <p>{this.getPercentageInfo(amount)}%</p>
+        <p>{this.getCoinClean(coin)}</p>
+        <p>${amount}</p>
       </div>
     )
+  }
+
+  getCoinClean(coin){
+    switch (coin) {
+      case "Bitcoin":
+        return `${this.props.user.btc_holdings} BTC`
+      case "Litecoin":
+        return `${this.props.user.ltc_holdings} LTC`
+      case "Bitcoin Cash":
+        return `${this.props.user.bch_holdings} BCH`
+      case "Ethereum":
+        return `${this.props.user.e_holdings} ETH`
+    }
   }
 
   //Returns a Key Value object with the following informat
   // {1: {'Ethereum': 0.62340}, 2: {'Bitcoin': 0.09}, 3: }
   orderHoldings(){
+    let answer = {1: null, 2: null, 3: null, 4: null};
+    let b = {"Bitcoin": this.props.price.price.btc_price * this.props.user.btc_holdings};
+    let e = {"Ethereum": this.props.price.price.e_price * this.props.user.e_holdings};
+    let bc = {"Bitcoin Cash": this.props.price.price.btcc_price * this.props.user.bch_holdings};
+    let l = {"Litecoin": this.props.price.price.ltc_price * this.props.user.ltc_holdings};
+    let sortable = [];
+    sortable.push(b, e, bc, l);
+    sortable.sort(function(a, b){
+      return a[1] - b[1];
+    });
 
+    return sortable
   }
 
   render(){
-    let orderHoldings = this.orderHoldings();
-    return (
-      <div>
+    if(this.props.price.price){
+      let k = this.orderHoldings();
+      this.portfolioItem(k[0]);
+      return (
         <div>
-          Your Portfolio
+          <div>
+            Your Portfolio
+          </div>
+          {this.portfolioItem(k[0])}
+          {this.portfolioItem(k[1])}
+          {this.portfolioItem(k[2])}
+          {this.portfolioItem(k[3])}
+          {this.total_holding_item()}
         </div>
-
-        <div>
-        {this.total_holding_item()}
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        "loading"
+      );
+    }
   }
 }
 

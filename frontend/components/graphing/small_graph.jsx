@@ -4,7 +4,7 @@ import { LineChart, Line } from 'recharts';
 
 class SmallGraph extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
   }
 
   componentDidMount(){

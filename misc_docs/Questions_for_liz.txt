@@ -5,10 +5,6 @@ Liz (or other TA)
 * does their button have a transition? If how do I do that.
 * make errors much better. Maybe a modal, maybe some pops inside in the bars
 * My errors broke for signup users. Hows odd?
-* How do I validate they have enough coins to sell?
-  * Where do I throw errors for this? (in create?)
 
 8/9
 -----
-* I cant get the portfolio value to update. Serious issue
-* I cant map price to portfolio. wtf
