@@ -374,7 +374,7 @@ var App = function App() {
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/login', component: _login_form_container2.default }),
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/signup', component: _user_form_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/dashboard', component: _dashboard_container2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/trade', component: _trade_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/buy/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default })
     )
   );
@@ -548,12 +548,20 @@ var Dashboard = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(_local_bar2.default, { location: 'dashboard' }),
-        _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin' }),
-        _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash' }),
-        _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum' }),
-        _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin' }),
-        _react2.default.createElement(_recent_activity_container2.default, null),
-        _react2.default.createElement(_portfolio_sum_container2.default, null)
+        _react2.default.createElement(
+          'div',
+          { className: 'dash-wrapper' },
+          _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin', className: 'dash-chart-1' }),
+          _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash', className: 'dash-chart-2' }),
+          _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum', className: 'dash-chart-3' }),
+          _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin', className: 'dash-chart-4' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'dash-bottom' },
+          _react2.default.createElement(_recent_activity_container2.default, { className: 'dash-recent-activity' }),
+          _react2.default.createElement(_portfolio_sum_container2.default, { className: 'dash-port-sum' })
+        )
       );
     }
   }]);
@@ -983,7 +991,7 @@ var LocalBarFeatures = function (_React$Component) {
         ),
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: '/trade', className: 'local-bar-link' },
+          { to: '/buy/btc', className: 'local-bar-link' },
           _react2.default.createElement(
             'div',
             { className: 'local-bar-items' },
@@ -1930,64 +1938,9 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
   !*** ./frontend/components/trade/trade.jsx ***!
   \*********************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-
-var _local_bar = __webpack_require__(/*! ../local_bar/local_bar */ "./frontend/components/local_bar/local_bar.jsx");
-
-var _local_bar2 = _interopRequireDefault(_local_bar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Trade = function (_React$Component) {
-  _inherits(Trade, _React$Component);
-
-  function Trade() {
-    _classCallCheck(this, Trade);
-
-    return _possibleConstructorReturn(this, (Trade.__proto__ || Object.getPrototypeOf(Trade)).apply(this, arguments));
-  }
-
-  _createClass(Trade, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(_local_bar2.default, { location: 'trade' }),
-        _react2.default.createElement(
-          'h3',
-          null,
-          '`Hello from trade!`'
-        )
-      );
-    }
-  }]);
-
-  return Trade;
-}(_react2.default.Component);
-
-exports.default = (0, _reactRouterDom.withRouter)(Trade);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: Unexpected token, expected jsxTagEnd (21:72)\n\n\u001b[0m \u001b[90m 19 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 20 | \u001b[39m          \u001b[33m<\u001b[39m\u001b[33mform\u001b[39m onSubmit\u001b[33m=\u001b[39m{\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mopenTab}\u001b[33m>\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33mbutton\u001b[39m type\u001b[33m=\u001b[39m\u001b[32m\"button\"\u001b[39m onclick\u001b[33m=\u001b[39m\u001b[32m\"window.location='{{ url(\"\u001b[39mbuy\u001b[33m/\u001b[39mbtc\u001b[32m\") }}'\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33mBuy\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mbutton\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m    | \u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 22 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33mbutton\u001b[39m type\u001b[33m=\u001b[39m\u001b[32m\"button\"\u001b[39m onclick\u001b[33m=\u001b[39m\u001b[32m\"window.location='{{ url(\"\u001b[39msell\u001b[33m/\u001b[39mbtc\u001b[32m\") }}'\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33mSell\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mbutton\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 23 | \u001b[39m         \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mform\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 24 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n");
 
 /***/ }),
 
@@ -2014,7 +1967,10 @@ var _trade2 = _interopRequireDefault(_trade);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {};
+  return {
+    coin: ownProps.match.params.coin,
+    active: "buy"
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {

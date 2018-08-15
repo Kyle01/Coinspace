@@ -12,13 +12,17 @@ class Dashboard extends React.Component {
     return (
       <div>
         <LocalBarFeatures location="dashboard"/>
-        <SmallGraphContainer asset="Bitcoin"/>
-        <SmallGraphContainer asset="Bitcoin Cash"/>
-        <SmallGraphContainer asset="Ethereum"/>
-        <SmallGraphContainer asset="Litecoin"/>
-        <RecentActivityContainer />
-        <PortfolioSummaryContainer />
-      </div>
+        <div className="dash-wrapper">
+          <SmallGraphContainer asset="Bitcoin" className="dash-chart-1"/>
+          <SmallGraphContainer asset="Bitcoin Cash" className="dash-chart-2"/>
+          <SmallGraphContainer asset="Ethereum" className="dash-chart-3"/>
+          <SmallGraphContainer asset="Litecoin" className="dash-chart-4"/>
+        </div>
+        <div className="dash-bottom">
+          <RecentActivityContainer className="dash-recent-activity"/>
+          <PortfolioSummaryContainer className="dash-port-sum"/>
+        </div>
+    </div>
     );
   }
 }

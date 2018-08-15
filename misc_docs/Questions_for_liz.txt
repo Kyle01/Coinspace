@@ -8,3 +8,5 @@ Liz (or other TA)
 
 8/9
 -----
+* My grid isnt working the besdt
+* how should I store a local state on a component

@@ -19,13 +19,11 @@ To do today
 --------------------
 - Turn in MVP 2
   - Get Dashboard looking good
-    - Get all Dashboard elements
-      - Get Portfolio section good
 - Start transactions page
   - Make form
   - Make logic work
     - Put errors in create
-    - be sure to call anti up in create 
+    - be sure to call anti up in create
 - Clean up MVP 1
   - Clean up wiki
   - Clean up route
