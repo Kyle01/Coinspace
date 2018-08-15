@@ -10,6 +10,13 @@ class RecentActivity extends React.Component {
     this.props.getTrades();
   }
 
+  componentWillReceiveProps(newProps){
+    debugger;
+    if(this.props.transactions.length != newProps.transactions.length){
+      this.props.getTrades();
+    }
+  }
+
   getImage(transaction){
     if(transaction.coin === "Bitcoin"){
       return "assets/transactions/bitcoin-tran.png";
@@ -37,7 +44,7 @@ class RecentActivity extends React.Component {
     let answer = "";
     if(transaction.buy) answer += "+";
     else answer += "=";
-    answer += transaction.size;
+    answer += transaction.size.toFixed(6);
     switch (transaction.coin) {
       case "Bitcoin":
         answer += " BTC";

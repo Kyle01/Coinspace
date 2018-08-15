@@ -7,7 +7,7 @@ export const RECEIVE_TRADES = 'RECEIVE_TRADES';
 export const trade = transaction => dispatch => {
   return ApiUtil.trade(transaction)
   .then(
-    trade => dispatch(receiveTrade(transaction.id)),
+    trade => dispatch(receiveTrade(transaction)),
     errors => dispatch(receiveTradeErrors(errors.responseJSON))
   );
 };
@@ -27,9 +27,9 @@ export const getUserTransactions = () => dispatch => {
   );
 };
 
-const receiveTrade = id => ({
+const receiveTrade = transaction => ({
   type: RECEIVE_TRADE,
-  id
+  transaction
 });
 
 const receiveTradeErrors = errors => ({

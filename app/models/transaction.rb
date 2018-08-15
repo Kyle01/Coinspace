@@ -1,5 +1,5 @@
 class Transaction < ApplicationRecord
-  validates :user_id, :price, :size, :buy, presence:true
+  validates :user_id, :price, :size, presence:true
   validate :coinValid?
 
   def coinValid?

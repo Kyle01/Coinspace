@@ -45,7 +45,7 @@ class PortfolioSum extends React.Component {
     sum += this.props.price.price.e_price * this.props.user.e_holdings;
     sum += this.props.price.price.ltc_price * this.props.user.ltc_holdings;
     sum += this.props.price.price.btcc_price * this.props.user.bch_holdings;
-    return sum;
+    return sum.toFixed(2);
   }
 
   //last line item of container. Returns a div.
@@ -58,7 +58,7 @@ class PortfolioSum extends React.Component {
   }
 
   getPercentageInfo(amount){
-    return amount / this.total_holdings() * 100;
+    return (amount / this.total_holdings() * 100).toFixed(2);
   }
 
   portfolioItem(holding){
@@ -71,7 +71,7 @@ class PortfolioSum extends React.Component {
         <p>{coin}</p>
         <p>{this.getPercentageInfo(amount)}%</p>
         <p>{this.getCoinClean(coin)}</p>
-        <p>${amount}</p>
+        <p>${amount.toFixed(2)}</p>
       </div>
     )
   }
@@ -79,13 +79,13 @@ class PortfolioSum extends React.Component {
   getCoinClean(coin){
     switch (coin) {
       case "Bitcoin":
-        return `${this.props.user.btc_holdings} BTC`
+        return `${this.props.user.btc_holdings.toFixed(2)} BTC`
       case "Litecoin":
-        return `${this.props.user.ltc_holdings} LTC`
+        return `${this.props.user.ltc_holdings.toFixed(2)} LTC`
       case "Bitcoin Cash":
-        return `${this.props.user.bch_holdings} BCH`
+        return `${this.props.user.bch_holdings.toFixed(2)} BCH`
       case "Ethereum":
-        return `${this.props.user.e_holdings} ETH`
+        return `${this.props.user.e_holdings.toFixed(2)} ETH`
     }
   }
 

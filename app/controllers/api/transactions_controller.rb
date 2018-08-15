@@ -4,6 +4,7 @@ class Api::TransactionsController < ApplicationController
     @transaction = Transaction.new(transactions_params)
 
     if(@transaction.save)
+      @transaction.adjust_user_portfolio();
       render json: @transaction, status: 201
     else
       render json: ['Error occured. Transaction failed'], status: 412

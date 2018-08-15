@@ -257,7 +257,7 @@ var RECEIVE_TRADES = exports.RECEIVE_TRADES = 'RECEIVE_TRADES';
 var trade = exports.trade = function trade(transaction) {
   return function (dispatch) {
     return ApiUtil.trade(transaction).then(function (trade) {
-      return dispatch(receiveTrade(transaction.id));
+      return dispatch(receiveTrade(transaction));
     }, function (errors) {
       return dispatch(receiveTradeErrors(errors.responseJSON));
     });
@@ -282,10 +282,10 @@ var getUserTransactions = exports.getUserTransactions = function getUserTransact
   };
 };
 
-var receiveTrade = function receiveTrade(id) {
+var receiveTrade = function receiveTrade(transaction) {
   return {
     type: RECEIVE_TRADE,
-    id: id
+    transaction: transaction
   };
 };
 
@@ -375,6 +375,7 @@ var App = function App() {
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/signup', component: _user_form_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/dashboard', component: _dashboard_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/buy/:coin', component: _trade_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/sell/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default })
     )
   );
@@ -1280,7 +1281,7 @@ var PortfolioSum = function (_React$Component) {
       sum += this.props.price.price.e_price * this.props.user.e_holdings;
       sum += this.props.price.price.ltc_price * this.props.user.ltc_holdings;
       sum += this.props.price.price.btcc_price * this.props.user.bch_holdings;
-      return sum;
+      return sum.toFixed(2);
     }
 
     //last line item of container. Returns a div.
@@ -1298,7 +1299,7 @@ var PortfolioSum = function (_React$Component) {
   }, {
     key: 'getPercentageInfo',
     value: function getPercentageInfo(amount) {
-      return amount / this.total_holdings() * 100;
+      return (amount / this.total_holdings() * 100).toFixed(2);
     }
   }, {
     key: 'portfolioItem',
@@ -1330,7 +1331,7 @@ var PortfolioSum = function (_React$Component) {
           'p',
           null,
           '$',
-          amount
+          amount.toFixed(2)
         )
       );
     }
@@ -1339,13 +1340,13 @@ var PortfolioSum = function (_React$Component) {
     value: function getCoinClean(coin) {
       switch (coin) {
         case "Bitcoin":
-          return this.props.user.btc_holdings + ' BTC';
+          return this.props.user.btc_holdings.toFixed(2) + ' BTC';
         case "Litecoin":
-          return this.props.user.ltc_holdings + ' LTC';
+          return this.props.user.ltc_holdings.toFixed(2) + ' LTC';
         case "Bitcoin Cash":
-          return this.props.user.bch_holdings + ' BCH';
+          return this.props.user.bch_holdings.toFixed(2) + ' BCH';
         case "Ethereum":
-          return this.props.user.e_holdings + ' ETH';
+          return this.props.user.e_holdings.toFixed(2) + ' ETH';
       }
     }
 
@@ -1489,6 +1490,14 @@ var RecentActivity = function (_React$Component) {
       this.props.getTrades();
     }
   }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(newProps) {
+      debugger;
+      if (this.props.transactions.length != newProps.transactions.length) {
+        this.props.getTrades();
+      }
+    }
+  }, {
     key: 'getImage',
     value: function getImage(transaction) {
       if (transaction.coin === "Bitcoin") {
@@ -1517,7 +1526,7 @@ var RecentActivity = function (_React$Component) {
     value: function getAmount(transaction) {
       var answer = "";
       if (transaction.buy) answer += "+";else answer += "=";
-      answer += transaction.size;
+      answer += transaction.size.toFixed(6);
       switch (transaction.coin) {
         case "Bitcoin":
           answer += " BTC";
@@ -1938,9 +1947,308 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
   !*** ./frontend/components/trade/trade.jsx ***!
   \*********************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: Unexpected token, expected jsxTagEnd (21:72)\n\n\u001b[0m \u001b[90m 19 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 20 | \u001b[39m          \u001b[33m<\u001b[39m\u001b[33mform\u001b[39m onSubmit\u001b[33m=\u001b[39m{\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mopenTab}\u001b[33m>\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 21 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33mbutton\u001b[39m type\u001b[33m=\u001b[39m\u001b[32m\"button\"\u001b[39m onclick\u001b[33m=\u001b[39m\u001b[32m\"window.location='{{ url(\"\u001b[39mbuy\u001b[33m/\u001b[39mbtc\u001b[32m\") }}'\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33mBuy\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mbutton\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m    | \u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 22 | \u001b[39m            \u001b[33m<\u001b[39m\u001b[33mbutton\u001b[39m type\u001b[33m=\u001b[39m\u001b[32m\"button\"\u001b[39m onclick\u001b[33m=\u001b[39m\u001b[32m\"window.location='{{ url(\"\u001b[39msell\u001b[33m/\u001b[39mbtc\u001b[32m\") }}'\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33mSell\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mbutton\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 23 | \u001b[39m         \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mform\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 24 | \u001b[39m        \u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _local_bar = __webpack_require__(/*! ../local_bar/local_bar */ "./frontend/components/local_bar/local_bar.jsx");
+
+var _local_bar2 = _interopRequireDefault(_local_bar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Trade = function (_React$Component) {
+  _inherits(Trade, _React$Component);
+
+  function Trade(props) {
+    _classCallCheck(this, Trade);
+
+    var _this = _possibleConstructorReturn(this, (Trade.__proto__ || Object.getPrototypeOf(Trade)).call(this, props));
+
+    _this.state = {
+      amount: "",
+      coins: "",
+      done: false,
+      active: "buy"
+    };
+
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.changeTab = _this.changeTab.bind(_this);
+    return _this;
+  }
+
+  _createClass(Trade, [{
+    key: 'updateAmount',
+    value: function updateAmount(coin_value) {
+      var _this2 = this;
+
+      return function (e) {
+        var _this2$setState;
+
+        return _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, 'amount', e.target.value), _defineProperty(_this2$setState, 'coins', e.target.value / coin_value), _this2$setState));
+      };
+    }
+  }, {
+    key: 'updateCoins',
+    value: function updateCoins(coin_value) {
+      var _this3 = this;
+
+      return function (e) {
+        var _this3$setState;
+
+        return _this3.setState((_this3$setState = {}, _defineProperty(_this3$setState, 'coins', e.target.value), _defineProperty(_this3$setState, 'amount', e.target.value * coin_value), _this3$setState));
+      };
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchPrice();
+    }
+  }, {
+    key: 'getPrice',
+    value: function getPrice() {
+      switch (this.props.coin) {
+        case 'btc':
+          return this.props.price.price.btc_price;
+        case 'e':
+          return this.props.price.price.e_price;
+        case 'ltc':
+          return this.props.price.price.ltc_price;
+        case 'bch':
+          return this.props.price.price.btcc_price;
+      }
+    }
+  }, {
+    key: 'handleCoinClick',
+    value: function handleCoinClick(coin) {
+      var _this4 = this;
+
+      this.setState({ amount: "", coins: "" }, function () {
+        return _this4.props.history.push('/buy/' + coin);
+      });
+    }
+  }, {
+    key: 'buyElements',
+    value: function buyElements() {
+      var _this5 = this;
+
+      var price = this.getPrice();
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this5.handleCoinClick('btc');
+            } },
+          'Bitcoin'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this5.handleCoinClick('bch');
+            } },
+          'Bitcoin Cash'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this5.handleCoinClick('e');
+            } },
+          'Ethereum'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: function onClick() {
+              return _this5.handleCoinClick('ltc');
+            } },
+          'Litecoin'
+        ),
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.handleSubmit },
+          _react2.default.createElement('input', { ref: 'amount',
+            value: this.state.amount,
+            placeholder: '0.00 USD',
+            onChange: this.updateAmount(price) }),
+          _react2.default.createElement('input', { ref: 'coins',
+            value: this.state.coins,
+            placeholder: '0.00 ' + this.state.coins,
+            onChange: this.updateCoins({ price: price }) }),
+          _react2.default.createElement(
+            'button',
+            null,
+            'Buy ',
+            this.linkToWords()
+          )
+        )
+      );
+    }
+  }, {
+    key: 'sellElements',
+    value: function sellElements() {
+      var price = this.getPrice();
+      return _react2.default.createElement(
+        'div',
+        null,
+        'Sell From',
+        _react2.default.createElement(
+          'select',
+          null,
+          _react2.default.createElement(
+            'option',
+            { value: 'Bitcoin' },
+            'Bitcoin ',
+            this.props.user.btc_holdings.toFixed(6)
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'Bitcoin Cash' },
+            'Bitcoin Cash ',
+            this.props.user.bch_holdings.toFixed(6)
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'Ethereum' },
+            'Ethereum ',
+            this.props.user.e_holdings.toFixed(6)
+          ),
+          _react2.default.createElement(
+            'option',
+            { value: 'Litcoin' },
+            'Litecoin ',
+            this.props.user.ltc_holdings.toFixed(6)
+          )
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'Amount'
+        ),
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.handleSubmit },
+          _react2.default.createElement('input', { ref: 'amount',
+            value: this.state.amount,
+            placeholder: '0.00 USD',
+            onChange: this.updateAmount(price) }),
+          _react2.default.createElement('input', { ref: 'coins',
+            value: this.state.coins,
+            placeholder: '0.00 ' + this.state.coins,
+            onChange: this.updateCoins(price) }),
+          _react2.default.createElement(
+            'button',
+            null,
+            'Sell ',
+            this.linkToWords(),
+            ' Instantly'
+          )
+        )
+      );
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var buying = false;
+      if (this.state.active === "buy") buying = true;
+      this.props.trade({ buy: buying, coin: this.linkToWords(), price: this.state.amount, user_id: this.props.user.id, size: this.state.coins });
+    }
+  }, {
+    key: 'linkToWords',
+    value: function linkToWords() {
+      switch (this.props.coin) {
+        case 'btc':
+          return "Bitcoin";
+        case 'e':
+          return "Ethereum";
+        case 'ltc':
+          return "Litecoin";
+        case 'bch':
+          return "Bitcoin Cash";
+      }
+    }
+  }, {
+    key: 'changeTab',
+    value: function changeTab(e) {
+      var _this6 = this;
+
+      e.preventDefault;
+      if (e.target.name === 'sell') {
+        this.setState({ active: 'sell' }).then(function () {
+          return _this6.props.history.push("/sell/btc");
+        });
+      } else {
+        this.setState({ active: 'buy' }).then(function () {
+          return _this6.props.history.push("/buy/btc");
+        });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var elements = "";
+      if (this.props.price.price === undefined) {
+        return _react2.default.createElement(
+          'div',
+          null,
+          'Loading..'
+        );
+      } else {
+
+        if (this.state.active === "buy") {
+          elements = this.buyElements();
+        } else elements = this.sellElements();
+
+        return _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_local_bar2.default, { location: 'trade' }),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'button',
+              { onClick: this.changeTab, name: 'buy' },
+              'Buy'
+            ),
+            _react2.default.createElement(
+              'button',
+              { onClick: this.changeTab, name: 'sell' },
+              'Sell'
+            ),
+            elements
+          )
+        );
+      }
+    }
+  }]);
+
+  return Trade;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(Trade);
 
 /***/ }),
 
@@ -1960,24 +2268,36 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
-var _trade = __webpack_require__(/*! ./trade */ "./frontend/components/trade/trade.jsx");
+var _trade2 = __webpack_require__(/*! ./trade */ "./frontend/components/trade/trade.jsx");
 
-var _trade2 = _interopRequireDefault(_trade);
+var _trade3 = _interopRequireDefault(_trade2);
+
+var _price_actions = __webpack_require__(/*! ../../actions/price_actions */ "./frontend/actions/price_actions.js");
+
+var _transaction_actions = __webpack_require__(/*! ../../actions/transaction_actions */ "./frontend/actions/transaction_actions.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     coin: ownProps.match.params.coin,
-    active: "buy"
+    price: state.entities.prices,
+    user: state.entities.users[state.session.currentUser]
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
-  return {};
+  return {
+    fetchPrice: function fetchPrice() {
+      return dispatch((0, _price_actions.getCurrentPrice)());
+    },
+    trade: function trade(transaction) {
+      return dispatch((0, _transaction_actions.trade)(transaction));
+    }
+  };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_trade2.default);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_trade3.default);
 
 /***/ }),
 
