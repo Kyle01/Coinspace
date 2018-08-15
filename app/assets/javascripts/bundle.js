@@ -349,6 +349,10 @@ var _navbar_container = __webpack_require__(/*! ./navigation_bar/navbar_containe
 
 var _navbar_container2 = _interopRequireDefault(_navbar_container);
 
+var _btc_sum_container = __webpack_require__(/*! ./large_charting/btc_sum_container */ "./frontend/components/large_charting/btc_sum_container.js");
+
+var _btc_sum_container2 = _interopRequireDefault(_btc_sum_container);
+
 var _route_util = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 
 var _not_found = __webpack_require__(/*! ./not_found/not_found */ "./frontend/components/not_found/not_found.js");
@@ -376,7 +380,8 @@ var App = function App() {
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/dashboard', component: _dashboard_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/buy/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/sell/:coin', component: _trade_container2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default })
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/assets/BTC', component: _btc_sum_container2.default })
     )
   );
 };
@@ -874,6 +879,110 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_small_graph2.default);
+
+/***/ }),
+
+/***/ "./frontend/components/large_charting/btc_sum.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/large_charting/btc_sum.jsx ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _recharts = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BtcSum = function (_React$Component) {
+  _inherits(BtcSum, _React$Component);
+
+  function BtcSum(props) {
+    _classCallCheck(this, BtcSum);
+
+    return _possibleConstructorReturn(this, (BtcSum.__proto__ || Object.getPrototypeOf(BtcSum)).call(this, props));
+  }
+
+  _createClass(BtcSum, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        'Hello from Bitcoin summary'
+      );
+    }
+  }]);
+
+  return BtcSum;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(BtcSum);
+
+/***/ }),
+
+/***/ "./frontend/components/large_charting/btc_sum_container.js":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/large_charting/btc_sum_container.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _price_actions = __webpack_require__(/*! ../../actions/price_actions */ "./frontend/actions/price_actions.js");
+
+var _btc_sum = __webpack_require__(/*! ./btc_sum */ "./frontend/components/large_charting/btc_sum.jsx");
+
+var _btc_sum2 = _interopRequireDefault(_btc_sum);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    price: state.entities.prices
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    fetchPrice: function fetchPrice() {
+      return dispatch((0, _price_actions.getCurrentPrice)());
+    },
+    fetchRange: function fetchRange(duration) {
+      return dispatch((0, _price_actions.getPrices)(duration));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_btc_sum2.default);
 
 /***/ }),
 
