@@ -38,7 +38,7 @@ class User < ApplicationRecord
     self.e_holdings ||= 0.0
     self.ltc_holdings ||= 0.0
     self.bch_holdings ||= 0.0
-    self.save!
+    self.save
   end
 
 end

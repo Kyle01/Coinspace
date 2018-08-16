@@ -61,5 +61,6 @@ jfc
 xxxxx
 update heroku with mvp 1, 2 and 3
 after transaction, reroute to dashboard
+do signup with clear errors 
 
 bunch of divs on the page and style them dynamically

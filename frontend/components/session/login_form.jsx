@@ -14,6 +14,10 @@ class LoginForm extends React.Component {
     this.handleDemoUser = this.handleDemoUser.bind(this);
   }
 
+  componentWillUnmount(){
+    this.props.clearErrors();
+  }
+
   handleDemoUser(e) {
     e.preventDefault();
     this.props.login({username:"Demo_User", password:"Password1"}).then(() => this.props.history.push("/dashboard"));

@@ -165,7 +165,7 @@ var receivePriceErrors = function receivePriceErrors(error) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.signup = exports.logout = exports.login = exports.RECEIVE_SESSION_ERRORS = exports.LOGOUT_CURRENT_USER = exports.RECEIVE_CURRENT_USER = undefined;
+exports.receiveErrors = exports.signup = exports.logout = exports.login = exports.RECEIVE_SESSION_ERRORS = exports.LOGOUT_CURRENT_USER = exports.RECEIVE_CURRENT_USER = undefined;
 
 var _session_api_util = __webpack_require__(/*! ../util/session_api_util */ "./frontend/util/session_api_util.js");
 
@@ -220,7 +220,7 @@ var logoutCurrentUser = function logoutCurrentUser() {
   };
 };
 
-var receiveErrors = function receiveErrors(errors) {
+var receiveErrors = exports.receiveErrors = function receiveErrors(errors) {
   return {
     type: RECEIVE_SESSION_ERRORS,
     errors: errors
@@ -349,9 +349,9 @@ var _navbar_container = __webpack_require__(/*! ./navigation_bar/navbar_containe
 
 var _navbar_container2 = _interopRequireDefault(_navbar_container);
 
-var _btc_sum_container = __webpack_require__(/*! ./large_charting/btc_sum_container */ "./frontend/components/large_charting/btc_sum_container.js");
+var _coin_sum_container = __webpack_require__(/*! ./large_charting/coin_sum_container */ "./frontend/components/large_charting/coin_sum_container.js");
 
-var _btc_sum_container2 = _interopRequireDefault(_btc_sum_container);
+var _coin_sum_container2 = _interopRequireDefault(_coin_sum_container);
 
 var _route_util = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 
@@ -380,7 +380,7 @@ var App = function App() {
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/buy/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/sell/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/assets/:coin', component: _btc_sum_container2.default }),
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/assets/:coin', component: _coin_sum_container2.default }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/*', component: _not_found2.default })
     )
   );
@@ -883,10 +883,10 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 
 /***/ }),
 
-/***/ "./frontend/components/large_charting/btc_sum.jsx":
-/*!********************************************************!*\
-  !*** ./frontend/components/large_charting/btc_sum.jsx ***!
-  \********************************************************/
+/***/ "./frontend/components/large_charting/coin_sum.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/large_charting/coin_sum.jsx ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -915,37 +915,114 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var BtcSum = function (_React$Component) {
-  _inherits(BtcSum, _React$Component);
+var CoinSum = function (_React$Component) {
+  _inherits(CoinSum, _React$Component);
 
-  function BtcSum(props) {
-    _classCallCheck(this, BtcSum);
+  function CoinSum(props) {
+    _classCallCheck(this, CoinSum);
 
-    return _possibleConstructorReturn(this, (BtcSum.__proto__ || Object.getPrototypeOf(BtcSum)).call(this, props));
+    return _possibleConstructorReturn(this, (CoinSum.__proto__ || Object.getPrototypeOf(CoinSum)).call(this, props));
   }
 
-  _createClass(BtcSum, [{
+  _createClass(CoinSum, [{
+    key: 'getPic',
+    value: function getPic(coin) {
+      switch (this.props.coin) {
+        case 'Bitcoin':
+          return window.images.btc_logo;;
+        case 'Ethereum':
+          return window.images.e_logo;
+        case 'Litecoin':
+          return window.images.ltc_logo;
+        case 'Bitcoin Cash':
+          return window.images.btcc_logo;
+      }
+    }
+  }, {
+    key: 'getAbv',
+    value: function getAbv() {
+      switch (this.props.coin) {
+        case 'Bitcoin':
+          return "BTC";
+        case 'Ethereum':
+          return "ETH";
+        case 'Litecoin':
+          return "LTC";
+        case 'Bitcoin Cash':
+          return "BCH";
+      }
+    }
+  }, {
+    key: 'getWords',
+    value: function getWords() {}
+  }, {
+    key: 'drawChart',
+    value: function drawChart() {}
+  }, {
+    key: 'getWords',
+    value: function getWords(coin) {}
+  }, {
+    key: 'getPrice',
+    value: function getPrice() {}
+  }, {
+    key: 'makeSmallAssets',
+    value: function makeSmallAssets() {
+      var otherCoins = this.returnOtherAssets();
+      return _react2.default.createElement(
+        'div',
+        null,
+        this.makeSmallAssetsHelper(otherCoins[0]),
+        this.makeSmallAssetsHelper(otherCoins[1]),
+        this.makeSmallAssetsHelper(otherCoins[2])
+      );
+    }
+  }, {
+    key: 'makeSmallAssetsHelper',
+    value: function makeSmallAssetsHelper(coin) {
+      return _react2.default.createElement('div', null);
+    }
+
+    //returns an array of the three other coins in correct order
+    //used by makeSmallAssets
+
+  }, {
+    key: 'returnOtherAssets',
+    value: function returnOtherAssets() {
+      return ["Litecoin", "Ethereum", "Bitcoin Cash"];
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         null,
-        'Hello from Bitcoin summary'
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement('img', { src: this.getPic() }),
+          _react2.default.createElement('p', null)
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'More Assets'
+        ),
+        this.makeSmallAssets()
       );
     }
   }]);
 
-  return BtcSum;
+  return CoinSum;
 }(_react2.default.Component);
 
-exports.default = (0, _reactRouterDom.withRouter)(BtcSum);
+exports.default = (0, _reactRouterDom.withRouter)(CoinSum);
 
 /***/ }),
 
-/***/ "./frontend/components/large_charting/btc_sum_container.js":
-/*!*****************************************************************!*\
-  !*** ./frontend/components/large_charting/btc_sum_container.js ***!
-  \*****************************************************************/
+/***/ "./frontend/components/large_charting/coin_sum_container.js":
+/*!******************************************************************!*\
+  !*** ./frontend/components/large_charting/coin_sum_container.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -960,14 +1037,15 @@ var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-r
 
 var _price_actions = __webpack_require__(/*! ../../actions/price_actions */ "./frontend/actions/price_actions.js");
 
-var _btc_sum = __webpack_require__(/*! ./btc_sum */ "./frontend/components/large_charting/btc_sum.jsx");
+var _coin_sum = __webpack_require__(/*! ./coin_sum */ "./frontend/components/large_charting/coin_sum.jsx");
 
-var _btc_sum2 = _interopRequireDefault(_btc_sum);
+var _coin_sum2 = _interopRequireDefault(_coin_sum);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
+    coin: ownProps.match.params.coin,
     price: state.entities.prices
   };
 };
@@ -983,7 +1061,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_btc_sum2.default);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_coin_sum2.default);
 
 /***/ }),
 
@@ -1910,6 +1988,11 @@ var LoginForm = function (_React$Component) {
   }
 
   _createClass(LoginForm, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.props.clearErrors();
+    }
+  }, {
     key: 'handleDemoUser',
     value: function handleDemoUser(e) {
       var _this2 = this;
@@ -2043,6 +2126,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
   return {
     login: function login(user) {
       return dispatch((0, _session_actions.login)(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch((0, _session_actions.receiveErrors)([]));
     }
   };
 };
@@ -2460,6 +2546,11 @@ var UserForm = function (_React$Component) {
   }
 
   _createClass(UserForm, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.props.clearErrors();
+    }
+  }, {
     key: 'handleInput',
     value: function handleInput(type) {
       var _this2 = this;
@@ -2481,6 +2572,16 @@ var UserForm = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var err = "";
+      if (this.props.errors) {
+        err = this.props.errors.map(function (err, idx) {
+          return _react2.default.createElement(
+            'li',
+            { className: 'signin-error-el', key: idx },
+            err
+          );
+        });
+      }
       return _react2.default.createElement(
         'div',
         { className: 'signup-main' },
@@ -2519,6 +2620,11 @@ var UserForm = function (_React$Component) {
             { className: 'signup-button', onClick: this.handleSubmit },
             'CREATE ACCOUNT'
           )
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'signin-error-container' },
+          err
         )
       );
     }
@@ -2563,7 +2669,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    errors: state.errors.sessionErrorsReducer,
+    errors: state.errors.session,
     currentUser: state.session.currentUser
   };
 };
@@ -2575,6 +2681,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     login: function login(user) {
       return dispatch((0, _session_actions.login)(user));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch((0, _session_actions.receiveErrors)([]));
     }
   };
 };

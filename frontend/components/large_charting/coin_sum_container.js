@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 import { getCurrentPrice, getPrices } from '../../actions/price_actions'
-import BtcSum from './btc_sum';
+import CoinSum from './coin_sum';
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    coin: ownProps.match.params.coin,
     price: state.entities.prices
   };
 };
@@ -16,4 +17,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BtcSum);
+)(CoinSum);
