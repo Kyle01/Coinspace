@@ -1050,7 +1050,7 @@ var LocalBarFeatures = function (_React$Component) {
       if (this.props.location === "account") {
         return window.images.selected_accounts;
       } else {
-        return window.images.selected_accounts;
+        return window.images.unselected_accounts;
       }
     }
   }, {
