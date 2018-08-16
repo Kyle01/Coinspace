@@ -11,7 +11,7 @@ import BtcSumContainer from './large_charting/btc_sum_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NotFound from './not_found/not_found';
 
-//<Route path="*" component={NotFound}></Route>
+
 
 const App = () => (
   <div>
@@ -19,13 +19,15 @@ const App = () => (
       <NavbarContainer />
     </header>
     <Switch>
+      <Route exact path ="/" />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={UserFormContainer} />
       <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
       <ProtectedRoute exact path="/buy/:coin" component={TradeContainer} />
       <ProtectedRoute exact path="/sell/:coin" component={TradeContainer} />
       <ProtectedRoute exact path="/account" component={AccountContainer} />
-      <ProtectedRoute exact path="/assets/BTC" component={BtcSumContainer} />
+      <ProtectedRoute exact path="/assets/:coin" component={BtcSumContainer} />
+      <Route path="/*" component={NotFound}></Route>
     </Switch>
   </div>
 );

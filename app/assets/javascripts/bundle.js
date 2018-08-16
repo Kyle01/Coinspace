@@ -361,8 +361,6 @@ var _not_found2 = _interopRequireDefault(_not_found);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//<Route path="*" component={NotFound}></Route>
-
 var App = function App() {
   return _react2.default.createElement(
     'div',
@@ -375,13 +373,15 @@ var App = function App() {
     _react2.default.createElement(
       _reactRouterDom.Switch,
       null,
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/' }),
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/login', component: _login_form_container2.default }),
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/signup', component: _user_form_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/dashboard', component: _dashboard_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/buy/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/sell/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/assets/BTC', component: _btc_sum_container2.default })
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/assets/:coin', component: _btc_sum_container2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/*', component: _not_found2.default })
     )
   );
 };
@@ -793,7 +793,7 @@ var SmallGraph = function (_React$Component) {
         { className: 'sc-main-container' },
         _react2.default.createElement(
           _reactRouterDom.Link,
-          { to: this.props.asset, className: 'sc-link' },
+          { to: '/assets/' + this.props.asset, className: 'sc-link' },
           _react2.default.createElement(
             'div',
             { className: 'sc-top-line' },
@@ -1602,7 +1602,6 @@ var RecentActivity = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      debugger;
       if (this.props.transactions.length != newProps.transactions.length) {
         this.props.getTrades();
       }

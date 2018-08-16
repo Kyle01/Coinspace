@@ -132,7 +132,7 @@ class SmallGraph extends React.Component {
   render(){
     return (
       <div className="sc-main-container">
-        <Link to={this.props.asset} className="sc-link">
+        <Link to={`/assets/${this.props.asset}`} className="sc-link">
           <div className="sc-top-line">
             <img src={this.getPic()} className="sc-coin-logo"/>
             <p>{this.props.asset}</p>

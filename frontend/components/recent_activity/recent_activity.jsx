@@ -11,7 +11,6 @@ class RecentActivity extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    debugger;
     if(this.props.transactions.length != newProps.transactions.length){
       this.props.getTrades();
     }

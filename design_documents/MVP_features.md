@@ -15,7 +15,6 @@ Coinspace, a Coinbase clone, is a cryptocurrecy exchange application that allows
   * Dashboard includes a price chart of all coins available for purchase
   * Portfolio has links to purchase coins or get details on coin prices
   * Portfolio displays a snapshot of recent transactions
-  * Users can click on recent transactions, bringing up a modal of transaction details
   * Adequate styling
   * Smooth, bug-free navigation
   * Adequate and appropriate seeds to demonstrate the feature
@@ -23,7 +22,6 @@ Coinspace, a Coinbase clone, is a cryptocurrecy exchange application that allows
   * Users can add funds to purchase coin at the current value
   * Users can create a transaction to purchase or sell coins
   * Portfolio is updated based on the current value
-  * Transactions can be read and viewed as a modal for the history
   * Adequate styling
   * Smooth, bug-free navigation
   * Adequate and appropriate seeds to demonstrate the feature
