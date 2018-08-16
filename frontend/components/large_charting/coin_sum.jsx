@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import { LineChart, Line } from 'recharts';
+import { AreaChart, Area, LineChart, Tooltip } from 'recharts';
 
 import LocalBarFeatures from '../local_bar/local_bar'
 
@@ -45,7 +45,7 @@ class CoinSum extends React.Component {
       case 'Bitcoin':
         return (<p className="asset-description">The world’s first cryptocurrency, bitcoin is stored and exchanged securely on the internet through a digital ledger known as a blockchain. Bitcoins are divisible into smaller units known as satoshis — each satoshi is worth 0.00000001 bitcoin.</p>);
       case 'Ethereum':
-        return (<p className="asset-description">Bitcoin Cash is fork of Bitcoin that seeks to add more transaction capacity to the network in order to be useful for everyday transactions.</p>);
+        return (<p className="asset-description">Ethereum is both a cryptocurrency and a decentralized computing platform. Developers can use Ethereum to create decentralized applications and issue new assets, known as tokens.</p>);
       case 'Litecoin':
         return (<p className="asset-description">Litecoin is a cryptocurrency that uses a faster payment confirmation schedule and a different cryptographic algorithm than Bitcoin.</p>);
       case 'Bitcoin Cash':
@@ -55,10 +55,15 @@ class CoinSum extends React.Component {
 
   drawChart(){
     return (
-      <LineChart width={300} height={100} data={this.getCleanData()}>
-        <Line type='monotone' dataKey='value' stroke='#000000' strokeWidth={2} />
-      </LineChart>
+      <AreaChart width={window.innerWidth-50} height={200} data={this.getCleanData()}>
+        <Area type='monotone' dataKey='value' stroke='#8884d8' strokeWidth={2} fill='#F4F7FA' />
+        <Tooltip />
+      </AreaChart>
     );
+  }
+
+  customToolTip(){
+
   }
 
   getPrice(coin = this.props.coin){
@@ -113,34 +118,36 @@ class CoinSum extends React.Component {
   }
 
   getCleanData(){
-    if(this.props.coin === "Bitcoin"){
-      let answer = [];
-      for(let k = 0; k < this.props.price.prices.bitcoin_prices.length; k++){
-        let obj = {value: this.props.price.prices.bitcoin_prices[k]};
-        answer.push(obj);
+    if(this.props.price.prices !== undefined) {
+      if(this.props.coin === "Bitcoin"){
+        let answer = [];
+        for(let k = 0; k < this.props.price.prices.bitcoin_prices.length; k++){
+          let obj = {value: this.props.price.prices.bitcoin_prices[k]};
+          answer.push(obj);
+        }
+        return answer;
+      } else if (this.props.coin === "Bitcoin Cash") {
+        let answer = [];
+        for(let k = 0; k < this.props.price.prices.bitcoin_cash_prices.length; k++){
+          let obj = {value: this.props.price.prices.bitcoin_cash_prices[k]};
+          answer.push(obj);
+        }
+        return answer;
+      } else if (this.props.coin === "Ethereum") {
+        let answer = [];
+        for(let k = 0; k < this.props.price.prices.ethereum_prices.length; k++){
+          let obj = {value: this.props.price.prices.ethereum_prices[k]};
+          answer.push(obj);
+        }
+        return answer;
+      } else if (this.props.coin === "Litecoin") {
+        let answer = [];
+        for(let k = 0; k < this.props.price.prices.litecoin_prices.length; k++){
+          let obj = {value: this.props.price.prices.litecoin_prices[k]};
+          answer.push(obj);
       }
       return answer;
-    } else if (this.props.coin === "Bitcoin Cash") {
-      let answer = [];
-      for(let k = 0; k < this.props.price.prices.bitcoin_cash_prices.length; k++){
-        let obj = {value: this.props.price.prices.bitcoin_cash_prices[k]};
-        answer.push(obj);
-      }
-      return answer;
-    } else if (this.props.coin === "Ethereum") {
-      let answer = [];
-      for(let k = 0; k < this.props.price.prices.ethereum_prices.length; k++){
-        let obj = {value: this.props.price.prices.ethereum_prices[k]};
-        answer.push(obj);
-      }
-      return answer;
-    } else if (this.props.coin === "Litecoin") {
-      let answer = [];
-      for(let k = 0; k < this.props.price.prices.litecoin_prices.length; k++){
-        let obj = {value: this.props.price.prices.litecoin_prices[k]};
-        answer.push(obj);
     }
-    return answer;
   }
 }
   render(){
@@ -153,15 +160,19 @@ class CoinSum extends React.Component {
           <div className="asset-main">
             <div className="asset-top-bar">
               <img src={this.getPic()}/>
-              <p className="asset-top-name">{this.props.coin} </p>
-              <p className="asset-top-abv">{this.getAbv()}</p>
-              <div>
-                <p>Your Balance</p>
-                <p>{this.getHoldings()}</p>
+              <div className="asset-top-name-group">
+                <p className="asset-top-name">{this.props.coin} </p>
+                <p className="asset-top-abv">{this.getAbv()}</p>
               </div>
-              <div>
-                <Link to={`/buy/${this.getAbv().toLowerCase()}`}>Buy</Link>
-                <Link to={`/sell/${this.getAbv().toLowerCase()}`}>Sell</Link>
+              <div className="asset-top-right">
+                <div>
+                  <p>Your Balance</p>
+                  <p>{this.getHoldings()}</p>
+                </div>
+                <div>
+                  <Link to={`/buy/${this.getAbv().toLowerCase()}`}>Buy</Link>
+                  <Link to={`/sell/${this.getAbv().toLowerCase()}`}>Sell</Link>
+                </div>
               </div>
             </div>
             <div className="asset-self-description">

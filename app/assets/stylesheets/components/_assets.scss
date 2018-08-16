@@ -19,10 +19,17 @@
 
 .asset-top-name {
   font-size: 32px;
+  margin-right: 12px;
 }
 
 .asset-top-abv {
   font-size: 24px;
+  color: #9BA6B2;
+}
+
+.asset-top-right{
+  display: flex;
+  margin-left: auto;
 }
 
 .asset-bottom-bar {
@@ -53,6 +60,7 @@
   color: #4E5C6E;
   font-family: Nunito;
   font-size: 16px;
+  margin: 4px;
 }
 
 .asset-link-box {
@@ -80,4 +88,9 @@
 
 .asset-description {
   padding: 10px;
+}
+
+.asset-top-name-group {
+  align-items: baseline;
+  display: flex;
 }

@@ -982,7 +982,7 @@ var CoinSum = function (_React$Component) {
           return _react2.default.createElement(
             'p',
             { className: 'asset-description' },
-            'Bitcoin Cash is fork of Bitcoin that seeks to add more transaction capacity to the network in order to be useful for everyday transactions.'
+            'Ethereum is both a cryptocurrency and a decentralized computing platform. Developers can use Ethereum to create decentralized applications and issue new assets, known as tokens.'
           );
         case 'Litecoin':
           return _react2.default.createElement(
@@ -1002,11 +1002,15 @@ var CoinSum = function (_React$Component) {
     key: 'drawChart',
     value: function drawChart() {
       return _react2.default.createElement(
-        _recharts.LineChart,
-        { width: 300, height: 100, data: this.getCleanData() },
-        _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'value', stroke: '#000000', strokeWidth: 2 })
+        _recharts.AreaChart,
+        { width: window.innerWidth - 50, height: 200, data: this.getCleanData() },
+        _react2.default.createElement(_recharts.Area, { type: 'monotone', dataKey: 'value', stroke: '#8884d8', strokeWidth: 2, fill: '#F4F7FA' }),
+        _react2.default.createElement(_recharts.Tooltip, null)
       );
     }
+  }, {
+    key: 'customToolTip',
+    value: function customToolTip() {}
   }, {
     key: 'getPrice',
     value: function getPrice() {
@@ -1085,34 +1089,36 @@ var CoinSum = function (_React$Component) {
   }, {
     key: 'getCleanData',
     value: function getCleanData() {
-      if (this.props.coin === "Bitcoin") {
-        var answer = [];
-        for (var k = 0; k < this.props.price.prices.bitcoin_prices.length; k++) {
-          var obj = { value: this.props.price.prices.bitcoin_prices[k] };
-          answer.push(obj);
+      if (this.props.price.prices !== undefined) {
+        if (this.props.coin === "Bitcoin") {
+          var answer = [];
+          for (var k = 0; k < this.props.price.prices.bitcoin_prices.length; k++) {
+            var obj = { value: this.props.price.prices.bitcoin_prices[k] };
+            answer.push(obj);
+          }
+          return answer;
+        } else if (this.props.coin === "Bitcoin Cash") {
+          var _answer = [];
+          for (var _k = 0; _k < this.props.price.prices.bitcoin_cash_prices.length; _k++) {
+            var _obj = { value: this.props.price.prices.bitcoin_cash_prices[_k] };
+            _answer.push(_obj);
+          }
+          return _answer;
+        } else if (this.props.coin === "Ethereum") {
+          var _answer2 = [];
+          for (var _k2 = 0; _k2 < this.props.price.prices.ethereum_prices.length; _k2++) {
+            var _obj2 = { value: this.props.price.prices.ethereum_prices[_k2] };
+            _answer2.push(_obj2);
+          }
+          return _answer2;
+        } else if (this.props.coin === "Litecoin") {
+          var _answer3 = [];
+          for (var _k3 = 0; _k3 < this.props.price.prices.litecoin_prices.length; _k3++) {
+            var _obj3 = { value: this.props.price.prices.litecoin_prices[_k3] };
+            _answer3.push(_obj3);
+          }
+          return _answer3;
         }
-        return answer;
-      } else if (this.props.coin === "Bitcoin Cash") {
-        var _answer = [];
-        for (var _k = 0; _k < this.props.price.prices.bitcoin_cash_prices.length; _k++) {
-          var _obj = { value: this.props.price.prices.bitcoin_cash_prices[_k] };
-          _answer.push(_obj);
-        }
-        return _answer;
-      } else if (this.props.coin === "Ethereum") {
-        var _answer2 = [];
-        for (var _k2 = 0; _k2 < this.props.price.prices.ethereum_prices.length; _k2++) {
-          var _obj2 = { value: this.props.price.prices.ethereum_prices[_k2] };
-          _answer2.push(_obj2);
-        }
-        return _answer2;
-      } else if (this.props.coin === "Litecoin") {
-        var _answer3 = [];
-        for (var _k3 = 0; _k3 < this.props.price.prices.litecoin_prices.length; _k3++) {
-          var _obj3 = { value: this.props.price.prices.litecoin_prices[_k3] };
-          _answer3.push(_obj3);
-        }
-        return _answer3;
       }
     }
   }, {
@@ -1137,42 +1143,50 @@ var CoinSum = function (_React$Component) {
               { className: 'asset-top-bar' },
               _react2.default.createElement('img', { src: this.getPic() }),
               _react2.default.createElement(
-                'p',
-                { className: 'asset-top-name' },
-                this.props.coin,
-                ' '
-              ),
-              _react2.default.createElement(
-                'p',
-                { className: 'asset-top-abv' },
-                this.getAbv()
-              ),
-              _react2.default.createElement(
                 'div',
-                null,
+                { className: 'asset-top-name-group' },
                 _react2.default.createElement(
                   'p',
-                  null,
-                  'Your Balance'
+                  { className: 'asset-top-name' },
+                  this.props.coin,
+                  ' '
                 ),
                 _react2.default.createElement(
                   'p',
-                  null,
-                  this.getHoldings()
+                  { className: 'asset-top-abv' },
+                  this.getAbv()
                 )
               ),
               _react2.default.createElement(
                 'div',
-                null,
+                { className: 'asset-top-right' },
                 _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { to: '/buy/' + this.getAbv().toLowerCase() },
-                  'Buy'
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Your Balance'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    this.getHoldings()
+                  )
                 ),
                 _react2.default.createElement(
-                  _reactRouterDom.Link,
-                  { to: '/sell/' + this.getAbv().toLowerCase() },
-                  'Sell'
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/buy/' + this.getAbv().toLowerCase() },
+                    'Buy'
+                  ),
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/sell/' + this.getAbv().toLowerCase() },
+                    'Sell'
+                  )
                 )
               )
             ),
