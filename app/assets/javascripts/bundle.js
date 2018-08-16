@@ -907,6 +907,10 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 
 var _recharts = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6/index.js");
 
+var _local_bar = __webpack_require__(/*! ../local_bar/local_bar */ "./frontend/components/local_bar/local_bar.jsx");
+
+var _local_bar2 = _interopRequireDefault(_local_bar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -925,9 +929,17 @@ var CoinSum = function (_React$Component) {
   }
 
   _createClass(CoinSum, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchRange();
+      this.props.fetchPrice();
+    }
+  }, {
     key: 'getPic',
-    value: function getPic(coin) {
-      switch (this.props.coin) {
+    value: function getPic() {
+      var coin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.coin;
+
+      switch (coin) {
         case 'Bitcoin':
           return window.images.btc_logo;;
         case 'Ethereum':
@@ -941,7 +953,9 @@ var CoinSum = function (_React$Component) {
   }, {
     key: 'getAbv',
     value: function getAbv() {
-      switch (this.props.coin) {
+      var coin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.coin;
+
+      switch (coin) {
         case 'Bitcoin':
           return "BTC";
         case 'Ethereum':
@@ -954,23 +968,62 @@ var CoinSum = function (_React$Component) {
     }
   }, {
     key: 'getWords',
-    value: function getWords() {}
+    value: function getWords() {
+      var coin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.coin;
+
+      switch (coin) {
+        case 'Bitcoin':
+          return _react2.default.createElement(
+            'p',
+            { className: 'asset-description' },
+            'The world\u2019s first cryptocurrency, bitcoin is stored and exchanged securely on the internet through a digital ledger known as a blockchain. Bitcoins are divisible into smaller units known as satoshis \u2014 each satoshi is worth 0.00000001 bitcoin.'
+          );
+        case 'Ethereum':
+          return _react2.default.createElement(
+            'p',
+            { className: 'asset-description' },
+            'Bitcoin Cash is fork of Bitcoin that seeks to add more transaction capacity to the network in order to be useful for everyday transactions.'
+          );
+        case 'Litecoin':
+          return _react2.default.createElement(
+            'p',
+            { className: 'asset-description' },
+            'Litecoin is a cryptocurrency that uses a faster payment confirmation schedule and a different cryptographic algorithm than Bitcoin.'
+          );
+        case 'Bitcoin Cash':
+          return _react2.default.createElement(
+            'p',
+            { className: 'asset-description' },
+            'Bitcoin Cash is fork of Bitcoin that seeks to add more transaction capacity to the network in order to be useful for everyday transactions.'
+          );
+      }
+    }
   }, {
     key: 'drawChart',
-    value: function drawChart() {}
-  }, {
-    key: 'getWords',
-    value: function getWords(coin) {}
+    value: function drawChart() {
+      return _react2.default.createElement(
+        _recharts.LineChart,
+        { width: 300, height: 100, data: this.getCleanData() },
+        _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'value', stroke: '#000000', strokeWidth: 2 })
+      );
+    }
   }, {
     key: 'getPrice',
-    value: function getPrice() {}
+    value: function getPrice() {
+      var coin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.coin;
+
+      return '$100.00';
+    }
+  }, {
+    key: 'getHoldings',
+    value: function getHoldings() {}
   }, {
     key: 'makeSmallAssets',
     value: function makeSmallAssets() {
       var otherCoins = this.returnOtherAssets();
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'asset-bottom-bar' },
         this.makeSmallAssetsHelper(otherCoins[0]),
         this.makeSmallAssetsHelper(otherCoins[1]),
         this.makeSmallAssetsHelper(otherCoins[2])
@@ -979,7 +1032,37 @@ var CoinSum = function (_React$Component) {
   }, {
     key: 'makeSmallAssetsHelper',
     value: function makeSmallAssetsHelper(coin) {
-      return _react2.default.createElement('div', null);
+      return _react2.default.createElement(
+        _reactRouterDom.Link,
+        { to: '/assets/' + coin, className: 'asset-link' },
+        _react2.default.createElement(
+          'div',
+          { className: 'asset-link-box' },
+          _react2.default.createElement(
+            'div',
+            { className: 'asset-link-name' },
+            _react2.default.createElement('img', { src: this.getPic(coin) }),
+            _react2.default.createElement(
+              'div',
+              { className: 'asset-link-name-details' },
+              _react2.default.createElement(
+                'p',
+                null,
+                coin,
+                ' (',
+                this.getAbv(coin),
+                ')'
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'asset-link-price' },
+                this.getPrice(coin)
+              )
+            )
+          ),
+          this.getWords(coin)
+        )
+      );
     }
 
     //returns an array of the three other coins in correct order
@@ -988,27 +1071,132 @@ var CoinSum = function (_React$Component) {
   }, {
     key: 'returnOtherAssets',
     value: function returnOtherAssets() {
-      return ["Litecoin", "Ethereum", "Bitcoin Cash"];
+      switch (this.props.coin) {
+        case 'Bitcoin':
+          return ["Litecoin", "Ethereum", "Bitcoin Cash"];
+        case 'Ethereum':
+          return ["Bitcoin", "Litecoin", "Bitcoin Cash"];
+        case 'Litecoin':
+          return ["Bitcoin", "Ethereum", "Bitcoin Cash"];
+        case 'Bitcoin Cash':
+          return ["Bitcoin", "Litecoin", "Ethereum"];
+      }
+    }
+  }, {
+    key: 'getCleanData',
+    value: function getCleanData() {
+      if (this.props.coin === "Bitcoin") {
+        var answer = [];
+        for (var k = 0; k < this.props.price.prices.bitcoin_prices.length; k++) {
+          var obj = { value: this.props.price.prices.bitcoin_prices[k] };
+          answer.push(obj);
+        }
+        return answer;
+      } else if (this.props.coin === "Bitcoin Cash") {
+        var _answer = [];
+        for (var _k = 0; _k < this.props.price.prices.bitcoin_cash_prices.length; _k++) {
+          var _obj = { value: this.props.price.prices.bitcoin_cash_prices[_k] };
+          _answer.push(_obj);
+        }
+        return _answer;
+      } else if (this.props.coin === "Ethereum") {
+        var _answer2 = [];
+        for (var _k2 = 0; _k2 < this.props.price.prices.ethereum_prices.length; _k2++) {
+          var _obj2 = { value: this.props.price.prices.ethereum_prices[_k2] };
+          _answer2.push(_obj2);
+        }
+        return _answer2;
+      } else if (this.props.coin === "Litecoin") {
+        var _answer3 = [];
+        for (var _k3 = 0; _k3 < this.props.price.prices.litecoin_prices.length; _k3++) {
+          var _obj3 = { value: this.props.price.prices.litecoin_prices[_k3] };
+          _answer3.push(_obj3);
+        }
+        return _answer3;
+      }
     }
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
+      if (this.props.price.price === undefined) {
+        return _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement('img', { src: this.getPic() }),
-          _react2.default.createElement('p', null)
-        ),
-        _react2.default.createElement(
-          'p',
+          'Loading...'
+        );
+      } else {
+        return _react2.default.createElement(
+          'div',
           null,
-          'More Assets'
-        ),
-        this.makeSmallAssets()
-      );
+          _react2.default.createElement(_local_bar2.default, { location: 'dashboard' }),
+          _react2.default.createElement(
+            'div',
+            { className: 'asset-main' },
+            _react2.default.createElement(
+              'div',
+              { className: 'asset-top-bar' },
+              _react2.default.createElement('img', { src: this.getPic() }),
+              _react2.default.createElement(
+                'p',
+                { className: 'asset-top-name' },
+                this.props.coin,
+                ' '
+              ),
+              _react2.default.createElement(
+                'p',
+                { className: 'asset-top-abv' },
+                this.getAbv()
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  'Your Balance'
+                ),
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  this.getHoldings()
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/buy/' + this.getAbv().toLowerCase() },
+                  'Buy'
+                ),
+                _react2.default.createElement(
+                  _reactRouterDom.Link,
+                  { to: '/sell/' + this.getAbv().toLowerCase() },
+                  'Sell'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'asset-self-description' },
+              this.drawChart(),
+              _react2.default.createElement(
+                'p',
+                { className: 'asset-self-description-about' },
+                'About ',
+                this.props.coin
+              ),
+              this.getWords()
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'More Assets'
+            ),
+            this.makeSmallAssets()
+          )
+        );
+      }
     }
   }]);
 

@@ -2,13 +2,20 @@ import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import { LineChart, Line } from 'recharts';
 
+import LocalBarFeatures from '../local_bar/local_bar'
+
 class CoinSum extends React.Component {
   constructor(props){
     super(props);
   }
 
-  getPic(coin){
-    switch (this.props.coin) {
+  componentDidMount(){
+    this.props.fetchRange();
+    this.props.fetchPrice()
+  }
+
+  getPic(coin = this.props.coin){
+    switch (coin) {
       case 'Bitcoin':
         return window.images.btc_logo;;
       case 'Ethereum':
@@ -20,8 +27,8 @@ class CoinSum extends React.Component {
     }
   }
 
-  getAbv(){
-    switch (this.props.coin) {
+  getAbv(coin = this.props.coin){
+    switch (coin) {
       case 'Bitcoin':
         return "BTC";
       case 'Ethereum':
@@ -33,26 +40,39 @@ class CoinSum extends React.Component {
     }
   }
 
-  getWords(){
-
+  getWords(coin = this.props.coin){
+    switch (coin) {
+      case 'Bitcoin':
+        return (<p className="asset-description">The world’s first cryptocurrency, bitcoin is stored and exchanged securely on the internet through a digital ledger known as a blockchain. Bitcoins are divisible into smaller units known as satoshis — each satoshi is worth 0.00000001 bitcoin.</p>);
+      case 'Ethereum':
+        return (<p className="asset-description">Bitcoin Cash is fork of Bitcoin that seeks to add more transaction capacity to the network in order to be useful for everyday transactions.</p>);
+      case 'Litecoin':
+        return (<p className="asset-description">Litecoin is a cryptocurrency that uses a faster payment confirmation schedule and a different cryptographic algorithm than Bitcoin.</p>);
+      case 'Bitcoin Cash':
+        return (<p className="asset-description">Bitcoin Cash is fork of Bitcoin that seeks to add more transaction capacity to the network in order to be useful for everyday transactions.</p>);
+    }
   }
 
   drawChart(){
-
+    return (
+      <LineChart width={300} height={100} data={this.getCleanData()}>
+        <Line type='monotone' dataKey='value' stroke='#000000' strokeWidth={2} />
+      </LineChart>
+    );
   }
 
-  getWords(coin){
-
+  getPrice(coin = this.props.coin){
+    return '$100.00';
   }
 
-  getPrice(){
+  getHoldings(){
 
   }
 
   makeSmallAssets(){
     let otherCoins = this.returnOtherAssets();
     return (
-      <div>
+      <div className ="asset-bottom-bar">
         {this.makeSmallAssetsHelper(otherCoins[0])}
         {this.makeSmallAssetsHelper(otherCoins[1])}
         {this.makeSmallAssetsHelper(otherCoins[2])}
@@ -62,28 +82,100 @@ class CoinSum extends React.Component {
 
   makeSmallAssetsHelper(coin){
     return (
-      <div>
+      <Link to={`/assets/${coin}`} className='asset-link'>
+      <div className="asset-link-box">
+        <div className="asset-link-name">
+          <img src={this.getPic(coin)} />
+          <div className="asset-link-name-details">
+            <p>{coin} ({this.getAbv(coin)})</p>
+            <p className="asset-link-price">{this.getPrice(coin)}</p>
+          </div>
+        </div>
+        {this.getWords(coin)}
       </div>
+      </Link>
     );
   }
 
   //returns an array of the three other coins in correct order
   //used by makeSmallAssets
   returnOtherAssets(){
-    return ["Litecoin", "Ethereum", "Bitcoin Cash"];
+    switch (this.props.coin) {
+      case 'Bitcoin':
+        return ["Litecoin", "Ethereum", "Bitcoin Cash"];
+      case 'Ethereum':
+        return ["Bitcoin", "Litecoin", "Bitcoin Cash"];
+      case 'Litecoin':
+        return ["Bitcoin", "Ethereum", "Bitcoin Cash"];
+      case 'Bitcoin Cash':
+        return ["Bitcoin", "Litecoin", "Ethereum"];
+    }
   }
 
+  getCleanData(){
+    if(this.props.coin === "Bitcoin"){
+      let answer = [];
+      for(let k = 0; k < this.props.price.prices.bitcoin_prices.length; k++){
+        let obj = {value: this.props.price.prices.bitcoin_prices[k]};
+        answer.push(obj);
+      }
+      return answer;
+    } else if (this.props.coin === "Bitcoin Cash") {
+      let answer = [];
+      for(let k = 0; k < this.props.price.prices.bitcoin_cash_prices.length; k++){
+        let obj = {value: this.props.price.prices.bitcoin_cash_prices[k]};
+        answer.push(obj);
+      }
+      return answer;
+    } else if (this.props.coin === "Ethereum") {
+      let answer = [];
+      for(let k = 0; k < this.props.price.prices.ethereum_prices.length; k++){
+        let obj = {value: this.props.price.prices.ethereum_prices[k]};
+        answer.push(obj);
+      }
+      return answer;
+    } else if (this.props.coin === "Litecoin") {
+      let answer = [];
+      for(let k = 0; k < this.props.price.prices.litecoin_prices.length; k++){
+        let obj = {value: this.props.price.prices.litecoin_prices[k]};
+        answer.push(obj);
+    }
+    return answer;
+  }
+}
   render(){
-    return (
-      <div>
+    if(this.props.price.price === undefined){
+      return (<div>Loading...</div>)
+    } else {
+      return (
         <div>
-          <img src={this.getPic()} />
-          <p></p>
+          <LocalBarFeatures location="dashboard"/>
+          <div className="asset-main">
+            <div className="asset-top-bar">
+              <img src={this.getPic()}/>
+              <p className="asset-top-name">{this.props.coin} </p>
+              <p className="asset-top-abv">{this.getAbv()}</p>
+              <div>
+                <p>Your Balance</p>
+                <p>{this.getHoldings()}</p>
+              </div>
+              <div>
+                <Link to={`/buy/${this.getAbv().toLowerCase()}`}>Buy</Link>
+                <Link to={`/sell/${this.getAbv().toLowerCase()}`}>Sell</Link>
+              </div>
+            </div>
+            <div className="asset-self-description">
+              {this.drawChart()}
+              <p className="asset-self-description-about">About {this.props.coin}</p>
+              {this.getWords()}
+            </div>
+
+            <p>More Assets</p>
+            {this.makeSmallAssets()}
+          </div>
         </div>
-        <p>More Assets</p>
-        {this.makeSmallAssets()}
-      </div>
-    );
+      );
+    }
   }
 }
 
