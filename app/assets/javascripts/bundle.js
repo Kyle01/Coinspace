@@ -713,13 +713,14 @@ var SmallGraph = function (_React$Component) {
     value: function getPic() {
       if (this.props.price.price !== undefined) {
         if (this.props.asset === "Bitcoin") {
-          return "assets/btc_logo.png";
+          return window.images.btc_logo;
         } else if (this.props.asset === "Bitcoin Cash") {
-          return "assets/btcc_logo.png";
+          return window.images.btcc_logo;
         } else if (this.props.asset === "Ethereum") {
-          return "assets/e_logo.png";
+          return window.images.e_logo;
         } else if (this.props.asset === "Litecoin") {
-          return "assets/ltc_logo.png";
+          return window.images.ltc_logo;
+          // <img src={window.images.ltc_logo}/>
         }
       }
     }
@@ -1029,27 +1030,27 @@ var LocalBarFeatures = function (_React$Component) {
     key: 'imageOne',
     value: function imageOne() {
       if (this.props.location === "dashboard") {
-        return "assets/local_bar/selected_dash.png";
+        return window.images.selected_dash;
       } else {
-        return "assets/local_bar/unselected_dash.png";
+        return window.images.unselected_dash;
       }
     }
   }, {
     key: 'imageTwo',
     value: function imageTwo() {
       if (this.props.location === "trade") {
-        return "assets/local_bar/selected_trade.png";
+        return window.images.selected_trade;
       } else {
-        return "assets/local_bar/unselected_trade.png";
+        return window.images.unselected_trade;
       }
     }
   }, {
     key: 'imageThree',
     value: function imageThree() {
       if (this.props.location === "account") {
-        return "assets/local_bar/selected_accounts.png";
+        return window.images.selected_accounts;
       } else {
-        return "assets/local_bar/unselected_accounts.png";
+        return window.images.selected_accounts;
       }
     }
   }, {
@@ -1356,13 +1357,13 @@ var PortfolioSum = function (_React$Component) {
     value: function getPicture(coin) {
       switch (coin) {
         case "Bitcoin":
-          return "assets/btc_logo.png";
+          return window.images.btc_logo;
         case "Litecoin":
-          return "assets/ltc_logo.png";
+          return window.images.ltc_logo;
         case "Bitcoin Cash":
-          return "assets/btcc_logo.png";
+          return window.images.btcc_logo;
         case "Ethereum":
-          return "assets/e_logo.png";
+          return window.images.e_logo;
       }
     }
   }, {
@@ -1610,13 +1611,13 @@ var RecentActivity = function (_React$Component) {
     key: 'getImage',
     value: function getImage(transaction) {
       if (transaction.coin === "Bitcoin") {
-        return "assets/transactions/bitcoin-tran.png";
+        return window.images.bitcoin_tran;
       } else if (transaction.coin === "Bitcoin Cash") {
-        return "assets/transactions/bitcoincash-tran.png";
+        return window.images.bitcoincash_tran;
       } else if (transaction.coin === "Ethereum") {
-        return "assets/transactions/ethereum-tran.png";
+        return window.images.ethereum_tran;
       } else if (transaction.coin === "Litecoin") {
-        return "assets/transactions/litecoin-tran.png";
+        return window.images.litecoin_tran;
       }
     }
   }, {

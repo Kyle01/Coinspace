@@ -15,13 +15,13 @@ class PortfolioSum extends React.Component {
   getPicture(coin){
     switch (coin) {
       case "Bitcoin":
-        return "assets/btc_logo.png";
+        return window.images.btc_logo;
       case "Litecoin":
-        return "assets/ltc_logo.png";
+        return window.images.ltc_logo;
       case "Bitcoin Cash":
-        return "assets/btcc_logo.png";
+        return window.images.btcc_logo;
       case "Ethereum":
-        return "assets/e_logo.png";
+        return window.images.e_logo;
     }
   }
 

@@ -19,13 +19,13 @@ class RecentActivity extends React.Component {
 
   getImage(transaction){
     if(transaction.coin === "Bitcoin"){
-      return "assets/transactions/bitcoin-tran.png";
+      return window.images.bitcoin_tran;
     } else if(transaction.coin === "Bitcoin Cash"){
-      return "assets/transactions/bitcoincash-tran.png";
+      return window.images.bitcoincash_tran;
     } else if(transaction.coin === "Ethereum"){
-      return "assets/transactions/ethereum-tran.png";
+      return window.images.ethereum_tran;
     } else if(transaction.coin === "Litecoin"){
-      return "assets/transactions/litecoin-tran.png";
+      return window.images.litecoin_tran;
     }
   }
 

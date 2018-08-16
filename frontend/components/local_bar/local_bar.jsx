@@ -10,25 +10,25 @@ class LocalBarFeatures extends React.Component {
 
   imageOne() {
     if(this.props.location === "dashboard"){
-      return "assets/local_bar/selected_dash.png";
+      return window.images.selected_dash;
     } else {
-      return "assets/local_bar/unselected_dash.png";
+      return window.images.unselected_dash;
     }
   }
 
   imageTwo() {
     if(this.props.location === "trade"){
-      return "assets/local_bar/selected_trade.png";
+      return window.images.selected_trade;
     } else {
-      return "assets/local_bar/unselected_trade.png";
+      return window.images.unselected_trade;
     }
   }
 
   imageThree() {
     if(this.props.location === "account"){
-      return "assets/local_bar/selected_accounts.png";
+      return window.images.selected_accounts;
     } else {
-      return "assets/local_bar/unselected_accounts.png";
+      return window.images.selected_accounts;
     }
   }
 

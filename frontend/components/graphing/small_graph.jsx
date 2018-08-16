@@ -59,13 +59,14 @@ class SmallGraph extends React.Component {
   getPic(){
     if(this.props.price.price !== undefined){
       if(this.props.asset === "Bitcoin") {
-        return "assets/btc_logo.png";
+        return window.images.btc_logo;
       } else if(this.props.asset === "Bitcoin Cash") {
-        return "assets/btcc_logo.png";
+        return window.images.btcc_logo;
       } else if(this.props.asset === "Ethereum") {
-        return "assets/e_logo.png";
+        return window.images.e_logo;
       } else if(this.props.asset === "Litecoin") {
-        return "assets/ltc_logo.png";
+        return window.images.ltc_logo;
+        // <img src={window.images.ltc_logo}/>
       }
     }
   }

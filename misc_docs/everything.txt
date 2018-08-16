@@ -61,3 +61,5 @@ jfc
 xxxxx
 update heroku with mvp 1, 2 and 3
 after transaction, reroute to dashboard
+
+bunch of divs on the page and style them dynamically
