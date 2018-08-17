@@ -4,6 +4,7 @@ import CoinSum from './coin_sum';
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    user: state.entities.users[state.session.currentUser],
     coin: ownProps.match.params.coin,
     price: state.entities.prices
   };

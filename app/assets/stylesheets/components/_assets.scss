@@ -22,8 +22,26 @@
   margin-right: 12px;
 }
 
+
 .asset-top-abv {
   font-size: 24px;
+  color: #9BA6B2;
+}
+
+.assets-total-holdings {
+  display: flex;
+  font-size: 24px;
+  color: #4E5C6E;
+}
+
+.assets-your-balance {
+  color: #9BA6B2;
+  font-size: 14px;
+  text-align: right;
+  margin: 0px;
+}
+
+.assets-holdings-dollars {
   color: #9BA6B2;
 }
 
@@ -93,4 +111,45 @@
 .asset-top-name-group {
   align-items: baseline;
   display: flex;
+}
+
+.asset-trade-parent {
+  display: flex;
+  background-color: #518FD9;
+  height: 50px;
+  width: 200px;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 15px;
+}
+
+.asset-trade-link {
+  display: inline-block;
+  color: white;
+  height: 90%;
+  width: 50%;
+  font-family: Nunito;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  p{
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+ .asset-trade-link-buy {
+  display: inline-block;
+  color: white;
+  height: 90%;
+  width: 50%;
+  font-family: Nunito;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  border-right: solid #427ABE 1px;
+  p{
+    text-align: center;
+    vertical-align: middle;
+  }
 }

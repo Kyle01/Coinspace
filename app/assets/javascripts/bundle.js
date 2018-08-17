@@ -557,16 +557,20 @@ var Dashboard = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'dash-wrapper' },
-          _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin', className: 'dash-chart-1' }),
-          _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash', className: 'dash-chart-2' }),
-          _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum', className: 'dash-chart-3' }),
-          _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin', className: 'dash-chart-4' })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'dash-bottom' },
-          _react2.default.createElement(_recent_activity_container2.default, { className: 'dash-recent-activity' }),
-          _react2.default.createElement(_portfolio_sum_container2.default, { className: 'dash-port-sum' })
+          _react2.default.createElement(
+            'div',
+            { className: 'dash-top' },
+            _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin', className: 'dash-chart-1' }),
+            _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash', className: 'dash-chart-2' }),
+            _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum', className: 'dash-chart-3' }),
+            _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin', className: 'dash-chart-4' })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'dash-bottom' },
+            _react2.default.createElement(_recent_activity_container2.default, { className: 'dash-recent-activity' }),
+            _react2.default.createElement(_portfolio_sum_container2.default, { className: 'dash-port-sum' })
+          )
         )
       );
     }
@@ -1008,6 +1012,9 @@ var CoinSum = function (_React$Component) {
         _react2.default.createElement(_recharts.Tooltip, null)
       );
     }
+
+    //not implemented
+
   }, {
     key: 'customToolTip',
     value: function customToolTip() {}
@@ -1016,11 +1023,116 @@ var CoinSum = function (_React$Component) {
     value: function getPrice() {
       var coin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.coin;
 
-      return '$100.00';
+      if (this.props.price.price.btc_price !== undefined) {
+        switch (coin) {
+          case 'Bitcoin':
+            return this.props.price.price.btc_price;
+          case 'Litecoin':
+            return this.props.price.price.ltc_price;
+          case 'Bitcoin Cash':
+            return this.props.price.price.btcc_price;
+          case 'Ethereum':
+            return this.props.price.price.e_price;
+        }
+      }
     }
   }, {
     key: 'getHoldings',
-    value: function getHoldings() {}
+    value: function getHoldings() {
+      var holdings = -1;
+      var amount = -1;
+
+      switch (this.props.coin) {
+        case 'Bitcoin':
+          holdings = this.props.user.btc_holdings.toFixed(4);
+          amount = (this.props.price.price.btc_price * this.props.user.btc_holdings).toFixed(2);
+          return _react2.default.createElement(
+            'div',
+            { className: 'assets-total-holdings' },
+            _react2.default.createElement(
+              'p',
+              null,
+              holdings,
+              ' ',
+              this.getAbv()
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'assets-holdings-dollars' },
+              '($',
+              amount,
+              ')'
+            )
+          );
+        case 'Ethereum':
+          holdings = this.props.user.e_holdings.toFixed(4);
+          amount = (this.props.price.price.e_price * this.props.user.e_holdings).toFixed(2);
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'p',
+              null,
+              holdings,
+              ' ',
+              this.getAbv(),
+              ' '
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '($',
+              amount,
+              ')'
+            )
+          );
+        case 'Litecoin':
+          holdings = this.props.user.ltc_holdings.toFixed(4);
+          amount = (this.props.price.price.ltc_price * this.props.user.ltc_holdings).toFixed(2);
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'p',
+              null,
+              holdings,
+              ' ',
+              this.getAbv(),
+              ' '
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '($',
+              amount,
+              ')'
+            )
+          );
+        case 'Bitcoin Cash':
+          holdings = this.props.user.btc_holdings.toFixed(4);
+          amount = (this.props.price.price.btcc_price * this.props.user.bch_holdings).toFixed(2);
+          return _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'p',
+              null,
+              holdings,
+              ' ',
+              this.getAbv(),
+              ' '
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              '($',
+              amount,
+              ')'
+            )
+          );
+      }
+      this.props.user.btc_holdings;
+    }
   }, {
     key: 'makeSmallAssets',
     value: function makeSmallAssets() {
@@ -1086,6 +1198,9 @@ var CoinSum = function (_React$Component) {
           return ["Bitcoin", "Litecoin", "Ethereum"];
       }
     }
+
+    //used for charting
+
   }, {
     key: 'getCleanData',
     value: function getCleanData() {
@@ -1162,30 +1277,34 @@ var CoinSum = function (_React$Component) {
                 { className: 'asset-top-right' },
                 _react2.default.createElement(
                   'div',
-                  null,
+                  { className: 'asset-top-holding-info' },
                   _react2.default.createElement(
                     'p',
-                    null,
-                    'Your Balance'
+                    { className: 'assets-your-balance' },
+                    'YOUR BALANCE'
                   ),
-                  _react2.default.createElement(
-                    'p',
-                    null,
-                    this.getHoldings()
-                  )
+                  this.getHoldings()
                 ),
                 _react2.default.createElement(
                   'div',
-                  null,
+                  { className: 'asset-trade-parent' },
                   _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/buy/' + this.getAbv().toLowerCase() },
-                    'Buy'
+                    { to: '/buy/' + this.getAbv().toLowerCase(), className: 'asset-trade-link-buy' },
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'Buy'
+                    )
                   ),
                   _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/sell/' + this.getAbv().toLowerCase() },
-                    'Sell'
+                    { to: '/sell/' + this.getAbv().toLowerCase(), className: 'asset-trade-link' },
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'Sell'
+                    )
                   )
                 )
               )
@@ -1247,6 +1366,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
+    user: state.entities.users[state.session.currentUser],
     coin: ownProps.match.params.coin,
     price: state.entities.prices
   };

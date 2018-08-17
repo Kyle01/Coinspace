@@ -1,4 +1,8 @@
 .dash-wrapper {
+  background-color: #F4F7FA;
+}
+
+.dash-top {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
