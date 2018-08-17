@@ -2516,6 +2516,19 @@ var Trade = function (_React$Component) {
   }
 
   _createClass(Trade, [{
+    key: 'getPic',
+    value: function getPic(coin) {
+      if (coin === "btc") {
+        return window.images.btc_logo;
+      } else if (coin === "bch") {
+        return window.images.btcc_logo;
+      } else if (coin === "e") {
+        return window.images.e_logo;
+      } else if (coin === "ltc") {
+        return window.images.ltc_logo;
+      }
+    }
+  }, {
     key: 'updateAmount',
     value: function updateAmount(coin_value) {
       var _this2 = this;
@@ -2573,49 +2586,61 @@ var Trade = function (_React$Component) {
       var price = this.getPrice();
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'trade-main-buy-container' },
         _react2.default.createElement(
-          'button',
-          { onClick: function onClick() {
-              return _this5.handleCoinClick('btc');
-            } },
-          'Bitcoin'
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: function onClick() {
-              return _this5.handleCoinClick('bch');
-            } },
-          'Bitcoin Cash'
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: function onClick() {
-              return _this5.handleCoinClick('e');
-            } },
-          'Ethereum'
-        ),
-        _react2.default.createElement(
-          'button',
-          { onClick: function onClick() {
-              return _this5.handleCoinClick('ltc');
-            } },
-          'Litecoin'
+          'div',
+          { className: 'trade-coin-buttons' },
+          _react2.default.createElement(
+            'button',
+            { className: 'trade-coin-button', onClick: function onClick() {
+                return _this5.handleCoinClick('btc');
+              } },
+            _react2.default.createElement('img', { src: this.getPic('btc') }),
+            _react2.default.createElement('br', null),
+            'Bitcoin'
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'trade-coin-button', onClick: function onClick() {
+                return _this5.handleCoinClick('bch');
+              } },
+            _react2.default.createElement('img', { src: this.getPic('bch') }),
+            _react2.default.createElement('br', null),
+            'Bitcoin Cash'
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'trade-coin-button', onClick: function onClick() {
+                return _this5.handleCoinClick('e');
+              } },
+            _react2.default.createElement('img', { src: this.getPic('e') }),
+            _react2.default.createElement('br', null),
+            'Ethereum'
+          ),
+          _react2.default.createElement(
+            'button',
+            { className: 'trade-coin-button', onClick: function onClick() {
+                return _this5.handleCoinClick('ltc');
+              } },
+            _react2.default.createElement('img', { src: this.getPic('ltc') }),
+            _react2.default.createElement('br', null),
+            'Litcoin'
+          )
         ),
         _react2.default.createElement(
           'form',
-          { onSubmit: this.handleSubmit },
-          _react2.default.createElement('input', { ref: 'amount',
+          { className: 'trade-buy-form-field', onSubmit: this.handleSubmit },
+          _react2.default.createElement('input', { className: 'trade-buy-input-field', ref: 'amount',
             value: this.state.amount,
             placeholder: '0.00 USD',
             onChange: this.updateAmount(price) }),
-          _react2.default.createElement('input', { ref: 'coins',
+          _react2.default.createElement('input', { className: 'trade-buy-input-field', ref: 'coins',
             value: this.state.coins,
             placeholder: '0.00 ' + this.state.coins,
             onChange: this.updateCoins({ price: price }) }),
           _react2.default.createElement(
             'button',
-            null,
+            { className: 'trade-buy-coin-button' },
             'Buy ',
             this.linkToWords()
           )
@@ -2628,33 +2653,41 @@ var Trade = function (_React$Component) {
       var price = this.getPrice();
       return _react2.default.createElement(
         'div',
-        null,
-        'Sell From',
+        { className: 'trade-sell-main' },
+        _react2.default.createElement(
+          'p',
+          { className: 'trade-sell-words' },
+          'Sell From'
+        ),
         _react2.default.createElement(
           'select',
-          null,
+          { className: 'trade-sell-select-coin' },
           _react2.default.createElement(
             'option',
             { value: 'Bitcoin' },
-            'Bitcoin ',
+            _react2.default.createElement('img', { src: this.getPic('btc') }),
+            'BTC Wallet ',
             this.props.user.btc_holdings.toFixed(6)
           ),
           _react2.default.createElement(
             'option',
             { value: 'Bitcoin Cash' },
-            'Bitcoin Cash ',
+            _react2.default.createElement('img', { src: this.getPic("bch") }),
+            'BCH Wallet ',
             this.props.user.bch_holdings.toFixed(6)
           ),
           _react2.default.createElement(
             'option',
             { value: 'Ethereum' },
-            'Ethereum ',
+            _react2.default.createElement('img', { src: this.getPic("e") }),
+            'ETC Wallet ',
             this.props.user.e_holdings.toFixed(6)
           ),
           _react2.default.createElement(
             'option',
-            { value: 'Litcoin' },
-            'Litecoin ',
+            { value: 'Litecoin' },
+            _react2.default.createElement('img', { src: this.getPic("ltc") }),
+            'LTC Wallet ',
             this.props.user.ltc_holdings.toFixed(6)
           )
         ),
@@ -2666,17 +2699,22 @@ var Trade = function (_React$Component) {
         _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit },
-          _react2.default.createElement('input', { ref: 'amount',
-            value: this.state.amount,
-            placeholder: '0.00 USD',
-            onChange: this.updateAmount(price) }),
-          _react2.default.createElement('input', { ref: 'coins',
-            value: this.state.coins,
-            placeholder: '0.00 ' + this.state.coins,
-            onChange: this.updateCoins(price) }),
+          _react2.default.createElement(
+            'div',
+            { className: 'trade-sell-exchange-bar' },
+            _react2.default.createElement('input', { className: 'trade-sell-input-field', ref: 'amount',
+              value: this.state.amount,
+              placeholder: '0.00 USD',
+              onChange: this.updateAmount(price) }),
+            _react2.default.createElement('img', { className: 'trade-sell-exchange-logo', src: window.images.transfer_logo }),
+            _react2.default.createElement('input', { className: 'trade-sell-input-field', ref: 'coins',
+              value: this.state.coins,
+              placeholder: '0.00 ' + this.state.coins,
+              onChange: this.updateCoins(price) })
+          ),
           _react2.default.createElement(
             'button',
-            null,
+            { className: 'trade-sell-coin-button' },
             'Sell ',
             this.linkToWords(),
             ' Instantly'
@@ -2740,19 +2778,19 @@ var Trade = function (_React$Component) {
 
         return _react2.default.createElement(
           'div',
-          null,
+          { className: 'trade-main-background' },
           _react2.default.createElement(_local_bar2.default, { location: 'trade' }),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'trade-main-container' },
             _react2.default.createElement(
               'button',
-              { onClick: this.changeTab, name: 'buy' },
+              { onClick: this.changeTab, className: 'trade-buy-button', name: 'buy' },
               'Buy'
             ),
             _react2.default.createElement(
               'button',
-              { onClick: this.changeTab, name: 'sell' },
+              { onClick: this.changeTab, className: 'trade-sell-button', name: 'sell' },
               'Sell'
             ),
             elements

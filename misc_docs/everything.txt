@@ -17,13 +17,6 @@ big 4 pages :
 
 To do today
 --------------------
-- Turn in MVP 2
-  - Get Dashboard looking good
-- Start transactions page
-  - Make form
-  - Make logic work
-    - Put errors in create
-    - be sure to call anti up in create
 - Clean up MVP 1
   - Clean up wiki
   - Clean up route
@@ -32,27 +25,12 @@ To do today
   - do sample state stuffs
   - Update schema
   - rewrite MVPS
-    -3
-    -4
-    -5-7
+    -6-7
 - Get Splash page started
   - Do the 4 charts on the grid
   - Make words and sign up button
   - Put personal information below
     - Make an about page
-- Rehost on Heroku
-  - Reseed data
-  - ensure the photos look good
-- Make bitcoin page
-  - Have chart
-  - have words
-  - have links to other coins
-  - have link to trade
--Text Sarah
--Make playlist
--Do reader and book one more time
--Make a list of people to invite to the party
--Move bitcoin and btcc to coinspace
 
 
 
@@ -61,6 +39,14 @@ jfc
 xxxxx
 update heroku with mvp 1, 2 and 3
 after transaction, reroute to dashboard
-do signup with clear errors 
+reseed data
+buy and sell dont fix route.
+
+
+
+
+
+
+
 
 bunch of divs on the page and style them dynamically

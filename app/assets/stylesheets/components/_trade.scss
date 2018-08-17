@@ -1,0 +1,126 @@
+.trade-main-background {
+  background-color: #F4F7FA;
+  font-family: Nunito;
+}
+
+.trade-main-container {
+  background-color: #ffffff;
+  margin: 35px;
+  max-width: 700px;
+  border: 2px solid #dae1e9;
+  border-radius: 5px;
+}
+
+.trade-buy-button {
+  background-color: #ffffff;
+  width: 50%;
+  height: 50px;
+  color: #427ABE;
+  font-size: 18px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #dae1e9;
+}
+
+.trade-sell-button {
+  background-color: #ffffff;
+  width: 50%;
+  height: 50px;
+  color: #427ABE;
+  font-size: 18px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #dae1e9;
+}
+
+.trade-coin-buttons {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trade-coin-button {
+  background-color: #ffffff;
+  width: 25%;
+  height: 100px;
+  color: #4E5C6E;
+  font-size: 14px;
+  text-align: center;
+  border: none;
+  margin: 5px;
+  border: 1px solid #dae1e9;
+  border-radius: 5px;
+
+  img {
+    height: 50px;
+    width: 50px;
+  }
+
+  div {
+    display: inline-block;
+  }
+}
+
+.trade-buy-input-field {
+  width: 47.5%;
+  margin: 5px;
+  height: 35px;
+}
+
+.trade-buy-form-field {
+  width: 100%;
+}
+
+.trade-buy-coin-button {
+  width: 95%;
+  height: 75px;
+  color: white;
+  background-color: #0667d0;
+  margin: 25px;
+}
+
+.trade-sell-main {
+  margin: 10px;
+}
+
+.trade-sell-words {
+  color: #0667d0;
+  font-size: 18px;
+}
+
+.trade-sell-select-coin {
+  background-color: white;
+  width: 100%;
+  height: 65px;
+
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.trade-sell-exchange-bar {
+  display: inline-flex;
+  width: 100%;
+
+}
+
+.trade-sell-exchange-logo {
+  width: 25px;
+  height: 40px;
+}
+
+.trade-sell-input-field {
+  width: 45%;
+  height: 35px;
+  margin-bottom: 15px;
+}
+
+.trade-sell-coin-button {
+  width: 95%;
+  height: 75px;
+  color: white;
+  background-color: #0667d0;
+  margin: 25px;
+}
