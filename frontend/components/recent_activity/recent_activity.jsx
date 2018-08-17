@@ -11,7 +11,7 @@ class RecentActivity extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    if(this.props.transactions.length != newProps.transactions.length){
+    if(this.props.transactions.length !== newProps.transactions.length){
       this.props.getTrades();
     }
   }
@@ -77,7 +77,7 @@ class RecentActivity extends React.Component {
       let monthHelper = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       return (
         <div className="tran-sum-tran-container">
-          <div>
+          <div className='port-sum-date'>
             <div>{monthHelper[date.getMonth()]}</div>
             <div>{date.getDate()}</div>
           </div>
@@ -87,7 +87,7 @@ class RecentActivity extends React.Component {
           <div>
             <p>{this.getWords(transaction)}</p>
           </div>
-          <div>
+          <div className='tran-sum-amount'>
             <div>{this.getAmount(transaction)}</div>
             <div className='tran-sum-money-amount'>{this.getMoney(transaction)}</div>
           </div>

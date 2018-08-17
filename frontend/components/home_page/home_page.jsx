@@ -18,9 +18,6 @@ class HomePage extends React.Component {
           <SmallGraphContainer asset="Ethereum"/>
           <SmallGraphContainer asset="Litecoin"/>
         </div>
-        <div className='home-about-info'>
-          About page
-        </div>
       </div>
     );
   }

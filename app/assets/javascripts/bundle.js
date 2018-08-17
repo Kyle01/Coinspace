@@ -961,11 +961,6 @@ var HomePage = function (_React$Component) {
           _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash' }),
           _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum' }),
           _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin' })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'home-about-info' },
-          'About page'
         )
       );
     }
@@ -1817,6 +1812,13 @@ var PortfolioSum = function (_React$Component) {
       this.props.fetchPrice();
     }
   }, {
+    key: 'willReceiveProps',
+    value: function willReceiveProps(newProps) {
+      if (this.props.price.price.btc_price === undefined) {
+        this.props.fetchPrice();
+      }
+    }
+  }, {
     key: 'getPicture',
     value: function getPicture(coin) {
       switch (coin) {
@@ -1903,7 +1905,7 @@ var PortfolioSum = function (_React$Component) {
         ),
         _react2.default.createElement(
           'p',
-          null,
+          { className: 'port-sum-amount' },
           '$',
           amount.toFixed(2)
         )
@@ -2066,7 +2068,7 @@ var RecentActivity = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(newProps) {
-      if (this.props.transactions.length != newProps.transactions.length) {
+      if (this.props.transactions.length !== newProps.transactions.length) {
         this.props.getTrades();
       }
     }
@@ -2137,7 +2139,7 @@ var RecentActivity = function (_React$Component) {
           { className: 'tran-sum-tran-container' },
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'port-sum-date' },
             _react2.default.createElement(
               'div',
               null,
@@ -2165,7 +2167,7 @@ var RecentActivity = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'tran-sum-amount' },
             _react2.default.createElement(
               'div',
               null,
@@ -2555,6 +2557,7 @@ var Trade = function (_React$Component) {
 
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.changeTab = _this.changeTab.bind(_this);
+    _this.handleCoinSelect = _this.handleCoinSelect.bind(_this);
     return _this;
   }
 
@@ -2590,7 +2593,7 @@ var Trade = function (_React$Component) {
       return function (e) {
         var _this3$setState;
 
-        return _this3.setState((_this3$setState = {}, _defineProperty(_this3$setState, 'coins', e.target.value), _defineProperty(_this3$setState, 'amount', e.target.value * coin_value), _this3$setState));
+        return _this3.setState((_this3$setState = {}, _defineProperty(_this3$setState, 'coins', e.target.value * 1.0), _defineProperty(_this3$setState, 'amount', e.target.value * coin_value), _this3$setState));
       };
     }
   }, {
@@ -2622,9 +2625,20 @@ var Trade = function (_React$Component) {
       });
     }
   }, {
+    key: 'handleCoinSelect',
+    value: function handleCoinSelect(e) {
+      var _this5 = this;
+
+      e.preventDefault();
+      var coin = e.target.value;
+      this.setState({ amount: "", coins: "" }, function () {
+        return _this5.props.history.push('/sell/' + coin);
+      });
+    }
+  }, {
     key: 'buyElements',
     value: function buyElements() {
-      var _this5 = this;
+      var _this6 = this;
 
       var price = this.getPrice();
       return _react2.default.createElement(
@@ -2636,7 +2650,7 @@ var Trade = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { className: 'trade-coin-button', onClick: function onClick() {
-                return _this5.handleCoinClick('btc');
+                return _this6.handleCoinClick('btc');
               } },
             _react2.default.createElement('img', { src: this.getPic('btc') }),
             _react2.default.createElement('br', null),
@@ -2645,7 +2659,7 @@ var Trade = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { className: 'trade-coin-button', onClick: function onClick() {
-                return _this5.handleCoinClick('bch');
+                return _this6.handleCoinClick('bch');
               } },
             _react2.default.createElement('img', { src: this.getPic('bch') }),
             _react2.default.createElement('br', null),
@@ -2654,7 +2668,7 @@ var Trade = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { className: 'trade-coin-button', onClick: function onClick() {
-                return _this5.handleCoinClick('e');
+                return _this6.handleCoinClick('e');
               } },
             _react2.default.createElement('img', { src: this.getPic('e') }),
             _react2.default.createElement('br', null),
@@ -2663,7 +2677,7 @@ var Trade = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { className: 'trade-coin-button', onClick: function onClick() {
-                return _this5.handleCoinClick('ltc');
+                return _this6.handleCoinClick('ltc');
               } },
             _react2.default.createElement('img', { src: this.getPic('ltc') }),
             _react2.default.createElement('br', null),
@@ -2693,6 +2707,8 @@ var Trade = function (_React$Component) {
   }, {
     key: 'sellElements',
     value: function sellElements() {
+      var _this7 = this;
+
       var price = this.getPrice();
       return _react2.default.createElement(
         'div',
@@ -2704,32 +2720,30 @@ var Trade = function (_React$Component) {
         ),
         _react2.default.createElement(
           'select',
-          { className: 'trade-sell-select-coin' },
+          { className: 'trade-sell-select-coin', onClick: function onClick(e) {
+              return _this7.handleCoinSelect(e);
+            } },
           _react2.default.createElement(
             'option',
-            { value: 'Bitcoin' },
-            _react2.default.createElement('img', { src: this.getPic('btc') }),
+            { value: 'btc' },
             'BTC Wallet ',
             this.props.user.btc_holdings.toFixed(6)
           ),
           _react2.default.createElement(
             'option',
-            { value: 'Bitcoin Cash' },
-            _react2.default.createElement('img', { src: this.getPic("bch") }),
+            { value: 'bch' },
             'BCH Wallet ',
             this.props.user.bch_holdings.toFixed(6)
           ),
           _react2.default.createElement(
             'option',
-            { value: 'Ethereum' },
-            _react2.default.createElement('img', { src: this.getPic("e") }),
+            { value: 'e' },
             'ETC Wallet ',
             this.props.user.e_holdings.toFixed(6)
           ),
           _react2.default.createElement(
             'option',
-            { value: 'Litecoin' },
-            _react2.default.createElement('img', { src: this.getPic("ltc") }),
+            { value: 'ltc' },
             'LTC Wallet ',
             this.props.user.ltc_holdings.toFixed(6)
           )
@@ -2771,7 +2785,7 @@ var Trade = function (_React$Component) {
       e.preventDefault();
       var buying = false;
       if (this.state.active === "buy") buying = true;
-      this.props.trade({ buy: buying, coin: this.linkToWords(), price: this.state.amount, user_id: this.props.user.id, size: this.state.coins });
+      this.props.trade({ buy: buying, coin: this.linkToWords(), price: this.state.amount, user_id: this.props.user.id, size: this.state.coins }).then(this.props.history.push('/dashboard'));
     }
   }, {
     key: 'linkToWords',
@@ -2790,16 +2804,16 @@ var Trade = function (_React$Component) {
   }, {
     key: 'changeTab',
     value: function changeTab(e) {
-      var _this6 = this;
+      var _this8 = this;
 
       e.preventDefault;
       if (e.target.name === 'sell') {
-        this.setState({ active: 'sell' }).then(function () {
-          return _this6.props.history.push("/sell/btc");
+        this.setState({ active: 'sell' }, function () {
+          return _this8.props.history.push('/sell/' + _this8.props.coin);
         });
       } else {
-        this.setState({ active: 'buy' }).then(function () {
-          return _this6.props.history.push("/buy/btc");
+        this.setState({ active: 'buy' }, function () {
+          return _this8.props.history.push('/buy/' + _this8.props.coin);
         });
       }
     }

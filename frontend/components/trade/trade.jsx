@@ -16,6 +16,7 @@ class Trade extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.handleCoinSelect = this.handleCoinSelect.bind(this);
   }
 
   getPic(coin){
@@ -35,7 +36,7 @@ class Trade extends React.Component {
   }
 
   updateCoins(coin_value){
-    return e => this.setState({['coins']: e.target.value, ['amount']: e.target.value*coin_value})
+    return e => this.setState({['coins']: e.target.value*1.0, ['amount']: e.target.value*coin_value})
   }
 
   componentDidMount(){
@@ -57,6 +58,12 @@ class Trade extends React.Component {
 
   handleCoinClick(coin){
     this.setState({amount: "", coins: ""}, () => this.props.history.push(`/buy/${coin}`));
+  }
+
+  handleCoinSelect(e){
+    e.preventDefault();
+    let coin = e.target.value;
+    this.setState({amount: "", coins: ""}, () => this.props.history.push(`/sell/${coin}`));
   }
 
   buyElements(){
@@ -105,21 +112,17 @@ class Trade extends React.Component {
     return (
       <div className='trade-sell-main'>
         <p className='trade-sell-words'>Sell From</p>
-        <select className='trade-sell-select-coin'>
-          <option value="Bitcoin">
-            <img src={this.getPic('btc')}/>
+        <select className='trade-sell-select-coin' onClick={(e) => this.handleCoinSelect(e)}>
+          <option value="btc">
             BTC Wallet {this.props.user.btc_holdings.toFixed(6)}
           </option>
-          <option value="Bitcoin Cash">
-            <img src={this.getPic("bch")}/>
+          <option value="bch">
             BCH Wallet {this.props.user.bch_holdings.toFixed(6)}
           </option>
-          <option value="Ethereum">
-            <img src={this.getPic("e")}/>
+          <option value="e">
             ETC Wallet {this.props.user.e_holdings.toFixed(6)}
           </option>
-          <option value="Litecoin">
-            <img src={this.getPic("ltc")}/>
+          <option value="ltc">
             LTC Wallet {this.props.user.ltc_holdings.toFixed(6)}
           </option>
         </select>
@@ -147,6 +150,7 @@ class Trade extends React.Component {
     let buying = false;
     if(this.state.active === "buy") buying = true;
     this.props.trade({buy: buying, coin: this.linkToWords(), price: this.state.amount, user_id: this.props.user.id, size: this.state.coins })
+      .then(this.props.history.push(`/dashboard`))
   }
 
   linkToWords(){
@@ -165,9 +169,9 @@ class Trade extends React.Component {
   changeTab(e){
     e.preventDefault
     if(e.target.name === 'sell'){
-      this.setState({active: 'sell'}).then(() => this.props.history.push("/sell/btc"));
+      this.setState({active: 'sell'}, () => this.props.history.push(`/sell/${this.props.coin}`));
     } else {
-      this.setState({active: 'buy'}).then(() => this.props.history.push("/buy/btc"));
+      this.setState({active: 'buy'}, () => this.props.history.push(`/buy/${this.props.coin}`));
     }
 
   }

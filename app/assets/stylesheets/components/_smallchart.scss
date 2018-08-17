@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   color: black;
+  justify-content: space-between;
 }
 
 .sc-link{
@@ -33,6 +34,7 @@
   font-family: Montserrat;
   padding: 3px;
   border-radius: 4px;
+  margin-right: 5px;
 }
 
 .sc-money-line {

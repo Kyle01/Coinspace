@@ -12,6 +12,12 @@ class PortfolioSum extends React.Component {
     this.props.fetchPrice();
   }
 
+  willReceiveProps(newProps){
+    if(this.props.price.price.btc_price === undefined){
+      this.props.fetchPrice();
+    }
+  }
+
   getPicture(coin){
     switch (coin) {
       case "Bitcoin":
@@ -71,7 +77,7 @@ class PortfolioSum extends React.Component {
         <p>{coin}</p>
         <p>{this.getPercentageInfo(amount)}%</p>
         <p>{this.getCoinClean(coin)}</p>
-        <p>${amount.toFixed(2)}</p>
+        <p className='port-sum-amount'>${amount.toFixed(2)}</p>
       </div>
     )
   }

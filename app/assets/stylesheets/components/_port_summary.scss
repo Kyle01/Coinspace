@@ -16,6 +16,7 @@
     height: 45px;
   }
   align-items: center;
+  justify-content: space-between;
 }
 
 .port-sum-top-line {
@@ -31,4 +32,17 @@
   padding: 8px;
   color: #8B92A7;
   font-size: 16px;
+}
+
+.port-sum-date {
+  margin-left: 15px;
+}
+
+.port-sum-amount {
+  margin-right: 15px;
+}
+
+.tran-sum-amount {
+  margin-right: 15px;
+
 }
