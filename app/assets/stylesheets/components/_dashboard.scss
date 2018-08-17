@@ -3,42 +3,10 @@
 }
 
 .dash-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 10px;
-  margin: 5px;
-}
-
-.dash-chart-1 {
-   grid-row-start: 1;
-   grid-row-end: 2;
-   grid-column-start: 1;
-   grid-column-end: 2;
-}
-
-.dash-chart-2 {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 2;
-  grid-column-end: 3;
-}
-
-.dash-chart-3 {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 3;
-  grid-column-end: 4;
-}
-
-.dash-chart-4 {
-  grid-row-start: 1;
-  grid-row-end: 2;
-  grid-column-start: 4;
-  grid-column-end: 5;
+  display: inline-flex;
 }
 
 .dash-bottom {
-  display: flex;
-  margin: 0 auto;
-  padding: 20px;
+  display: inline-flex;
+  width: 100%;
 }

@@ -4,15 +4,31 @@
   border: 2px solid #dae1e9;
   border-radius: 10px;
   font-family: Nunito;
-  width: 50%;
-  margin-right: 10px;
+  width: 48.0%;
 }
 
 .port-sum-component-main {
   display: flex;
   border: 1px solid #dae1e9;
   img {
+    padding: 8px;
     width: 45px;
     height: 45px;
   }
+  align-items: center;
+}
+
+.port-sum-top-line {
+  color: #0667d0;
+  font-size: 18px;
+  justify-content: center;
+  margin-left: 5px;
+  padding: 8px;
+}
+
+.port-sum-total-holdings {
+  align-items: center;
+  padding: 8px;
+  color: #8B92A7;
+  font-size: 16px;
 }

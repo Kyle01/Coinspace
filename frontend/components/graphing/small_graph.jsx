@@ -122,7 +122,7 @@ class SmallGraph extends React.Component {
   makeChart(){
     if(this.props.price.prices !== undefined){
       return (
-        <LineChart width={300} height={100} data={this.getCleanData()}>
+        <LineChart width={window.innerWidth/4-45} height={100} data={this.getCleanData()}>
           <Line type='monotone' dataKey='value' stroke={this.getColor()} strokeWidth={2} />
         </LineChart>
       );
@@ -136,11 +136,11 @@ class SmallGraph extends React.Component {
           <div className="sc-top-line">
             <img src={this.getPic()} className="sc-coin-logo"/>
             <p>{this.props.asset}</p>
-            <p>30D</p>
+            <p className="sc-duration-box">30D</p>
           </div>
-          <div>
-            <p>${this.getPrice()}</p>
-            <p>{this.getDailyReturn()}%</p>
+          <div className="sc-money-line">
+            <p className='sc-money-dollar'>${this.getPrice()}</p>
+            <p className='sc-money-percent'>{this.getDailyReturn()}%</p>
           </div>
           {this.makeChart()}
         </Link>

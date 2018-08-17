@@ -71,12 +71,6 @@ class LocalBarFeatures extends React.Component {
             <p className={this.wordClassTwo()}>Buy/Sell</p>
           </div>
         </Link>
-        <Link to="/account" className="local-bar-link">
-          <div className="local-bar-items">
-            <img src={this.imageThree()} className="local-bar-img" />
-            <p className={this.wordClassThree()}>Accounts</p>
-          </div>
-        </Link>
       </div>
     );
   }

@@ -15,8 +15,6 @@ const NavbarFeatures = props => {
     <div className="nav-bar">
       <a className="nav-logo">coinspace</a>
       <div className="nav-middle-el">
-        <a className="nav-middle-text">Charts</a>
-        <a className="nav-middle-text">About</a>
       </div>
       <div className="nav-rt-el">
         <Link className="nav-login" to='/login'>Log in</Link>

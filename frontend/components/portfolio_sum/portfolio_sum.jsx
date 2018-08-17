@@ -51,7 +51,7 @@ class PortfolioSum extends React.Component {
   //last line item of container. Returns a div.
   total_holding_item(){
     return (
-      <div>
+      <div className='port-sum-total-holdings'>
         Total Balance ≈ ${this.total_holdings()}
       </div>
     )
@@ -112,7 +112,7 @@ class PortfolioSum extends React.Component {
       this.portfolioItem(k[0]);
       return (
         <div className="port-sum-main-container">
-          <div>
+          <div className='port-sum-top-line'>
             Your Portfolio
           </div>
           {this.portfolioItem(k[0])}

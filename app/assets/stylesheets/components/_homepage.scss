@@ -1,0 +1,35 @@
+.home-main-div {
+  font-family: Nunito;
+  width: 100%;
+}
+
+.home-intro-div {
+  height: 300px;
+  justify-content: center;
+  display: block;
+  align-items: center;
+}
+.home-intro-line {
+  color:white;
+  font-size: 36px;
+}
+
+.home-login-button {
+  background-color: #00c57f;
+  width: 600px;
+  height: 120px;
+  text-decoration: none;
+
+}
+
+.home-chart-container {
+  display: inline-flex;
+}
+
+.home-about-info {
+  width: 100%;
+  height: 400px;
+  background-color: white;
+  color: black;
+  align-items: center;
+}

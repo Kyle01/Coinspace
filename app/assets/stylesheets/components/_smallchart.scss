@@ -3,6 +3,9 @@
   border: 2px solid #dae1e9;
   border-radius: 10px;
   font-family: Nunito;
+  width: 30%;
+  margin: 15px;
+  justify-content: center;
 }
 
 .sc-coin-logo {
@@ -14,9 +17,38 @@
 .sc-top-line{
   display: flex;
   align-items: center;
-  margin: 0 auto;
+  color: black;
 }
 
 .sc-link{
   text-decoration: none;
+  width: 100%;
+}
+
+.sc-duration-box {
+  text-decoration: none;
+  font-size: 12px;
+  color: white;
+  background-color: #dbe1e8;
+  font-family: Montserrat;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.sc-money-line {
+  display: inline-flex;
+  font-family: Montserrat;
+  align-items: baseline;
+}
+
+.sc-money-dollar {
+  font-size: 24px;
+  margin-right: 15px;
+  margin-left: 3px;
+  color: black;
+}
+
+.sc-money-percent {
+  color: #9BA6B2;
+  font-size: 14px;
 }

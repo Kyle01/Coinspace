@@ -14,14 +14,14 @@ class Dashboard extends React.Component {
         <LocalBarFeatures location="dashboard"/>
         <div className='dash-wrapper'>
           <div className="dash-top">
-            <SmallGraphContainer asset="Bitcoin" className="dash-chart-1"/>
-            <SmallGraphContainer asset="Bitcoin Cash" className="dash-chart-2"/>
-            <SmallGraphContainer asset="Ethereum" className="dash-chart-3"/>
-            <SmallGraphContainer asset="Litecoin" className="dash-chart-4"/>
+            <SmallGraphContainer asset="Bitcoin"/>
+            <SmallGraphContainer asset="Bitcoin Cash"/>
+            <SmallGraphContainer asset="Ethereum"/>
+            <SmallGraphContainer asset="Litecoin"/>
           </div>
           <div className="dash-bottom">
-            <RecentActivityContainer className="dash-recent-activity"/>
-            <PortfolioSummaryContainer className="dash-port-sum"/>
+            <PortfolioSummaryContainer />
+            <RecentActivityContainer />
           </div>
         </div>
     </div>

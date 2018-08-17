@@ -10,6 +10,7 @@ import NavbarContainer from './navigation_bar/navbar_container';
 import Coinsum from './large_charting/coin_sum_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NotFound from './not_found/not_found';
+import HomePage from './home_page/home_page';
 
 
 
@@ -19,7 +20,7 @@ const App = () => (
       <NavbarContainer />
     </header>
     <Switch>
-      <Route exact path ="/" />
+      <Route exact path ="/" component={HomePage}/>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={UserFormContainer} />
       <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />

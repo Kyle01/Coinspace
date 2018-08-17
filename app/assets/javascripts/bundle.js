@@ -359,6 +359,10 @@ var _not_found = __webpack_require__(/*! ./not_found/not_found */ "./frontend/co
 
 var _not_found2 = _interopRequireDefault(_not_found);
 
+var _home_page = __webpack_require__(/*! ./home_page/home_page */ "./frontend/components/home_page/home_page.jsx");
+
+var _home_page2 = _interopRequireDefault(_home_page);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -373,7 +377,7 @@ var App = function App() {
     _react2.default.createElement(
       _reactRouterDom.Switch,
       null,
-      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/' }),
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home_page2.default }),
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/login', component: _login_form_container2.default }),
       _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/signup', component: _user_form_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/dashboard', component: _dashboard_container2.default }),
@@ -560,16 +564,16 @@ var Dashboard = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'dash-top' },
-            _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin', className: 'dash-chart-1' }),
-            _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash', className: 'dash-chart-2' }),
-            _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum', className: 'dash-chart-3' }),
-            _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin', className: 'dash-chart-4' })
+            _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin' }),
+            _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash' }),
+            _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum' }),
+            _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin' })
           ),
           _react2.default.createElement(
             'div',
             { className: 'dash-bottom' },
-            _react2.default.createElement(_recent_activity_container2.default, { className: 'dash-recent-activity' }),
-            _react2.default.createElement(_portfolio_sum_container2.default, { className: 'dash-port-sum' })
+            _react2.default.createElement(_portfolio_sum_container2.default, null),
+            _react2.default.createElement(_recent_activity_container2.default, null)
           )
         )
       );
@@ -784,7 +788,7 @@ var SmallGraph = function (_React$Component) {
       if (this.props.price.prices !== undefined) {
         return _react2.default.createElement(
           _recharts.LineChart,
-          { width: 300, height: 100, data: this.getCleanData() },
+          { width: window.innerWidth / 4 - 45, height: 100, data: this.getCleanData() },
           _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'value', stroke: this.getColor(), strokeWidth: 2 })
         );
       }
@@ -809,22 +813,22 @@ var SmallGraph = function (_React$Component) {
             ),
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'sc-duration-box' },
               '30D'
             )
           ),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'sc-money-line' },
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'sc-money-dollar' },
               '$',
               this.getPrice()
             ),
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'sc-money-percent' },
               this.getDailyReturn(),
               '%'
             )
@@ -884,6 +888,93 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_small_graph2.default);
+
+/***/ }),
+
+/***/ "./frontend/components/home_page/home_page.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/home_page/home_page.jsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+var _small_graph_container = __webpack_require__(/*! ../graphing/small_graph_container */ "./frontend/components/graphing/small_graph_container.js");
+
+var _small_graph_container2 = _interopRequireDefault(_small_graph_container);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HomePage = function (_React$Component) {
+  _inherits(HomePage, _React$Component);
+
+  function HomePage() {
+    _classCallCheck(this, HomePage);
+
+    return _possibleConstructorReturn(this, (HomePage.__proto__ || Object.getPrototypeOf(HomePage)).apply(this, arguments));
+  }
+
+  _createClass(HomePage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'home-main-div' },
+        _react2.default.createElement(
+          'div',
+          { className: 'home-intro-div' },
+          _react2.default.createElement(
+            'p',
+            { className: 'home-intro-line' },
+            'Buy and sell paper digital currency'
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/login', className: 'home-login-button' },
+            'Get Started'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'home-chart-container' },
+          _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin' }),
+          _react2.default.createElement(_small_graph_container2.default, { asset: 'Bitcoin Cash' }),
+          _react2.default.createElement(_small_graph_container2.default, { asset: 'Ethereum' }),
+          _react2.default.createElement(_small_graph_container2.default, { asset: 'Litecoin' })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'home-about-info' },
+          'About page'
+        )
+      );
+    }
+  }]);
+
+  return HomePage;
+}(_react2.default.Component);
+
+exports.default = (0, _reactRouterDom.withRouter)(HomePage);
 
 /***/ }),
 
@@ -1513,20 +1604,6 @@ var LocalBarFeatures = function (_React$Component) {
               'Buy/Sell'
             )
           )
-        ),
-        _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/account', className: 'local-bar-link' },
-          _react2.default.createElement(
-            'div',
-            { className: 'local-bar-items' },
-            _react2.default.createElement('img', { src: this.imageThree(), className: 'local-bar-img' }),
-            _react2.default.createElement(
-              'p',
-              { className: this.wordClassThree() },
-              'Accounts'
-            )
-          )
         )
       );
     }
@@ -1592,20 +1669,7 @@ var NavbarFeatures = function NavbarFeatures(props) {
       { className: 'nav-logo' },
       'coinspace'
     ),
-    _react2.default.createElement(
-      'div',
-      { className: 'nav-middle-el' },
-      _react2.default.createElement(
-        'a',
-        { className: 'nav-middle-text' },
-        'Charts'
-      ),
-      _react2.default.createElement(
-        'a',
-        { className: 'nav-middle-text' },
-        'About'
-      )
-    ),
+    _react2.default.createElement('div', { className: 'nav-middle-el' }),
     _react2.default.createElement(
       'div',
       { className: 'nav-rt-el' },
@@ -1801,7 +1865,7 @@ var PortfolioSum = function (_React$Component) {
     value: function total_holding_item() {
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'port-sum-total-holdings' },
         'Total Balance \u2248 $',
         this.total_holdings()
       );
@@ -1890,7 +1954,7 @@ var PortfolioSum = function (_React$Component) {
           { className: 'port-sum-main-container' },
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'port-sum-top-line' },
             'Your Portfolio'
           ),
           this.portfolioItem(k[0]),
@@ -2072,49 +2136,45 @@ var RecentActivity = function (_React$Component) {
           'div',
           { className: 'tran-sum-tran-container' },
           _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/dashboard', className: 'tran-sum-link' },
+            'div',
+            null,
             _react2.default.createElement(
               'div',
               null,
-              _react2.default.createElement(
-                'div',
-                null,
-                monthHelper[date.getMonth()]
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
-                date.getDate()
-              )
+              monthHelper[date.getMonth()]
             ),
             _react2.default.createElement(
               'div',
               null,
-              _react2.default.createElement('img', { src: this.getImage(transaction), className: 'tran-sum-img' })
-            ),
+              date.getDate()
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('img', { src: this.getImage(transaction), className: 'tran-sum-img' })
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'p',
+              null,
+              this.getWords(transaction)
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
             _react2.default.createElement(
               'div',
               null,
-              _react2.default.createElement(
-                'p',
-                null,
-                this.getWords(transaction)
-              )
+              this.getAmount(transaction)
             ),
             _react2.default.createElement(
               'div',
-              null,
-              _react2.default.createElement(
-                'div',
-                null,
-                this.getAmount(transaction)
-              ),
-              _react2.default.createElement(
-                'div',
-                null,
-                this.getMoney(transaction)
-              )
+              { className: 'tran-sum-money-amount' },
+              this.getMoney(transaction)
             )
           )
         );
@@ -2133,33 +2193,16 @@ var RecentActivity = function (_React$Component) {
         { className: 'tran-sum-main-container' },
         _react2.default.createElement(
           'div',
-          null,
-          'Recent Activity'
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.buildTradeItem(firstTransaction)
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.buildTradeItem(secondTransaction)
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          this.buildTradeItem(thirdTransaction)
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
+          { className: 'tran-recent-act-words' },
+          _react2.default.createElement(
+            'div',
+            null,
+            'Recent Activity'
+          ),
+          this.buildTradeItem(firstTransaction),
+          this.buildTradeItem(secondTransaction),
+          this.buildTradeItem(thirdTransaction),
           this.buildTradeItem(fourthTransaction)
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          'View your Accounts'
         )
       );
     }

@@ -3,20 +3,34 @@
   border: 2px solid #dae1e9;
   border-radius: 10px;
   font-family: Nunito;
-  width: 50%;
-  margin-right: 10px;
+  width: 48%;
+  height: 100%;
+  color: black;
+  margin-left: 10px;
 }
 
-.tran-sum-link {
-  text-decoration: none;
-  display: flex;
-}
 
 .tran-sum-tran-container {
   border: 1px solid #dae1e9;
+  display: inline-flex;
+  width: 100%;
+  height: 20%;
+  color: black;
+  align-items: center;
 }
 
 .tran-sum-img {
   width: 45px;
   height: 45px;
+  margin: 12px;
+}
+
+.tran-recent-act-words {
+  color: #0667d0;
+  font-size: 18px;
+  justify-content: center;
+}
+
+.tran-sum-money-amount {
+  color: #8B92A7;
 }

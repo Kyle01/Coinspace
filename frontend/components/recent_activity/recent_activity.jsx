@@ -77,22 +77,20 @@ class RecentActivity extends React.Component {
       let monthHelper = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       return (
         <div className="tran-sum-tran-container">
-          <Link to="/dashboard" className="tran-sum-link">
-            <div>
-              <div>{monthHelper[date.getMonth()]}</div>
-              <div>{date.getDate()}</div>
-            </div>
-            <div>
-              <img src={this.getImage(transaction)} className="tran-sum-img"></img>
-            </div>
-            <div>
-              <p>{this.getWords(transaction)}</p>
-            </div>
-            <div>
-              <div>{this.getAmount(transaction)}</div>
-              <div>{this.getMoney(transaction)}</div>
-            </div>
-          </Link>
+          <div>
+            <div>{monthHelper[date.getMonth()]}</div>
+            <div>{date.getDate()}</div>
+          </div>
+          <div>
+            <img src={this.getImage(transaction)} className="tran-sum-img"></img>
+          </div>
+          <div>
+            <p>{this.getWords(transaction)}</p>
+          </div>
+          <div>
+            <div>{this.getAmount(transaction)}</div>
+            <div className='tran-sum-money-amount'>{this.getMoney(transaction)}</div>
+          </div>
         </div>
       );
     }
@@ -106,23 +104,12 @@ class RecentActivity extends React.Component {
     let fourthTransaction = this.props.transactions[keys[keys.length-4]];
     return (
       <div className="tran-sum-main-container">
-        <div>
-          Recent Activity
-        </div>
-        <div>
+        <div className='tran-recent-act-words'>
+          <div>Recent Activity</div>
           {this.buildTradeItem(firstTransaction)}
-        </div>
-        <div>
           {this.buildTradeItem(secondTransaction)}
-        </div>
-        <div>
           {this.buildTradeItem(thirdTransaction)}
-        </div>
-        <div>
           {this.buildTradeItem(fourthTransaction)}
-        </div>
-        <div>
-          View your Accounts
         </div>
       </div>
     );
