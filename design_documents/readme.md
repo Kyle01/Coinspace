@@ -35,9 +35,9 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Session tokens are maintained in the browser, and status is saved through refresh
 * Portfolio
   * Users can view their portfolio and see their current coin amount for each of the four available coins
-  ![portfolio_image](Portfolio_view.png)
+  ![portfolio_image](https://github.com/Kyle01/Coinspace/blob/master/app/assets/images/images/Portfolio_view.png)
   * Portfolio keeps a record of each transactions, including execution time, price, coin amount, and coin type.
-  ![recent_transaction_image](recent_transactions.png)
+  ![recent_transaction_image](https://github.com/Kyle01/Coinspace/blob/master/app/assets/images/images/recent_transactions.png)
 * Trades
   * Users can implement trades in real time that are reflected in their portfolio.
   * Logged in users can buy coins at the current price or sell the coins in their portfolio.
