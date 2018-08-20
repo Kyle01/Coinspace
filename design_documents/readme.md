@@ -33,6 +33,23 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Demo access available for previewing
   * User sessions are back-end authenticated
   * Session tokens are maintained in the browser, and status is saved through refresh
+* Dashboard
+  * Dashboard provides the user with the all the information they'll need to make trades, including the current coin prices, graphs of the recent coin performances, their recent transactions, and their current portfolio
+  `<div>
+          <LocalBarFeatures location="dashboard"/>
+          <div className='dash-wrapper'>
+            <div className="dash-top">
+              <SmallGraphContainer asset="Bitcoin"/>
+              <SmallGraphContainer asset="Bitcoin Cash"/>
+              <SmallGraphContainer asset="Ethereum"/>
+              <SmallGraphContainer asset="Litecoin"/>
+            </div>
+            <div className="dash-bottom">
+              <PortfolioSummaryContainer />
+              <RecentActivityContainer />
+            </div>
+          </div>
+  </div>`
 * Portfolio
   * Users can view their portfolio and see their current coin amount for each of the four available coins
   ![portfolio_image](https://github.com/Kyle01/Coinspace/blob/master/app/assets/images/images/Portfolio_view.png)
