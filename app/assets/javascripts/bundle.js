@@ -385,6 +385,7 @@ var App = function App() {
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/sell/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/assets/:coin', component: _coin_sum_container2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/wakemydyno.txt' }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/*', component: _not_found2.default })
     )
   );
@@ -1639,7 +1640,7 @@ var NavbarFeatures = function NavbarFeatures(props) {
     { className: 'nav-bar' },
     _react2.default.createElement(
       'a',
-      { className: 'nav-logo' },
+      { href: '/', className: 'nav-logo' },
       'coinspace'
     ),
     _react2.default.createElement(
@@ -1661,7 +1662,7 @@ var NavbarFeatures = function NavbarFeatures(props) {
     { className: 'nav-bar' },
     _react2.default.createElement(
       'a',
-      { className: 'nav-logo' },
+      { href: '/', className: 'nav-logo' },
       'coinspace'
     ),
     _react2.default.createElement('div', { className: 'nav-middle-el' }),

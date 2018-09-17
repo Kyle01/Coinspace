@@ -28,6 +28,7 @@ const App = () => (
       <ProtectedRoute exact path="/sell/:coin" component={TradeContainer} />
       <ProtectedRoute exact path="/account" component={AccountContainer} />
       <ProtectedRoute exact path="/assets/:coin" component={Coinsum} />
+      <Route path='/wakemydyno.txt'></Route>
       <Route path="/*" component={NotFound}></Route>
     </Switch>
   </div>
