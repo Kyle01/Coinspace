@@ -650,6 +650,8 @@ var _recharts = __webpack_require__(/*! recharts */ "./node_modules/recharts/es6
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -784,13 +786,37 @@ var SmallGraph = function (_React$Component) {
       }
     }
   }, {
+    key: 'getRange',
+    value: function getRange() {
+      var min = 0;
+      var max = 0;
+      if (this.props.price.prices !== undefined) {
+        if (this.props.asset === "Bitcoin") {
+          max = Math.max.apply(Math, _toConsumableArray(this.props.price.prices.bitcoin_prices));
+          min = Math.min.apply(Math, _toConsumableArray(this.props.price.prices.bitcoin_prices));
+        } else if (this.props.asset === "Bitcoin Cash") {
+          max = Math.max.apply(Math, _toConsumableArray(this.props.price.prices.bitcoin_cash_prices));
+          min = Math.min.apply(Math, _toConsumableArray(this.props.price.prices.bitcoin_cash_prices));
+        } else if (this.props.asset === "Ethereum") {
+          max = Math.max.apply(Math, _toConsumableArray(this.props.price.prices.ethereum_prices));
+          min = Math.min.apply(Math, _toConsumableArray(this.props.price.prices.ethereum_prices));
+        } else if (this.props.asset === "Litecoin") {
+          max = Math.max.apply(Math, _toConsumableArray(this.props.price.prices.litecoin_prices));
+          min = Math.min.apply(Math, _toConsumableArray(this.props.price.prices.litecoin_prices));
+        }
+
+        return [min * .95, max * 1.05];
+      }
+    }
+  }, {
     key: 'makeChart',
     value: function makeChart() {
       if (this.props.price.prices !== undefined) {
         return _react2.default.createElement(
           _recharts.LineChart,
           { width: window.innerWidth / 4 - 45, height: 100, data: this.getCleanData() },
-          _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'value', stroke: this.getColor(), strokeWidth: 2 })
+          _react2.default.createElement(_recharts.Line, { type: 'monotone', dataKey: 'value', stroke: this.getColor(), strokeWidth: 2 }),
+          _react2.default.createElement(_recharts.YAxis, { hide: 'true', type: 'number', domain: this.getRange() })
         );
       }
     }
@@ -809,7 +835,7 @@ var SmallGraph = function (_React$Component) {
             _react2.default.createElement('img', { src: this.getPic(), className: 'sc-coin-logo' }),
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'sc-name' },
               this.props.asset
             ),
             _react2.default.createElement(
@@ -955,7 +981,11 @@ var HomePage = function (_React$Component) {
             'Welcome to my clone of coinbase.com.',
             _react2.default.createElement('br', null),
             'Powered by Ruby on Rails and React.',
-            _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null)
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'home-second-line' },
             'Written by Kyle McVeigh'
           ),
           _react2.default.createElement(
@@ -1147,7 +1177,7 @@ var CoinSum = function (_React$Component) {
             { className: 'assets-total-holdings' },
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'assets-your-balance-coins' },
               holdings,
               ' ',
               this.getAbv()
@@ -1268,6 +1298,7 @@ var CoinSum = function (_React$Component) {
               _react2.default.createElement(
                 'p',
                 { className: 'asset-link-price' },
+                '$',
                 this.getPrice(coin)
               )
             )
@@ -1408,6 +1439,12 @@ var CoinSum = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'asset-self-description' },
+              _react2.default.createElement(
+                'p',
+                { className: 'asset-price' },
+                '$',
+                this.getPrice()
+              ),
               this.drawChart(),
               _react2.default.createElement(
                 'p',
@@ -2704,7 +2741,7 @@ var Trade = function (_React$Component) {
           _react2.default.createElement('input', { className: 'trade-buy-input-field', ref: 'coins',
             value: this.state.coins,
             placeholder: '0.00 ' + this.state.coins,
-            onChange: this.updateCoins({ price: price }) }),
+            onChange: this.updateCoins(price) }),
           _react2.default.createElement(
             'button',
             { className: 'trade-buy-coin-button' },

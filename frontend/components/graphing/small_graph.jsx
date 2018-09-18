@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import { LineChart, Line } from 'recharts';
+import { LineChart, Line, YAxis } from 'recharts';
 
 class SmallGraph extends React.Component {
   constructor(props){
@@ -119,33 +119,54 @@ class SmallGraph extends React.Component {
     }
   }
 
+  getRange(){
+    let min = 0;
+    let max = 0;
+    if(this.props.price.prices !== undefined){
+      if(this.props.asset === "Bitcoin"){
+        max = Math.max(...this.props.price.prices.bitcoin_prices);
+        min = Math.min(...this.props.price.prices.bitcoin_prices);
+      } else if (this.props.asset === "Bitcoin Cash") {
+        max = Math.max(...this.props.price.prices.bitcoin_cash_prices);
+        min = Math.min(...this.props.price.prices.bitcoin_cash_prices);
+      } else if (this.props.asset === "Ethereum") {
+        max = Math.max(...this.props.price.prices.ethereum_prices);
+        min = Math.min(...this.props.price.prices.ethereum_prices);
+      } else if (this.props.asset === "Litecoin") {
+        max = Math.max(...this.props.price.prices.litecoin_prices);
+        min = Math.min(...this.props.price.prices.litecoin_prices);
+      }
+
+      return [min*.95, max*1.05];
+    }
+  }
+
   makeChart(){
     if(this.props.price.prices !== undefined){
       return (
         <LineChart width={window.innerWidth/4-45} height={100} data={this.getCleanData()}>
           <Line type='monotone' dataKey='value' stroke={this.getColor()} strokeWidth={2} />
+          <YAxis hide='true' type='number' domain={this.getRange()} />
         </LineChart>
       );
     }
   }
 
   render(){
-    return (
-      <div className="sc-main-container">
+    return <div className="sc-main-container">
         <Link to={`/assets/${this.props.asset}`} className="sc-link">
           <div className="sc-top-line">
-            <img src={this.getPic()} className="sc-coin-logo"/>
-            <p>{this.props.asset}</p>
+            <img src={this.getPic()} className="sc-coin-logo" />
+            <p className="sc-name">{this.props.asset}</p>
             <p className="sc-duration-box">30D</p>
           </div>
           <div className="sc-money-line">
-            <p className='sc-money-dollar'>${this.getPrice()}</p>
-            <p className='sc-money-percent'>{this.getDailyReturn()}%</p>
+            <p className="sc-money-dollar">${this.getPrice()}</p>
+            <p className="sc-money-percent">{this.getDailyReturn()}%</p>
           </div>
           {this.makeChart()}
         </Link>
-      </div>
-    );
+      </div>;
   }
 }
 

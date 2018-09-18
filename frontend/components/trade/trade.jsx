@@ -100,7 +100,7 @@ class Trade extends React.Component {
                <input className='trade-buy-input-field' ref="coins"
                 value={this.state.coins}
                 placeholder={`0.00 ${this.state.coins}`}
-                onChange={this.updateCoins({price})}/>
+                onChange={this.updateCoins(price)}/>
               <button className='trade-buy-coin-button'>Buy {this.linkToWords()}</button>
         </form>
       </div>

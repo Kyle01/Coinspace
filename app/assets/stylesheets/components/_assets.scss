@@ -22,6 +22,14 @@
   margin-right: 12px;
 }
 
+.asset-price {
+  color: black;
+  padding: 18px;
+  font-size: 36px;
+  font-family: Nunito;
+  margin: 0;
+}
+
 
 .asset-top-abv {
   font-size: 24px;
@@ -34,15 +42,27 @@
   color: #4E5C6E;
 }
 
+.assets-your-balance-coins {
+    color: #4E5C6E;
+    margin: none;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-right: 5px;
+}
+
 .assets-your-balance {
   color: #9BA6B2;
   font-size: 14px;
   text-align: right;
   margin: 0px;
+
 }
 
 .assets-holdings-dollars {
   color: #9BA6B2;
+  margin: none;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .asset-top-right{
@@ -75,6 +95,7 @@
 }
 
 .asset-self-description-about {
+  padding-top: 10px;
   color: #4E5C6E;
   font-family: Nunito;
   font-size: 16px;
@@ -138,6 +159,14 @@
   }
 }
 
+.asset-trade-link:hover {
+  cursor: pointer;
+  background-color: #184ca0;
+  border-radius: 10px;
+  height: 50px;
+  width: 100px;
+}
+
  .asset-trade-link-buy {
   display: inline-block;
   color: white;
@@ -152,4 +181,13 @@
     text-align: center;
     vertical-align: middle;
   }
+
+}
+
+.asset-trade-link-buy:hover {
+  cursor: pointer;
+  background-color: #184ca0;
+  border-radius: 10px;
+  height: 50px;
+  width: 100px;
 }

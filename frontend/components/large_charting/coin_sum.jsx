@@ -92,7 +92,7 @@ class CoinSum extends React.Component {
         amount = (this.props.price.price.btc_price * this.props.user.btc_holdings).toFixed(2);
         return (
           <div className ='assets-total-holdings'>
-            <p>{holdings} {this.getAbv()}</p>
+            <p className='assets-your-balance-coins'>{holdings} {this.getAbv()}</p>
             <p className='assets-holdings-dollars'>(${amount})</p>
           </div>
         );
@@ -147,7 +147,7 @@ class CoinSum extends React.Component {
           <img src={this.getPic(coin)} />
           <div className="asset-link-name-details">
             <p>{coin} ({this.getAbv(coin)})</p>
-            <p className="asset-link-price">{this.getPrice(coin)}</p>
+            <p className="asset-link-price">${this.getPrice(coin)}</p>
           </div>
         </div>
         {this.getWords(coin)}
@@ -231,6 +231,7 @@ class CoinSum extends React.Component {
               </div>
             </div>
             <div className="asset-self-description">
+              <p className='asset-price'>${this.getPrice()}</p>
               {this.drawChart()}
               <p className="asset-self-description-about">About {this.props.coin}</p>
               {this.getWords()}

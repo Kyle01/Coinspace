@@ -1,10 +1,10 @@
 .sc-main-container {
   background-color: white;
-  border: 2px solid #dae1e9;
+  border: 3px solid #dae1e9;
   border-radius: 10px;
   font-family: Nunito;
-  width: 30%;
-  margin: 15px;
+  width: 22%;
+  margin: 10px;
   justify-content: center;
 }
 
@@ -19,6 +19,11 @@
   align-items: center;
   color: black;
   justify-content: space-between;
+
+}
+
+.sc-name {
+  font-size: 18px;
 }
 
 .sc-link{
@@ -34,7 +39,7 @@
   font-family: Montserrat;
   padding: 3px;
   border-radius: 4px;
-  margin-right: 5px;
+  margin-right: 12px;
 }
 
 .sc-money-line {
@@ -46,7 +51,7 @@
 .sc-money-dollar {
   font-size: 24px;
   margin-right: 15px;
-  margin-left: 3px;
+  margin-left: 8px;
   color: black;
 }
 

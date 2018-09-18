@@ -13,7 +13,8 @@ class HomePage extends React.Component {
           </p>
           <p className="home-second-line">
             Welcome to my clone of coinbase.com.<br />
-          Powered by Ruby on Rails and React.<br />
+          Powered by Ruby on Rails and React.<br /></p>
+        <p className="home-second-line">
           Written by Kyle McVeigh
           </p>
           <Link to="/login" className="home-login-button">

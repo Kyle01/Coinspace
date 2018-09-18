@@ -15,5 +15,12 @@ module Coinspace
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    Dynopoker.configure do |config|
+      config.address = 'http://wakemydyno.com'
+    #  config.enable = false # default is true
+    #  config.poke_frequency = 123 # default is 1800s (30min)
+    end
   end
 end
+
