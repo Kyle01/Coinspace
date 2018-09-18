@@ -1,6 +1,6 @@
 # Welcome to Coinspace
 
-Coinspace is a paper trading cryptocurrency exchange. Users can make an account and immediately begin making trades of Bitcoin, Bitcoin Cash, Ethereum and Litecoin. Trades are recorded and the value of the portfolio sum is tracked. The project is meant to be a working clone of coinbase.com without the transfer of coin or monies.
+Coinspace is a paper trading cryptocurrency exchange. Users can make an account and immediately begin making trades of Bitcoin, Bitcoin Cash, Ethereum and Litecoin. Trades are recorded, and the value of the portfolio sum is tracked. The project is meant to be a working clone of coinbase.com without the transfer of coin or monies.
 
 ## Design
 The Coinspace web app was designed and built from scratch in 10 days. The proposal was prepared to implement MVPS to achieve functionality.
@@ -11,9 +11,9 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Databases are managed by PostgresSQL
 
 * Frontend:
-  * The front end and UI are implemented using React/Redux and JavaScript..
+  * The front end and UI are implemented using React/Redux and JavaScript.
   * The back-end uses SQL queries for filtering data and front end uses VanillaDOM manipulation.
-  * The webpage designing was done using css and scss and icons were used from coinbase.com
+  * The webpage design was done using css and scss. Icons and logos were used from coinbase.com
 
 * Other technologies:
   * Jbuilder
