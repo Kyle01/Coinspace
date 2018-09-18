@@ -9,11 +9,52 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
 * Backend:
   * The full stack project employs Ruby on Rails 5.2.0.
   * Databases are managed by PostgresSQL
+  
+  Displayed below is the `user_schema`: 
+  
+  ~~~~~
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "password_digest", null: false
+    t.string "session_token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float "btc_holdings", null: false
+    t.float "e_holdings", null: false
+    t.float "ltc_holdings", null: false
+    t.float "bch_holdings", null: false
+    t.index ["session_token"], name: "index_users_on_session_token", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
+  end
+  ~~~~~
 
 * Frontend:
   * The front end and UI are implemented using React/Redux and JavaScript.
   * The back-end uses SQL queries for filtering data and front end uses VanillaDOM manipulation.
   * The webpage design was done using css and scss. Icons and logos were used from coinbase.com
+  
+  Below is the `App.jsx` React file describing the components and their paths: 
+  
+  ~~~~
+  const App = () => (
+  <div>
+    <header>
+      <NavbarContainer />
+    </header>
+    <Switch>
+      <Route exact path ="/" component={HomePage}/>
+      <AuthRoute exact path="/login" component={LoginFormContainer} />
+      <AuthRoute exact path="/signup" component={UserFormContainer} />
+      <ProtectedRoute exact path="/dashboard" component={DashboardContainer} />
+      <ProtectedRoute exact path="/buy/:coin" component={TradeContainer} />
+      <ProtectedRoute exact path="/sell/:coin" component={TradeContainer} />
+      <ProtectedRoute exact path="/account" component={AccountContainer} />
+      <ProtectedRoute exact path="/assets/:coin" component={Coinsum} />
+      <Route path="/*" component={NotFound}></Route>
+    </Switch>
+  </div>
+  );
+  ~~~~
 
 * Other technologies:
   * Jbuilder
@@ -35,7 +76,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Session tokens are maintained in the browser, and status is saved through refresh
 * Portfolio
   * Users can view their portfolio and see their current coin amount for each of the four available coins
-  * Portfolio keeps a record of each transactions, including execution time, price, coin amount, and coin type.
+  * Portfolio keeps a record of each transactions, including execution time, price, coin amount, and coin type
 * Trades
   * Users can implement trades in real time that are reflected in their portfolio.
   * Logged in users can buy coins at the current price or sell the coins in their portfolio.
