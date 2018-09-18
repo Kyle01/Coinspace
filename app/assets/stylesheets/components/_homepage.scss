@@ -14,14 +14,29 @@
   font-size: 36px;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+
+.home-second-line {
+  color:white;
+  font-size: 18px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .home-login-button {
   background-color: #00c57f;
-  width: 600px;
-  height: 120px;
   text-decoration: none;
+  align-items: center;
+  color: white;
+  padding: 20px;
+  font-size: 22px;
+  border-radius: 10px;
+}
 
+.home-login-button:hover{
+  background-color: #00a86c;
 }
 
 .home-chart-container {

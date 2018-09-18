@@ -950,6 +950,15 @@ var HomePage = function (_React$Component) {
             'Buy and sell paper digital currency'
           ),
           _react2.default.createElement(
+            'p',
+            { className: 'home-second-line' },
+            'Welcome to my clone of coinbase.com.',
+            _react2.default.createElement('br', null),
+            'Powered by Ruby on Rails and React.',
+            _react2.default.createElement('br', null),
+            'Written by Kyle McVeigh'
+          ),
+          _react2.default.createElement(
             _reactRouterDom.Link,
             { to: '/login', className: 'home-login-button' },
             'Get Started'
@@ -2751,7 +2760,7 @@ var Trade = function (_React$Component) {
         ),
         _react2.default.createElement(
           'p',
-          null,
+          { className: 'trade-sell-words' },
           'Amount'
         ),
         _react2.default.createElement(
@@ -2760,15 +2769,9 @@ var Trade = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'trade-sell-exchange-bar' },
-            _react2.default.createElement('input', { className: 'trade-sell-input-field', ref: 'amount',
-              value: this.state.amount,
-              placeholder: '0.00 USD',
-              onChange: this.updateAmount(price) }),
+            _react2.default.createElement('input', { className: 'trade-sell-input-field', ref: 'amount', value: this.state.amount, placeholder: '0.00 USD', onChange: this.updateAmount(price) }),
             _react2.default.createElement('img', { className: 'trade-sell-exchange-logo', src: window.images.transfer_logo }),
-            _react2.default.createElement('input', { className: 'trade-sell-input-field', ref: 'coins',
-              value: this.state.coins,
-              placeholder: '0.00 ' + this.state.coins,
-              onChange: this.updateCoins(price) })
+            _react2.default.createElement('input', { className: 'trade-sell-input-field', ref: 'coins', value: this.state.coins, placeholder: '0.00 ' + this.state.coins, onChange: this.updateCoins(price) })
           ),
           _react2.default.createElement(
             'button',

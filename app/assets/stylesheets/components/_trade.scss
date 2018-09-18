@@ -1,11 +1,13 @@
 .trade-main-background {
   background-color: #F4F7FA;
   font-family: Nunito;
+  height: 550px;
 }
 
 .trade-main-container {
   background-color: #ffffff;
-  margin: 35px;
+  margin-top: 35px;
+  margin-left: 25%;
   max-width: 700px;
   border: 2px solid #dae1e9;
   border-radius: 5px;
@@ -20,6 +22,11 @@
   text-align: center;
   border: none;
   border-bottom: 1px solid #dae1e9;
+  border-right: 2px solid #dae1e9;
+}
+
+.trade-buy-button:hover{
+  cursor: pointer;
 }
 
 .trade-sell-button {
@@ -31,6 +38,10 @@
   text-align: center;
   border: none;
   border-bottom: 1px solid #dae1e9;
+}
+
+.trade-sell-button:hover{
+  cursor: pointer;
 }
 
 .trade-coin-buttons {
@@ -62,10 +73,15 @@
   }
 }
 
+.trade-coin-button:hover {
+  cursor: pointer;
+}
+
 .trade-buy-input-field {
   width: 46.0%;
   margin: 5px;
   height: 35px;
+  padding-left: 8px;
 }
 
 .trade-buy-form-field {
@@ -78,6 +94,10 @@
   color: white;
   background-color: #0667d0;
   margin: 25px;
+}
+
+.trade-buy-coin-button:hover {
+  cursor: pointer;
 }
 
 .trade-sell-main {
@@ -100,10 +120,13 @@
   }
 }
 
+.trade-sell-select-coin:hover {
+  cursor: pointer;
+}
+
 .trade-sell-exchange-bar {
   display: inline-flex;
   width: 100%;
-
 }
 
 .trade-sell-exchange-logo {
@@ -115,7 +138,9 @@
   width: 45%;
   height: 35px;
   margin-bottom: 15px;
+  padding-left: 8px;
 }
+
 
 .trade-sell-coin-button {
   width: 95%;
@@ -123,4 +148,8 @@
   color: white;
   background-color: #0667d0;
   margin: 25px;
+}
+
+.trade-sell-coin-button:hover {
+  cursor: pointer;
 }

@@ -109,10 +109,9 @@ class Trade extends React.Component {
 
   sellElements(){
     let price = this.getPrice();
-    return (
-      <div className='trade-sell-main'>
-        <p className='trade-sell-words'>Sell From</p>
-        <select className='trade-sell-select-coin' onClick={(e) => this.handleCoinSelect(e)}>
+    return <div className="trade-sell-main">
+        <p className="trade-sell-words">Sell From</p>
+        <select className="trade-sell-select-coin" onClick={e => this.handleCoinSelect(e)}>
           <option value="btc">
             BTC Wallet {this.props.user.btc_holdings.toFixed(6)}
           </option>
@@ -126,23 +125,18 @@ class Trade extends React.Component {
             LTC Wallet {this.props.user.ltc_holdings.toFixed(6)}
           </option>
         </select>
-        <p>Amount</p>
-          <form onSubmit={this.handleSubmit}>
-            <div className='trade-sell-exchange-bar'>
-              <input className='trade-sell-input-field' ref="amount"
-                     value={this.state.amount}
-                     placeholder="0.00 USD"
-                     onChange={this.updateAmount(price)} />
-             <img className='trade-sell-exchange-logo' src={window.images.transfer_logo} />
-             <input className='trade-sell-input-field' ref="coins"
-                    value={this.state.coins}
-                    placeholder={`0.00 ${this.state.coins}`}
-                    onChange={this.updateCoins(price)}/>
-            </div>
-              <button className='trade-sell-coin-button'>Sell {this.linkToWords()} Instantly</button>
-          </form>
-      </div>
-    );
+        <p className="trade-sell-words">Amount</p>
+        <form onSubmit={this.handleSubmit}>
+          <div className="trade-sell-exchange-bar">
+            <input className="trade-sell-input-field" ref="amount" value={this.state.amount} placeholder="0.00 USD" onChange={this.updateAmount(price)} />
+            <img className="trade-sell-exchange-logo" src={window.images.transfer_logo} />
+            <input className="trade-sell-input-field" ref="coins" value={this.state.coins} placeholder={`0.00 ${this.state.coins}`} onChange={this.updateCoins(price)} />
+          </div>
+          <button className="trade-sell-coin-button">
+            Sell {this.linkToWords()} Instantly
+          </button>
+        </form>
+      </div>;
   }
 
   handleSubmit(e){
