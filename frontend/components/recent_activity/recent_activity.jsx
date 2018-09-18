@@ -104,8 +104,8 @@ class RecentActivity extends React.Component {
     let fourthTransaction = this.props.transactions[keys[keys.length-4]];
     return (
       <div className="tran-sum-main-container">
-        <div className='tran-recent-act-words'>
-          <div>Recent Activity</div>
+        <div className='tran-recent-items'>
+          <p className='tran-recent-act-words-ra'>Recent Activity</p>
           {this.buildTradeItem(firstTransaction)}
           {this.buildTradeItem(secondTransaction)}
           {this.buildTradeItem(thirdTransaction)}

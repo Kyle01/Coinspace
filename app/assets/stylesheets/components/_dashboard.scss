@@ -4,9 +4,13 @@
 
 .dash-top {
   display: inline-flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .dash-bottom {
   display: inline-flex;
   width: 100%;
+  justify-content: center;
+  margin-bottom: 15px;
 }

@@ -1043,6 +1043,8 @@ var _local_bar2 = _interopRequireDefault(_local_bar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -1135,8 +1137,31 @@ var CoinSum = function (_React$Component) {
         _recharts.AreaChart,
         { width: window.innerWidth - 50, height: 200, data: this.getCleanData() },
         _react2.default.createElement(_recharts.Area, { type: 'monotone', dataKey: 'value', stroke: '#8884d8', strokeWidth: 2, fill: '#F4F7FA' }),
-        _react2.default.createElement(_recharts.Tooltip, null)
+        _react2.default.createElement(_recharts.YAxis, { hide: 'true', type: 'number', domain: this.getRange() })
       );
+    }
+  }, {
+    key: 'getRange',
+    value: function getRange() {
+      var min = 0;
+      var max = 0;
+      if (this.props.coin !== undefined) {
+        if (this.props.coin === "Bitcoin") {
+          max = Math.max.apply(Math, _toConsumableArray(this.props.price.prices.bitcoin_prices));
+          min = Math.min.apply(Math, _toConsumableArray(this.props.price.prices.bitcoin_prices));
+        } else if (this.props.coin === "Bitcoin Cash") {
+          max = Math.max.apply(Math, _toConsumableArray(this.props.price.prices.bitcoin_cash_prices));
+          min = Math.min.apply(Math, _toConsumableArray(this.props.price.prices.bitcoin_cash_prices));
+        } else if (this.props.coin === "Ethereum") {
+          max = Math.max.apply(Math, _toConsumableArray(this.props.price.prices.ethereum_prices));
+          min = Math.min.apply(Math, _toConsumableArray(this.props.price.prices.ethereum_prices));
+        } else if (this.props.coin === "Litecoin") {
+          max = Math.max.apply(Math, _toConsumableArray(this.props.price.prices.litecoin_prices));
+          min = Math.min.apply(Math, _toConsumableArray(this.props.price.prices.litecoin_prices));
+        }
+
+        return [min * .95, max * 1.05];
+      }
     }
 
     //not implemented
@@ -1195,10 +1220,10 @@ var CoinSum = function (_React$Component) {
           amount = (this.props.price.price.e_price * this.props.user.e_holdings).toFixed(2);
           return _react2.default.createElement(
             'div',
-            null,
+            { className: 'assets-total-holdings' },
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'assets-your-balance-coins' },
               holdings,
               ' ',
               this.getAbv(),
@@ -1206,7 +1231,7 @@ var CoinSum = function (_React$Component) {
             ),
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'assets-holdings-dollars' },
               '($',
               amount,
               ')'
@@ -1217,10 +1242,10 @@ var CoinSum = function (_React$Component) {
           amount = (this.props.price.price.ltc_price * this.props.user.ltc_holdings).toFixed(2);
           return _react2.default.createElement(
             'div',
-            null,
+            { className: 'assets-total-holdings' },
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'assets-your-balance-coins' },
               holdings,
               ' ',
               this.getAbv(),
@@ -1228,7 +1253,7 @@ var CoinSum = function (_React$Component) {
             ),
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'assets-holdings-dollars' },
               '($',
               amount,
               ')'
@@ -1239,10 +1264,10 @@ var CoinSum = function (_React$Component) {
           amount = (this.props.price.price.btcc_price * this.props.user.bch_holdings).toFixed(2);
           return _react2.default.createElement(
             'div',
-            null,
+            { className: 'assets-total-holdings' },
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'assets-your-balance-coins' },
               holdings,
               ' ',
               this.getAbv(),
@@ -1250,7 +1275,7 @@ var CoinSum = function (_React$Component) {
             ),
             _react2.default.createElement(
               'p',
-              null,
+              { className: 'assets-holdings-dollars' },
               '($',
               amount,
               ')'
@@ -2242,10 +2267,10 @@ var RecentActivity = function (_React$Component) {
         { className: 'tran-sum-main-container' },
         _react2.default.createElement(
           'div',
-          { className: 'tran-recent-act-words' },
+          { className: 'tran-recent-items' },
           _react2.default.createElement(
-            'div',
-            null,
+            'p',
+            { className: 'tran-recent-act-words-ra' },
             'Recent Activity'
           ),
           this.buildTradeItem(firstTransaction),

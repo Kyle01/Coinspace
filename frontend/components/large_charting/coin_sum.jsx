@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import { AreaChart, Area, LineChart, Tooltip } from 'recharts';
+import { AreaChart, Area, LineChart, Tooltip, YAxis } from 'recharts';
 
 import LocalBarFeatures from '../local_bar/local_bar'
 
@@ -57,9 +57,31 @@ class CoinSum extends React.Component {
     return (
       <AreaChart width={window.innerWidth-50} height={200} data={this.getCleanData()}>
         <Area type='monotone' dataKey='value' stroke='#8884d8' strokeWidth={2} fill='#F4F7FA' />
-        <Tooltip />
+        <YAxis hide='true' type='number' domain={this.getRange()} />
       </AreaChart>
     );
+  }
+
+  getRange() {
+    let min = 0;
+    let max = 0;
+    if (this.props.coin !== undefined) {
+      if (this.props.coin === "Bitcoin") {
+        max = Math.max(...this.props.price.prices.bitcoin_prices);
+        min = Math.min(...this.props.price.prices.bitcoin_prices);
+      } else if (this.props.coin === "Bitcoin Cash") {
+        max = Math.max(...this.props.price.prices.bitcoin_cash_prices);
+        min = Math.min(...this.props.price.prices.bitcoin_cash_prices);
+      } else if (this.props.coin === "Ethereum") {
+        max = Math.max(...this.props.price.prices.ethereum_prices);
+        min = Math.min(...this.props.price.prices.ethereum_prices);
+      } else if (this.props.coin === "Litecoin") {
+        max = Math.max(...this.props.price.prices.litecoin_prices);
+        min = Math.min(...this.props.price.prices.litecoin_prices);
+      }
+
+      return [min * .95, max * 1.05];
+    }
   }
 
   //not implemented
@@ -100,27 +122,27 @@ class CoinSum extends React.Component {
         holdings = (this.props.user.e_holdings).toFixed(4);
         amount = (this.props.price.price.e_price * this.props.user.e_holdings).toFixed(2);
         return (
-          <div>
-            <p>{holdings} {this.getAbv()} </p>
-            <p>(${amount})</p>
+          <div className='assets-total-holdings'>
+            <p className='assets-your-balance-coins'>{holdings} {this.getAbv()} </p>
+            <p className='assets-holdings-dollars'>(${amount})</p>
           </div>
         );
       case 'Litecoin':
         holdings = (this.props.user.ltc_holdings).toFixed(4);
         amount = (this.props.price.price.ltc_price * this.props.user.ltc_holdings).toFixed(2);
         return (
-          <div>
-            <p>{holdings} {this.getAbv()} </p>
-            <p>(${amount})</p>
+          <div className='assets-total-holdings'>
+            <p className='assets-your-balance-coins'>{holdings} {this.getAbv()} </p>
+            <p className='assets-holdings-dollars'>(${amount})</p>
           </div>
         );
       case 'Bitcoin Cash':
         holdings = (this.props.user.btc_holdings).toFixed(4);
         amount = (this.props.price.price.btcc_price * this.props.user.bch_holdings).toFixed(2);
         return (
-          <div>
-            <p>{holdings} {this.getAbv()} </p>
-            <p>(${amount})</p>
+          <div className='assets-total-holdings'>
+            <p className='assets-your-balance-coins'>{holdings} {this.getAbv()} </p>
+            <p className='assets-holdings-dollars'>(${amount})</p>
           </div>
         );
     }

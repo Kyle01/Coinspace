@@ -26,10 +26,16 @@
   margin: 12px;
 }
 
-.tran-recent-act-words {
+.tran-recent-items {
+  justify-content: center;
+  margin: none;
+}
+
+.tran-recent-act-words-ra {
   color: #0667d0;
   font-size: 18px;
-  justify-content: center;
+  padding: 8px;
+  margin: 0 auto;
 }
 
 .tran-sum-money-amount {
