@@ -64,6 +64,7 @@ class PortfolioSum extends React.Component {
   }
 
   getPercentageInfo(amount){
+    if(amount === 0)return 0
     return (amount / this.total_holdings() * 100).toFixed(2);
   }
 

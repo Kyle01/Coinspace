@@ -385,7 +385,6 @@ var App = function App() {
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/sell/:coin', component: _trade_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/account', component: _account_container2.default }),
       _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/assets/:coin', component: _coin_sum_container2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/wakemydyno.txt' }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/*', component: _not_found2.default })
     )
   );
@@ -709,13 +708,13 @@ var SmallGraph = function (_React$Component) {
     value: function getPrice() {
       if (this.props.price.price !== undefined) {
         if (this.props.asset === "Bitcoin") {
-          return this.props.price.price.btc_price;
+          return this.props.price.price.btc_price.toFixed(2);
         } else if (this.props.asset === "Bitcoin Cash") {
-          return this.props.price.price.btcc_price;
+          return this.props.price.price.btcc_price.toFixed(2);
         } else if (this.props.asset === "Ethereum") {
-          return this.props.price.price.e_price;
+          return this.props.price.price.e_price.toFixed(2);
         } else if (this.props.asset === "Litecoin") {
-          return this.props.price.price.ltc_price;
+          return this.props.price.price.ltc_price.toFixed(2);
         }
       }
     }
@@ -1177,13 +1176,13 @@ var CoinSum = function (_React$Component) {
       if (this.props.price.price.btc_price !== undefined) {
         switch (coin) {
           case 'Bitcoin':
-            return this.props.price.price.btc_price;
+            return this.props.price.price.btc_price.toFixed(2);
           case 'Litecoin':
-            return this.props.price.price.ltc_price;
+            return this.props.price.price.ltc_price.toFixed(2);
           case 'Bitcoin Cash':
-            return this.props.price.price.btcc_price;
+            return this.props.price.price.btcc_price.toFixed(2);
           case 'Ethereum':
-            return this.props.price.price.e_price;
+            return this.props.price.price.e_price.toFixed(2);
         }
       }
     }
@@ -1947,6 +1946,7 @@ var PortfolioSum = function (_React$Component) {
   }, {
     key: 'getPercentageInfo',
     value: function getPercentageInfo(amount) {
+      if (amount === 0) return 0;
       return (amount / this.total_holdings() * 100).toFixed(2);
     }
   }, {

@@ -45,13 +45,13 @@ class SmallGraph extends React.Component {
   getPrice(){
     if(this.props.price.price !== undefined){
       if(this.props.asset === "Bitcoin") {
-        return this.props.price.price.btc_price;
+        return this.props.price.price.btc_price.toFixed(2);
       } else if(this.props.asset === "Bitcoin Cash") {
-        return this.props.price.price.btcc_price;
+        return this.props.price.price.btcc_price.toFixed(2);
       } else if(this.props.asset === "Ethereum") {
-        return this.props.price.price.e_price;
+        return this.props.price.price.e_price.toFixed(2);
       } else if(this.props.asset === "Litecoin") {
-        return this.props.price.price.ltc_price;
+        return this.props.price.price.ltc_price.toFixed(2);
       }
     }
   }
