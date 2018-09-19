@@ -73,7 +73,8 @@ class RecentActivity extends React.Component {
     if(transaction === undefined){
       return (<div></div>)
     } else {
-      let date = new Date(transaction.created_at);
+      let date = new Date();
+      if(transaction.created_at) date = new Date(transaction.created_at)
       let monthHelper = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       return (
         <div className="tran-sum-tran-container">

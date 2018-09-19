@@ -2204,7 +2204,8 @@ var RecentActivity = function (_React$Component) {
       if (transaction === undefined) {
         return _react2.default.createElement('div', null);
       } else {
-        var date = new Date(transaction.created_at);
+        var date = new Date();
+        if (transaction.created_at) date = new Date(transaction.created_at);
         var monthHelper = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         return _react2.default.createElement(
           'div',
