@@ -83,6 +83,23 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Transactions can be retrieved and created, but cannot be deleted or edited.
 * Coin overview  
   * Users can read about each of the coins available for purchase and see a detail of the price history for the last 30 days.
+  * The price array is created by the controller using the below code. In the future it would be possible to allow for a range to be passed instead of a fixed number, adding valuable functionality. 
+  
+  ~~~~
+    def index
+    prices = Price.first(30)
+    @bitcoin_price_array = []
+    @ethereum_price_array = []
+    @litecoin_price_array = []
+    @bitcoin_cash_price_array = []
+    prices.each do |price|
+      @bitcoin_price_array << price.btc_price
+      @ethereum_price_array << price.e_price
+      @litecoin_price_array << price.ltc_price
+      @bitcoin_cash_price_array << price.btcc_price
+    end
+  end
+  ~~~~
 
 ## Current challenges and future implementations:
   * Add live price detail using an API
