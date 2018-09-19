@@ -5,7 +5,7 @@ Coinspace is a paper trading cryptocurrency exchange. Users can make an account 
 ![dashboardpicture](https://github.com/Kyle01/Coinspace/blob/master/public/dashboard.png)
 
 ## Design
-The Coinspace web app was designed and built from scratch in 10 days. The proposal was prepared to implement MVPS to achieve functionality.
+The Coinspace web app was designed and built from scratch in 10 days. The proposal was prepared to implement MVPS to achieve functionality. The design is meant to mirror as [coinbase.com](http://coinbase.com/)
 
 ## Technologies
 * Backend:
@@ -65,7 +65,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * React DOM
   * React Router
   * React History
-  * Recharts (documents can be found [here](http://recharts.org/))
+  * Recharts (documentation can be found [here](http://recharts.org/))
 
 * The site is hosted on heroku can be viewed [here](https://aa-coinspace.herokuapp.com/)
 
@@ -78,7 +78,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Session tokens are maintained in the browser, and status is saved through refresh
 * Portfolio
   * Users can view their portfolio and see their current coin amount for each of the four available coins
-  * Portfolio keeps a record of each transactions, including execution time, price, coin amount, and coin type
+  * Portfolio keeps a record of each transactions, including execution time, price, coin amount, and coin type and amount their value as the prices of the coin change. 
   
   ![portfoliopicture](https://github.com/Kyle01/Coinspace/blob/master/public/portfolio.png)
   
@@ -88,7 +88,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Transactions can be retrieved and created, but cannot be deleted or edited.
 * Coin overview  
   * Users can read about each of the coins available for purchase and see a detail of the price history for the last 30 days.
-  * The price array is created by the controller using the below code. In the future it would be possible to allow for a range to be passed instead of a fixed number, adding valuable functionality. 
+  * The price array used for querying historical data is created by the controller using the below code. In the future it would be possible to allow for a range to be passed instead of a fixed number, adding valuable functionality for charting. 
   
   ~~~~
     def index
