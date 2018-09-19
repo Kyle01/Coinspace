@@ -2,6 +2,8 @@
 
 Coinspace is a paper trading cryptocurrency exchange. Users can make an account and immediately begin making trades of Bitcoin, Bitcoin Cash, Ethereum and Litecoin. Trades are recorded, and the value of the portfolio sum is tracked. The project is meant to be a working clone of coinbase.com without the transfer of coin or monies.
 
+![dashboardpicture](https://github.com/Kyle01/Coinspace/blob/master/public/dashboard.png)
+
 ## Design
 The Coinspace web app was designed and built from scratch in 10 days. The proposal was prepared to implement MVPS to achieve functionality.
 
@@ -77,6 +79,9 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
 * Portfolio
   * Users can view their portfolio and see their current coin amount for each of the four available coins
   * Portfolio keeps a record of each transactions, including execution time, price, coin amount, and coin type
+  
+  ![portfoliopicture](https://github.com/Kyle01/Coinspace/blob/master/public/portfolio.png)
+  
 * Trades
   * Users can implement trades in real time that are reflected in their portfolio.
   * Logged in users can buy coins at the current price or sell the coins in their portfolio.
