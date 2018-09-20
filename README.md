@@ -5,7 +5,7 @@ Coinspace is a paper trading cryptocurrency exchange. Users can make an account 
 ![dashboardpicture](https://github.com/Kyle01/Coinspace/blob/master/public/dashboard.png)
 
 ## Design
-The Coinspace web app was designed and built from scratch in 10 days. The proposal was prepared to implement MVPS to achieve functionality. The design is meant to mirror [coinbase.com](http://coinbase.com/) as close as possible. 
+The Coinspace web app was designed and built from scratch in 10 days. The proposal was prepared to implement MVPs to achieve functionality. The design is meant to mirror [coinbase.com](http://coinbase.com/) as close as possible. 
 
 ## Technologies
 * Backend:
