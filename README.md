@@ -5,7 +5,7 @@ Coinspace is a paper trading cryptocurrency exchange. Users can make an account 
 ![dashboardpicture](https://github.com/Kyle01/Coinspace/blob/master/public/dashboard.png)
 
 ## Design
-The Coinspace web app was designed and built from scratch in 10 days. The proposal was prepared to implement MVPS to achieve functionality. The design is meant to mirror as [coinbase.com](http://coinbase.com/)
+The Coinspace web app was designed and built from scratch in 10 days. The proposal was prepared to implement MVPS to achieve functionality. The design is meant to mirror [coinbase.com](http://coinbase.com/) as close as possible. 
 
 ## Technologies
 * Backend:
@@ -76,9 +76,12 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Demo access available for previewing
   * User sessions are back-end authenticated
   * Session tokens are maintained in the browser, and status is saved through refresh
+* Live Pricing
+  * The price of each coin is updated once a day using a Ruby-powered API request to a third-party server
+  * The automated request updates the PostgresSQL database using Heroku's schedule for `rake` commands
 * Portfolio
   * Users can view their portfolio and see their current coin amount for each of the four available coins
-  * Portfolio keeps a record of each transactions, including execution time, price, coin amount, and coin type and amount their value as the prices of the coin change. 
+  * Portfolio keeps a record of each transactions, including execution time, price, coin amount, and coin type and amount their value as the prices of the coins change. 
   
   ![portfoliopicture](https://github.com/Kyle01/Coinspace/blob/master/public/portfolio.png)
   
@@ -92,7 +95,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   
   ~~~~
     def index
-    prices = Price.first(30)
+    prices = Price.last(30)
     @bitcoin_price_array = []
     @ethereum_price_array = []
     @litecoin_price_array = []
@@ -105,8 +108,3 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
     end
   end
   ~~~~
-
-## Current challenges and future implementations:
-  * Add live price detail using an API
-    * Adding a API that write to the SQL will allow for live pricing and will not effect other systems.
-  * Your suggestions and feedback are always welcome.
