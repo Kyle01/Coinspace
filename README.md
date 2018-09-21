@@ -14,7 +14,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   
   Displayed below is the `user_schema`: 
   
-  ~~~~~
+  ```ruby
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "password_digest", null: false
@@ -28,7 +28,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
-  ~~~~~
+  ```
 
 * Frontend:
   * The front end and UI are implemented using React/Redux and JavaScript.
@@ -37,7 +37,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   
   Below is the `App.jsx` React file describing the components and their paths: 
   
-  ~~~~
+  ```javascript
   const App = () => (
   <div>
     <header>
@@ -56,7 +56,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
     </Switch>
   </div>
   );
-  ~~~~
+  ```
 
 * Other technologies:
   * Jbuilder
@@ -93,7 +93,7 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
   * Users can read about each of the coins available for purchase and see a detail of the price history for the last 30 days.
   * The price array used for querying historical data is created by the controller using the below code. In the future it would be possible to allow for a range to be passed instead of a fixed number, adding valuable functionality for charting. 
   
-  ~~~~
+  ```ruby
     def index
     prices = Price.last(30)
     @bitcoin_price_array = []
@@ -107,4 +107,4 @@ The Coinspace web app was designed and built from scratch in 10 days. The propos
       @bitcoin_cash_price_array << price.btcc_price
     end
   end
-  ~~~~
+  ```
