@@ -8,7 +8,7 @@
     "babel-preset-react": "^6.24.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-redux": "^5.0.7",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^5.1.1",
     "recharts": "^1.1.0",
     "redux": "^4.0.0",
